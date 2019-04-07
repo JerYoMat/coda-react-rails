@@ -5,3 +5,4 @@ Rails.application.routes.draw do
       resources :financial_periods
     end
 end
+end 
