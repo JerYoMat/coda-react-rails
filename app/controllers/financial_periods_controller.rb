@@ -1,0 +1,3 @@
+class FinancialPeriodsController < ApplicationController
+  
+end
