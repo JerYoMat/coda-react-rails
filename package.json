@@ -1,0 +1,20 @@
+{
+  "name": "coda-react-rails",
+  "version": "1.0.0",
+  "description": "company data analyzer",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "engines": {
+    "node": "11.10.0"
+  },
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "author": "JerYoMAt",
+  "license": "MIT"
+}
