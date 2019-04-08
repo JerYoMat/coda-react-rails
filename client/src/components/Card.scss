@@ -1,0 +1,29 @@
+@import '../styles/colors.scss';
+
+div.card {
+  text-align: center;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid $light-gray;
+  margin-bottom: 1rem;
+  h2.card-title{
+    font-size: 1.625rem;
+    border-bottom: 1px solid $light-blue;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    margin-bottom: 0.25rem;
+  }
+  button {
+    background-color: $dark-green;
+    color: 
+  }
+  
+
+}
+
+
