@@ -3,10 +3,12 @@ import './App.css';
 import CardStack from './components/CardStack';
 
 
-const App = () => {
 
+
+const App = () => {
+ 
   return (
-    <CardStack />
+    <CardStack/>
   )
 }
 

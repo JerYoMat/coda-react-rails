@@ -1,13 +1,14 @@
 import React from 'react';
-import './Card.scss';
+import './HomeCard.scss';
 
-const HomeCard = ({ heading, contentArray}) => (
-    <div className='card col-md-8'>
+const HomeCard = ({ heading, content}) => (
+    <div className='card'>
       <div className='card-body'>
         <h2 className='card-title'>{heading}</h2>
-        {contentArray.map(line => (
-          <p>{line}</p>
+        {content.map(line => (
+          <p className='card-text'>{line}</p>
         ))}
+        <button className='btn'>View</button>
       </div>
     </div>
 )
