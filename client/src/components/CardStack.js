@@ -4,7 +4,7 @@ import cardContent from '../content/HomePage/cardContent.js';
 
 const CardStack = () => {
   return (
-  <div className='col-md-8 offset-2'>
+  <div className='col-md-8 offset-md-2'>
     {cardContent.map(obj => (
     <HomeCard key={obj.id} heading={obj['heading']} content={obj['content']} />
       )

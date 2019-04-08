@@ -1,14 +1,19 @@
 import React from 'react';
 import './App.css';
-import CardStack from './components/CardStack';
-
-
+import { Router } from '@reach/router';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
 
 
 const App = () => {
  
   return (
-    <CardStack/>
+    <div>
+    <Navbar />
+    <Router>
+      <HomePage path='/' />
+    </Router>
+    </div>
   )
 }
 

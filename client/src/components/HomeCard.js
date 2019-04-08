@@ -8,7 +8,7 @@ const HomeCard = ({ heading, content}) => (
         {content.map(line => (
           <p className='card-text'>{line}</p>
         ))}
-        <button className='btn'>View</button>
+        <button>View</button>
       </div>
     </div>
 )
