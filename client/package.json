@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "bootstrap": "^4.3.1",
     "immer": "^2.1.5",
     "node-sass": "^4.11.0",

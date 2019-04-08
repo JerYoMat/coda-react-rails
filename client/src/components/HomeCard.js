@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.scss';
 
-const Card = ({ heading, contentArray}) => (
+const HomeCard = ({ heading, contentArray}) => (
     <div className='card col-md-8'>
       <div className='card-body'>
         <h2 className='card-title'>{heading}</h2>
@@ -11,4 +11,4 @@ const Card = ({ heading, contentArray}) => (
       </div>
     </div>
 )
-export default Card;
+export default HomeCard;
