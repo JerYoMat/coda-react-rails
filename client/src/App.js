@@ -4,6 +4,13 @@ import { Router } from '@reach/router';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faIgloo } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faIgloo)
+
+
 
 const App = () => {
  

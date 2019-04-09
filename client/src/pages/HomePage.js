@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomePage.scss'
 import CardStack from '../components/CardStack';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomePage = () => {
   return (
@@ -10,7 +11,7 @@ const HomePage = () => {
           <h2>Welcome to CoDA</h2>
           <p>A data playground for credit analysts</p>
           <div className='button-container'>
-          <button>T</button>
+          <button> <FontAwesomeIcon icon="igloo" /></button>
           <button>T</button>
           </div>
           
