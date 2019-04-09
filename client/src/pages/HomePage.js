@@ -9,6 +9,11 @@ const HomePage = () => {
         <div className='welcome-card col-md-5 offset-md-2'>
           <h2>Welcome to CoDA</h2>
           <p>A data playground for credit analysts</p>
+          <div className='button-container'>
+          <button>T</button>
+          <button>T</button>
+          </div>
+          
         </div>
       </div>
       <CardStack />
