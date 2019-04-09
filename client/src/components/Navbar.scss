@@ -1,5 +1,10 @@
 @import '../styles/colors.scss';
 
+.app-logo path {
+  fill: $light-blue;
+  stroke: $light-blue;
+}
+
 div.navbar-container {
   background-color: $dark-green;
   line-height: 1.5rem;
