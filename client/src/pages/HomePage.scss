@@ -16,5 +16,8 @@ div.welcome-card {
   color: $light-gray;
   padding: 1rem 0 1rem 1.25rem;
   border-left: 0.25rem solid $light-blue;
+  div span {
+    height:1rem;
+  }
 }
 
