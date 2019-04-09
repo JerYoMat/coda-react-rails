@@ -21,7 +21,22 @@ span.nav-link {
   padding: 0.6rem;
 }
 
-a:active {
-  color: red;
+span.nav-link:hover{
+  color: $light-blue;
+  &::after {
+    width: 95%;
+  }
 }
+
+
+
+span.nav-link::after{
+  content: '';
+  display: block;
+  width: 0px;
+  height: 2px;
+  background: $light-blue;
+  transition: 0.5s;
+}
+
 
