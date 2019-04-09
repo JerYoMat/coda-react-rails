@@ -6,7 +6,7 @@ const CardStack = () => {
   return (
   <div className='col-md-8 offset-md-2'>
     {cardContent.map(obj => (
-    <HomeCard key={obj.id} heading={obj['heading']} content={obj['content']} />
+    <HomeCard key={obj.id} heading={obj['heading']} content={obj['content']} link={obj.link} />
       )
      )
     }
