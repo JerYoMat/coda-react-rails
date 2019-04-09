@@ -28,6 +28,8 @@ gem 'dotenv-rails'
 gem 'bcrypt'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'foreman', '~> 0.82.0'
