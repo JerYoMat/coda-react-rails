@@ -3,7 +3,7 @@ import './App.css';
 import { Router } from '@reach/router';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-
+import CompaniesPage from './pages/CompaniesPage';
 
 const App = () => {
  
@@ -12,6 +12,7 @@ const App = () => {
     <Navbar />
     <Router>
       <HomePage path='/' />
+      <CompaniesPage path='/companies' />
     </Router>
     </div>
   )
