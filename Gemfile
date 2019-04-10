@@ -31,6 +31,8 @@ gem 'bcrypt'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem "active_model_serializers"
+
 group :development, :test do
   gem 'foreman', '~> 0.82.0'
   gem 'minitest'
