@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   include ERB::Util
 
   def index
-    @companies = Company.limit(1000)
+    @companies = Company.all
     render json: @companies
   end 
 
