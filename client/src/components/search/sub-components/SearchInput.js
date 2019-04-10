@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import './SearchInput.scss';
 
 class SearchInput extends PureComponent {
   handleChange = evt => {
@@ -7,7 +8,7 @@ class SearchInput extends PureComponent {
 
   render() {
     return (
-      <form>
+      <form className='search-container'>
         <input type='text' onChange={this.handleChange}/>
       </form>
     );
