@@ -1,0 +1,16 @@
+@import '../styles/colors.scss';
+
+div.search-container {
+
+ width: 100%;
+ padding: 1.5rem 0;
+ border-bottom: 1px solid $light-gray;
+
+ input {
+   display: block; 
+   width: 50%;
+   max-width: 400px;
+  margin: 0 auto;
+ }
+}
+
