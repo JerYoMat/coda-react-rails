@@ -1,0 +1,20 @@
+@import '../styles/breakpoints.scss';
+@import '../styles/colors.scss';
+
+
+
+@media (min-width: $md-bootstrap4) {
+  div.companies-page-wrapper {
+    width: 100%;
+  }
+  div.search-results-container {
+    position: relative;
+    float: right;
+    width: 67%;
+    min-height: 320px;
+  }
+  div.sidebar-container{
+    width: 33%;
+    min-height: 320px;
+  }
+}
