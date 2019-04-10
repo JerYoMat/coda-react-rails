@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import { createStore, compose, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers'; 
+import { loadCompanies } from './actions';
 import './index.css';
 import App from './App';
 
@@ -20,6 +21,7 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 const store = createStore(reducer, enhancer)
 
+store.dispatch(loadCompanies())
 
 ReactDOM.render(
   <Provider store={store}>
