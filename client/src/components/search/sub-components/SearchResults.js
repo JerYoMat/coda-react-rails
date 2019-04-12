@@ -13,7 +13,7 @@ const SearchResults = ({ companies }) => {
   <div>
     results ({companies.length})
     {companies.map(company => (
-      <Link to={'/companies/' + company.id}>
+      <Link key={company.id} to={'/companies/' + company.id}>
         <SearchCard key={company.id} company={company} />
       </Link>
     ))}
