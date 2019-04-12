@@ -55,6 +55,7 @@ GEM
     byebug (11.0.1)
     case_transform (0.2)
       activesupport
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     domain_name (0.5.20180417)
@@ -120,6 +121,9 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     pg (1.1.4)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     puma (3.12.1)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -196,6 +200,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg
+  pry
   puma (~> 3.11)
   rails (~> 5.2.3)
   rest-client
