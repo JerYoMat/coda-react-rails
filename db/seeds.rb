@@ -1,5 +1,7 @@
 require 'csv'
 
+default_user = User.new(username: 'public', password: 'test')
+default_user.save 
 
 
 data = CSV.foreach('db/SecondComboList.csv') do |row|
@@ -20,10 +22,9 @@ data = CSV.foreach('db/SecondComboList.csv') do |row|
   Company.create(
     primarysymbol: row[0],
     companyname: row[1],
-    market_cap: row[2],
     industry_id: industry_id,
     sector_id: sector_id,
     primaryexchange: row[5],
-    market_cap_date: Time.now()
+    user_id: default_user.id 
   )
 end 

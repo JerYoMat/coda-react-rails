@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_09_050407) do
+ActiveRecord::Schema.define(version: 2019_04_12_062227) do
 
   create_table "companies", force: :cascade do |t|
     t.string "companyname"
@@ -18,12 +18,13 @@ ActiveRecord::Schema.define(version: 2019_04_09_050407) do
     t.string "primaryexchange"
     t.integer "industry_id"
     t.integer "sector_id"
-    t.bigint "market_cap"
-    t.date "market_cap_date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["companyname"], name: "index_companies_on_companyname"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
     t.index ["sector_id"], name: "index_companies_on_sector_id"
+    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "financial_periods", force: :cascade do |t|
