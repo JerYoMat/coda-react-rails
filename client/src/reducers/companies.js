@@ -18,7 +18,7 @@ const reducer = produce((draft, action) => {
       return;
     case LOAD_COMPANIES_SUCCESS:
       draft.loadingList = false;
-      draft.list.push(action.payload);
+      draft.list=action.payload;
       return;
     case LOAD_COMPANIES_ERROR:
       draft.loadingList = false;

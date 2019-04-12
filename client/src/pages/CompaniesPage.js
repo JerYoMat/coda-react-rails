@@ -17,7 +17,7 @@ const CompaniesPage = ({ companies }) => {
 }
 
 const mapState = state => ({
-  companies: state.companies.list[0]
+  companies: state.companies.list
 })
 
 export default connect(mapState)(CompaniesPage);
