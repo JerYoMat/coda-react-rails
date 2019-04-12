@@ -2,7 +2,7 @@ require 'rest-client'
 require 'json'
 require 'erb'
 require 'date'
-require 'pry'
+
 
 module Api 
   module V1
