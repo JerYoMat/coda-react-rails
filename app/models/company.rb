@@ -1,5 +1,4 @@
 class Company < ApplicationRecord
-  include ERB::Util
   has_many :favorites
   has_many :users, through: :favorites
   has_many :financial_periods 
