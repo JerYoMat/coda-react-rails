@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_04_12_134527) do
+=======
+ActiveRecord::Schema.define(version: 2019_04_09_050407) do
+>>>>>>> parent of ca15281... updated company model to have a user, added index to companies table for faster search and recreated schema and updated seed accordingly
 
   create_table "companies", force: :cascade do |t|
     t.string "companyname"
@@ -18,12 +22,17 @@ ActiveRecord::Schema.define(version: 2019_04_12_134527) do
     t.string "primaryexchange"
     t.integer "industry_id"
     t.integer "sector_id"
+<<<<<<< HEAD
+=======
+    t.bigint "market_cap"
+    t.date "market_cap_date"
+>>>>>>> parent of ca15281... updated company model to have a user, added index to companies table for faster search and recreated schema and updated seed accordingly
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["companyname"], name: "index_companies_on_companyname"
     t.index ["industry_id"], name: "index_companies_on_industry_id"
     t.index ["primarysymbol"], name: "index_companies_on_primarysymbol"
     t.index ["sector_id"], name: "index_companies_on_sector_id"
+<<<<<<< HEAD
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -34,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_04_12_134527) do
     t.index ["company_id", "user_id"], name: "index_favorites_on_company_id_and_user_id", unique: true
     t.index ["company_id"], name: "index_favorites_on_company_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+=======
+>>>>>>> parent of ca15281... updated company model to have a user, added index to companies table for faster search and recreated schema and updated seed accordingly
   end
 
   create_table "financial_periods", force: :cascade do |t|
