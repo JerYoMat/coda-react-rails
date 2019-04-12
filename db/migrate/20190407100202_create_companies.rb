@@ -6,7 +6,6 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :primaryexchange
       t.belongs_to :industry 
       t.belongs_to :sector
-      t.belongs_to :user
       t.timestamps
     end
   end

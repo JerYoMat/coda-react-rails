@@ -1,8 +1,5 @@
 require 'csv'
 
-default_user = User.new(username: 'public', password: 'test')
-default_user.save 
-
 
 data = CSV.foreach('db/SecondComboList.csv') do |row|
   if Industry.find_by(name: row[3])
@@ -25,6 +22,5 @@ data = CSV.foreach('db/SecondComboList.csv') do |row|
     industry_id: industry_id,
     sector_id: sector_id,
     primaryexchange: row[5],
-    user_id: default_user.id 
   )
 end 
