@@ -31,18 +31,6 @@ class Company < ApplicationRecord
     end 
   end 
 
-  def encoded_ticker
-    ticker = self.primarysymbol
-    return url_encode(ticker)
-  end 
-
-
-
-  def data_url(numperiods=5)
-    url="https://datafied.api.edgar-online.com/v2/corefinancials/ann?primarysymbols=#{self.primarysymbol}&numperiods=#{numperiods}&fields=receiveddate,periodlengthcode,periodlength,periodenddate,fiscalyear,fiscalquarter,totalrevenue,costofrevenue,grossprofit,researchdevelopmentexpense,ebit,incomebeforetaxes,netincome,cashandcashequivalents,cashcashequivalentsandshortterminvestments,othercurrentassets,inventoriesnet,totalcurrentassets,intangibleassets,propertyplantequipmentnet,goodwill,otherassets,totalassets,othercurrentliabilities,totalshorttermdebt,totalcurrentliabilities,otherliabilities,totallongtermdebt,totalliabilities,retainedearnings,totalstockholdersequity,cashfromoperatingactivities,cashfrominvestingactivities,cashfromfinancingactivities,capitalexpenditures,cfdepreciationamortization,netchangeincash,formtype,audited,original,amended,preliminary,currencycode,crosscalculated,usdconversionrate&appkey=#{ENV['EDGAR_KEY']}"
-    return url
-  end 
-  
 
 
 

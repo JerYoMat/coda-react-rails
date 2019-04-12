@@ -17,7 +17,7 @@ module Api
         ticker = url_encode(params['ticker'].upcase)
         @company = Company.find_by(primarysymbol: ticker)
         num_periods = @company.needed_num_periods 
-        if num_periods > 0
+        if num_periods 
           url = compose_url_from_ticker(ticker, num_periods)
           response = RestClient::Request.execute(
             method: :get,
