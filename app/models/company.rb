@@ -6,7 +6,7 @@ class Company < ApplicationRecord
   belongs_to :industry 
   belongs_to :sector
 
-
+=begin 
   def current_end_date
     dates = []
     self.financial_periods.each do |fp|
@@ -30,7 +30,7 @@ class Company < ApplicationRecord
       end 
     end 
   end 
-
+=end 
 
 
 

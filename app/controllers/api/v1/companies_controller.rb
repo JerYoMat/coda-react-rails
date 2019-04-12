@@ -12,7 +12,10 @@ module Api
         @companies = Company.all
         render json: @companies
       end 
-
+    end 
+  end 
+end 
+=begin 
       def show
         ticker = url_encode(params['ticker'].upcase)
         @company = Company.find_by(primarysymbol: ticker)
@@ -72,4 +75,6 @@ module Api
     
     end
 end 
+ 
 end 
+=end 
