@@ -33,7 +33,8 @@ module Api
               value = return_date(value)
             end 
             new_financial_period[key] = value
-          end 
+          end
+          new_financial_period.interest_expense_net = (new_financial_period.ebit - new_financial_period.incomebeforetaxes) 
           new_financial_period.save
         end 
       end  
@@ -63,6 +64,9 @@ private
     end 
   
     def compose_url_from_ticker(ticker, numperiods=5)
+      future_url = "https://datafied.api.edgar-online.com/v2/corefinancials/ann?primarysymbols=#{ticker}&numperiods=#{numperiods}&appkey=#{ENV['EDGAR_KEY']}"
+      
+      
       url="https://datafied.api.edgar-online.com/v2/corefinancials/ann?primarysymbols=#{ticker}&numperiods=#{numperiods}&fields=receiveddate,periodlengthcode,periodlength,periodenddate,fiscalyear,fiscalquarter,totalrevenue,costofrevenue,grossprofit,researchdevelopmentexpense,ebit,incomebeforetaxes,netincome,cashandcashequivalents,cashcashequivalentsandshortterminvestments,othercurrentassets,inventoriesnet,totalcurrentassets,intangibleassets,propertyplantequipmentnet,goodwill,otherassets,totalassets,othercurrentliabilities,totalshorttermdebt,totalcurrentliabilities,otherliabilities,totallongtermdebt,totalliabilities,retainedearnings,totalstockholdersequity,cashfromoperatingactivities,cashfrominvestingactivities,cashfromfinancingactivities,capitalexpenditures,cfdepreciationamortization,netchangeincash,formtype,audited,original,amended,preliminary,currencycode,crosscalculated,usdconversionrate&appkey=#{ENV['EDGAR_KEY']}"
       return url
     end 

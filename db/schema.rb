@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_134527) do
+ActiveRecord::Schema.define(version: 2019_04_14_203717) do
 
   create_table "companies", force: :cascade do |t|
     t.string "companyname"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_134527) do
     t.string "usdconversionrate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "interest_expense_net"
     t.index ["company_id"], name: "index_financial_periods_on_company_id"
   end
 
