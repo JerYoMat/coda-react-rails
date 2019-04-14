@@ -4,7 +4,7 @@ export const getCompanies = () => {
 };
 
 export const getStatmentData = (ticker) => {
-  return postData(`api/v1/companies/${ticker}`)
+  return fetch(`../../api/v1/companies/${ticker}`).then(res => res.json())
 }
 
 
