@@ -8,7 +8,7 @@ const cardContent = [
   {
     id: 2,
     heading: "Compare Companies",
-    content: ["Side by side comparison for up to 5 different companies", "Find companies by name, industry or sector"],
+    content: ["Side by side comparison for up to 3 different companies", "Find companies by name, industry or sector"],
     link: '/compare'
   },
   {
