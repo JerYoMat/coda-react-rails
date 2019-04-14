@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './CompanyProfilePage.scss'
 
 const CompanyProfilePage = ({ companyId, company }) => {
+  
   return (
-    <div>
-    <div>{companyId}</div>
-    <div>{company.companyname}</div>
+    <div className='company-profile-page-wrapper'>
+    <div className='company-profile-main-container'>
+        <div>{company.companyname}</div>
     </div>
+    <div className='company-profile-sidebar-container'>Sidebar</div>
+  </div>
   )
 }
 const mapState = (state, ownProps) => {

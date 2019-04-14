@@ -1,0 +1,25 @@
+@import '../styles/breakpoints.scss';
+@import '../styles/colors.scss';
+
+
+
+@media (min-width: $md-bootstrap4) {
+  div.company-profile-page-wrapper {
+    width: 100%;
+    border-width: 0 3px 3px 3px;  
+    border-style: solid;
+    border-color: $dark-green;
+    border-radius: 0 0 10px 10px;
+  }
+  div.company-profile-main-container {
+    position: relative;
+    float: right;
+    width: 67%;
+    min-height: 320px;
+    border-left: 3px solid $faded-green;
+  }
+  div.company-profile-sidebar-container{
+    width: 33%;
+    min-height: 320px;
+  }
+}
