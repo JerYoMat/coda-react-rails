@@ -6,8 +6,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :primaryexchange
       t.belongs_to :industry 
       t.belongs_to :sector
-      t.bigint :market_cap
-      t.date :market_cap_date
+      t.string :snapshot_link
       t.timestamps
     end
   end
