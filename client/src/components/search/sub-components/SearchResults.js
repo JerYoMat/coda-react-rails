@@ -5,11 +5,11 @@ import SearchCard from './SearchCard';
 
 
 const SearchResults = ({ companies }) => {
- if (!companies) {
-   return <div>Enter a company to search or select industry/sector.</div>
- }
- 
- return (
+  if (!companies) {
+    return <div>Enter a company to search or select industry/sector.</div>
+  }
+
+  return (
   <div>
     results ({companies.length})
     {companies.map(company => (
