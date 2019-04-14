@@ -5,16 +5,16 @@ import {
   LOAD_STATEMENTS_ERROR
 } from '../actions';
 const initialState = {
-  fins: {},
+  fins: [],
   loadingStmnt: false,
-  loadingStmtError: null
+  loadingStmntError: null
 };
 
 const reducer = produce((draft, action) => {
   switch(action.type) {
     case LOAD_STATEMENTS_BEGIN:
       draft.loadingStmnt = true;
-      draft.loadingStmtError = null;
+      draft.loadingStmntError = null;
       return;
     case LOAD_STATEMENTS_SUCCESS:
       draft.loadingStmnt = false;
@@ -22,7 +22,7 @@ const reducer = produce((draft, action) => {
       return;
     case LOAD_STATEMENTS_ERROR:
       draft.loadingStmnt = false;
-      draft.loadingStmtError = action.error
+      draft.loadingStmntError = action.error
       return;
     default:
       return;

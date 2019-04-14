@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './CompanyProfilePage.scss'
-
+import StatementContainer from '../components/statements/StatementContainer';
 const CompanyProfilePage = ({ companyId, company }) => {
   
   return (
@@ -9,7 +9,7 @@ const CompanyProfilePage = ({ companyId, company }) => {
     <div className='company-profile-main-container'>
         <div>{company.companyname}</div>
     </div>
-    <div className='company-profile-sidebar-container'>Sidebar</div>
+    <div className='company-profile-sidebar-container'><StatementContainer ticker={company.primarysymbol}/></div>
   </div>
   )
 }
