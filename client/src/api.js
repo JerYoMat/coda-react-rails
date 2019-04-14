@@ -3,8 +3,8 @@ export const getCompanies = () => {
   return fetch('api/v1/companies').then(res => res.json());
 };
 
-export const getCompanyFins = (companyId) => {
-  return postData(`api/v1/companies/${companyId}`)
+export const getStatmentData = (ticker) => {
+  return postData(`api/v1/companies/${ticker}`)
 }
 
 
