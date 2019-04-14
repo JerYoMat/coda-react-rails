@@ -1,9 +1,5 @@
 require 'csv'
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of ca15281... updated company model to have a user, added index to companies table for faster search and recreated schema and updated seed accordingly
 
 data = CSV.foreach('db/SecondComboList.csv') do |row|
   if Industry.find_by(name: row[3])
@@ -27,9 +23,6 @@ data = CSV.foreach('db/SecondComboList.csv') do |row|
     industry_id: industry_id,
     sector_id: sector_id,
     primaryexchange: row[5],
-<<<<<<< HEAD
-=======
     market_cap_date: Time.now()
->>>>>>> parent of ca15281... updated company model to have a user, added index to companies table for faster search and recreated schema and updated seed accordingly
   )
 end 
