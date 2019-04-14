@@ -5,6 +5,11 @@ import { getCompanies } from './api';
 export const LOAD_COMPANIES_BEGIN = 'LOAD_COMPANIES_BEGIN';
 export const LOAD_COMPANIES_SUCCESS = 'LOAD_COMPANIES_SUCCESS';
 export const LOAD_COMPANIES_ERROR = 'LOAD_COMPANIES_ERROR';
+//Get Individual Company Data
+export const LOAD_COMPANY_BEGIN = 'LOAD_COMPANY_BEGIN';
+export const LOAD_COMPANY_SUCCESS = 'LOAD_COMPANY_SUCCESS';
+export const LOAD_COMPANY_ERROR = 'LOAD_COMPANY_ERROR';
+
 
 //For User
 //Login
