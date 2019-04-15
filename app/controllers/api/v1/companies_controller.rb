@@ -15,8 +15,8 @@ module Api
     
 
 
-    def fins 
-      ticker = url_encode(params['ticker'].upcase)
+    def show 
+      ticker = url_encode(params['id'].upcase)
       @company = Company.find_by(primarysymbol: ticker)
       num_periods = @company.needed_num_periods
       if num_periods 

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
       namespace :api do 
             namespace :v1 do
-                  get '/companies/:ticker', to: 'companies#fins'
-                  resources :companies, only: [:index]
+                  
+                  resources :companies, only: [:index, :show]
               
               resources :users, only: [:create, :update, :destroy]
               resources :favorites, only: [:create, :destroy]
