@@ -35,6 +35,7 @@ module Api
             new_financial_period[key] = value
           end
           new_financial_period.save
+          new_financial_period.interest_expense_net = (new_financial_period.ebit - new_financial_period.incomebeforetaxes)
         end 
       end  
       render json:  @company.financial_periods
