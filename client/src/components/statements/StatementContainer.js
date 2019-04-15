@@ -28,7 +28,10 @@ class StatementContainer extends React.Component{
 }
 
 const mapState = state => ({
-  fins: state.periodData.fins,
+  incomeStatement: state.periodData.statements.IS,
+  balanceSheet: state.periodData.statements.BS,
+  cashFlow: state.periodData.statements.CF,
+  info: state.periodData.statements.info,
   loading: state.periodData.loadingStmnt,
   error: state.periodData.loadingStmntError
 })
