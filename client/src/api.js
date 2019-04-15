@@ -4,7 +4,12 @@ export const getCompanies = () => {
 };
 
 export const getStatmentData = (ticker) => {
-  return fetch(`../../api/v1/companies/${ticker}`).then(res => res.json())
+  return fetch(`../../api/v1/companies/${ticker}`, {
+  method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(res => res.json())
 }
 
 
