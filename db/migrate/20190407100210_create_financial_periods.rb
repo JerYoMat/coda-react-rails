@@ -6,39 +6,39 @@ class CreateFinancialPeriods < ActiveRecord::Migration[5.2]
         t.string :periodlengthcode
         t.string :periodlength
         t.date :periodenddate
-        t.integer :fiscalyear
+        t.bigint :fiscalyear
         t.string :fiscalquarter
-        t.integer :totalrevenue
-        t.integer :costofrevenue
-        t.integer :grossprofit
-        t.integer :researchdevelopmentexpense
-        t.integer :ebit
-        t.integer :incomebeforetaxes
-        t.integer :netincome
-        t.integer :cashandcashequivalents
-        t.integer :cashcashequivalentsandshortterminvestments
-        t.integer :othercurrentassets
-        t.integer :inventoriesnet
-        t.integer :totalcurrentassets
-        t.integer :intangibleassets
-        t.integer :propertyplantequipmentnet
-        t.integer :goodwill 
-        t.integer :otherassets 
-        t.integer :totalassets 
-        t.integer :othercurrentliabilities 
-        t.integer :totalshorttermdebt 
-        t.integer :totalcurrentliabilities 
-        t.integer :otherliabilities 
-        t.integer :totallongtermdebt 
-        t.integer :totalliabilities 
-        t.integer :retainedearnings 
-        t.integer :totalstockholdersequity 
-        t.integer :cashfromoperatingactivities 
-        t.integer :cashfrominvestingactivities 
-        t.integer :cashfromfinancingactivities 
-        t.integer :capitalexpenditures 
-        t.integer :cfdepreciationamortization 
-        t.integer :netchangeincash 
+        t.bigint :totalrevenue
+        t.bigint :costofrevenue
+        t.bigint :grossprofit
+        t.bigint :researchdevelopmentexpense
+        t.bigint :ebit
+        t.bigint :incomebeforetaxes
+        t.bigint :netincome
+        t.bigint :cashandcashequivalents
+        t.bigint :cashcashequivalentsandshortterminvestments
+        t.bigint :othercurrentassets
+        t.bigint :inventoriesnet
+        t.bigint :totalcurrentassets
+        t.bigint :intangibleassets
+        t.bigint :propertyplantequipmentnet
+        t.bigint :goodwill 
+        t.bigint :otherassets 
+        t.bigint :totalassets 
+        t.bigint :othercurrentliabilities 
+        t.bigint :totalshorttermdebt 
+        t.bigint :totalcurrentliabilities 
+        t.bigint :otherliabilities 
+        t.bigint :totallongtermdebt 
+        t.bigint :totalliabilities 
+        t.bigint :retainedearnings 
+        t.bigint :totalstockholdersequity 
+        t.bigint :cashfromoperatingactivities 
+        t.bigint :cashfrominvestingactivities 
+        t.bigint :cashfromfinancingactivities 
+        t.bigint :capitalexpenditures 
+        t.bigint :cfdepreciationamortization 
+        t.bigint :netchangeincash 
         t.string :formtype 
         t.string :audited 
         t.boolean :original 
