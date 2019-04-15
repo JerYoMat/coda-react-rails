@@ -5,7 +5,7 @@ import {
   LOAD_STATEMENTS_ERROR
 } from '../actions';
 const initialState = {
-  fins: [],
+  fins: {},
   loadingStmnt: false,
   loadingStmntError: null
 };
@@ -18,7 +18,7 @@ const reducer = produce((draft, action) => {
       return;
     case LOAD_STATEMENTS_SUCCESS:
       draft.loadingStmnt = false;
-      draft.fins.push(action.payload) 
+      draft.fins[action.payload[0]] = action.payload[1]; 
       return;
     case LOAD_STATEMENTS_ERROR:
       draft.loadingStmnt = false;

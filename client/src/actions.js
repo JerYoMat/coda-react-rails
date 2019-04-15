@@ -1,4 +1,5 @@
 import { getCompanies, getStatmentData } from './api';
+import { createStatements } from './functions/createStatements';
 
 //For Companies
 //Getting Company List 
@@ -26,6 +27,7 @@ export const loadStatements = (ticker) => {
   return dispatch => {
     dispatch({ type: LOAD_STATEMENTS_BEGIN });
     getStatmentData(ticker)
+    .then(rawFins => createStatements(rawFins))
     .then(fins => {
       dispatch({
         type: LOAD_STATEMENTS_SUCCESS,
