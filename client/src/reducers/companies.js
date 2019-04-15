@@ -6,6 +6,7 @@ import {
 } from '../actions';
 const initialState = {
   list: [],
+  loadedList: false,
   loadingList: false,
   loadingListError: null
 };
@@ -17,6 +18,7 @@ const reducer = produce((draft, action) => {
       draft.loadingListError = null;
       return;
     case LOAD_COMPANIES_SUCCESS:
+      draft.loadedList = true;
       draft.loadingList = false;
       draft.list=action.payload;
       return;

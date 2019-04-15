@@ -28,11 +28,11 @@ store.subscribe(throttle(() => {
     companies: store.getState().companies,
     periodData: store.getState().periodData
   });
-}, 1000));
+}, 1000, { 'trailing': false}));
 
-if (JSON.parse(sessionStorage.getItem('state')).companies.list.length === 0) {
+if (store.getState().companies.loadedList === false) {
   store.dispatch(loadCompanies())
-} 
+}
 
 
 
