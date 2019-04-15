@@ -28,9 +28,9 @@ class StatementContainer extends React.Component{
 }
 
 const mapState = (state, ownProps) => ({
-  statements: state.periodData.statements[ownProps.companyId],
-  loading: state.periodData.loadingStmnt,
-  error: state.periodData.loadingStmntError
+  statements: state.companies.statements[ownProps.companyId],
+  loading: state.companies.loadingStmnt,
+  error: state.companies.loadingStmntError
 })
 
 
