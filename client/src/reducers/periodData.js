@@ -18,7 +18,7 @@ const reducer = produce((draft, action) => {
       return;
     case LOAD_STATEMENTS_SUCCESS:
       draft.loadingStmnt = false;
-      draft.fins[action.payload[0]] = action.payload[1]; 
+      draft.fins[Object.keys(action.payload)[0]] = Object.values(action.payload)[0]
       return;
     case LOAD_STATEMENTS_ERROR:
       draft.loadingStmnt = false;

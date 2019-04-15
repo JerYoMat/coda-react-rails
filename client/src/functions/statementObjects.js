@@ -2,7 +2,7 @@
 
 
   export const incomeStatement= {
-    'total_revenue': ['Revenue'],
+    'totalrevenue': ['Revenue'],
     'costofrevenue': ['Cost of Goods Sold'],
     'grossprofit': ['Gross Profit'],
     'researchdevelopmentexpense': ['R&D Expenses'],
@@ -35,7 +35,7 @@
     'netchangeincash': ['Net Change in Cash']
   };
   export const periodInfo = {
-    'period-end-date': ['For the 12 months ending'],
+    'periodenddate': ['Fiscal Year End Date'],
     'fiscalyear': ['Fiscal Year'],
     'formtype': ['Form Type'],
     'audited':['Audited'],
