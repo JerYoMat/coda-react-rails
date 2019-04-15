@@ -8,7 +8,8 @@ import reducer from './reducers';
 import { loadCompanies } from './actions';
 import './index.css';
 import App from './App';
-
+import { saveState, loadState } from './sessionStorage';
+import throttle  from 'lodash/throttle';
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -18,10 +19,22 @@ const composeEnhancers =
       })
     : compose;
 
+const persistedState = loadState()
 const enhancer = composeEnhancers(applyMiddleware(thunk));
-const store = createStore(reducer, enhancer)
+const store = createStore(reducer, persistedState, enhancer);
 
-store.dispatch(loadCompanies())
+store.subscribe(throttle(() => {
+  saveState({
+    companies: store.getState().companies,
+    periodData: store.getState().periodData
+  });
+}, 1000));
+
+if (JSON.parse(sessionStorage.getItem('state')).companies.list.length === 0) {
+  store.dispatch(loadCompanies())
+} 
+
+
 
 ReactDOM.render(
   <Provider store={store}>
