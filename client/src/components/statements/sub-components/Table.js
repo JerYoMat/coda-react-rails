@@ -15,7 +15,7 @@ class Table extends Component {
         <div>
           {title}
         </div>
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">Period End Date:</th>
