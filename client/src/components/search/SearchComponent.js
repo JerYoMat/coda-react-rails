@@ -17,8 +17,10 @@ class SearchComponent extends PureComponent {
   };
 
   handleSubmit = () => {
-    const targetCompany = this.state.filteredCompanies[0]
-    navigate(`/companies/${targetCompany.id}`)
+    if (this.state.filteredCompanies) {
+      const targetCompany = this.state.filteredCompanies[0]
+      navigate(`/companies/${targetCompany.id}`)
+    }
   }
 
   render() {
