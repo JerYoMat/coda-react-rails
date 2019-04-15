@@ -7,9 +7,9 @@ const CompanyProfilePage = ({ companyId, company }) => {
   return (
     <div className='company-profile-page-wrapper'>
     <div className='company-profile-main-container'>
-        <div>{company.companyname}</div>
+      <div>{company.companyname}</div>
     </div>
-    <div className='company-profile-sidebar-container'><StatementContainer ticker={company.primarysymbol}/></div>
+    <div className='company-profile-sidebar-container'><StatementContainer companyId={company.id} ticker={company.primarysymbol}/></div>
   </div>
   )
 }

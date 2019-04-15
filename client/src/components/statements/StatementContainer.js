@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { loadStatements } from '../../actions';
-
+import Table from './sub-components/Table';
 //need to pass in company ticker as prop along with loading, error and statementData
 class StatementContainer extends React.Component{
   componentDidMount() {
@@ -9,7 +9,7 @@ class StatementContainer extends React.Component{
   }
 
   render() {
-    const { error, loading, fins } = this.props;
+    const { error, loading, statements } = this.props;
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -21,17 +21,14 @@ class StatementContainer extends React.Component{
 
     return (
       <div className='financial-statements-container'>
-
+        <Table title="Income Statement"  numColumns={3}/>
       </div>
     );
   }
 }
 
-const mapState = state => ({
-  incomeStatement: state.periodData.statements.IS,
-  balanceSheet: state.periodData.statements.BS,
-  cashFlow: state.periodData.statements.CF,
-  info: state.periodData.statements.info,
+const mapState = (state, ownProps) => ({
+  statements: state.periodData.statements[ownProps.companyId],
   loading: state.periodData.loadingStmnt,
   error: state.periodData.loadingStmntError
 })
