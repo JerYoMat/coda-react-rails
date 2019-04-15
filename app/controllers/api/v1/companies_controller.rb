@@ -34,7 +34,6 @@ module Api
             end 
             new_financial_period[key] = value
           end
-          new_financial_period.interest_expense_net = (new_financial_period.ebit - new_financial_period.incomebeforetaxes) 
           new_financial_period.save
         end 
       end  
