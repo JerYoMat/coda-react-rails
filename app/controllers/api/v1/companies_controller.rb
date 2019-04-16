@@ -12,7 +12,9 @@ module Api
       before_action :set_companies, only: [:index]
       
       def index
-        render json:  @companies
+    
+          render json:  @companies
+      
       end 
     
     def show 
