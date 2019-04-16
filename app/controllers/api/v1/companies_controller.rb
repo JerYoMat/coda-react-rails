@@ -8,9 +8,12 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       include ERB::Util
+      responds_to :json 
       def index
         @companies = Company.all
-        render json: @companies.to_json
+        if stale? @companies do 
+          respond_with @companies
+        end 
       end 
     
 
@@ -77,6 +80,6 @@ private
 
 
 
-  end 
+        end 
     end
 end 
