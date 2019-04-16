@@ -25,7 +25,6 @@ const store = createStore(reducer, persistedState, enhancer);
 
 store.subscribe(throttle(() => {
   saveState({
-    companies: store.getState().companies,
     companies: store.getState().companies
   });
 }, 1000, { 'trailing': false}));

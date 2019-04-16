@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   def fallback_index_html
-    render :file => 'public/index.html'
+    redirect_to: 'https://coda-financial.herokuapp.com/'
   end
 
 end
