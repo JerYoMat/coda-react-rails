@@ -8,16 +8,13 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       include ERB::Util
-      responds_to :json 
+    
+      before_action :set_companies, only: [:index]
+      
       def index
-        @companies = Company.all
-        if stale? @companies do 
-          respond_with @companies
-        end 
+        render json:  @companies
       end 
     
-
-
     def show 
       ticker = url_encode(params['id'].upcase)
       @company = Company.find_by(primarysymbol: ticker)
@@ -47,9 +44,24 @@ module Api
 
 private
 
+    def set_companies 
+      cache = Rails.cache
+      companies_key = Company.cache_key
+      if cache.exist?(companies_key)
+        @companies = cache.fetch(companies_key)
+      else
+        @companies = Company.all.to_json
+        new_key = Company.cache_key
+        cache.write(new_key, @companies, expires_in: 1.day)
+      end 
+      return @companies
+    end 
+
     def return_date(string)
       Date.strptime(string, '%m/%d/%Y')
     end 
+
+
   
   
     def normalize_data(response)
