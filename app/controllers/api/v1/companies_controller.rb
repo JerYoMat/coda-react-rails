@@ -10,7 +10,7 @@ module Api
       include ERB::Util
       def index
         @companies = Company.all
-        render json: @companies
+        render json: @companies.to_json
       end 
     
 
