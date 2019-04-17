@@ -1,20 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 //takes statement, column number to show as props, dates or years for header, title
-class Table extends Component {
-  state={
-    isOpen: true
-  }
-  handleClick = () => {}
-  
-  
+const Table = ({ title, fiscalYears, statement}) => (
+    
 
-  render() {
-    const { title, fiscalYears, statement,  } = this.props;
-    
-    
-    return (
       <div>
         <div>
           {title} <i></i>
@@ -46,9 +36,8 @@ class Table extends Component {
             </tbody>
           </table>
         </div>
-    )
-  }
 
-}
+
+)
 
 export default Table
