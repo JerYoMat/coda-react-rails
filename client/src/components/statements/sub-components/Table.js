@@ -17,7 +17,7 @@ class Table extends Component {
     return (
       <div>
         <div>
-          {title}
+          {title} <i></i>
         </div>
           <table className="table table-bordered table-striped table-dark table-sm">
             <thead>

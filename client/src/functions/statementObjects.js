@@ -3,9 +3,9 @@
 
   export const incomeStatement= {
     'totalrevenue': ['Revenue'],
-    'costofrevenue': ['Cost of Goods Sold'],
+    'costofrevenue': ['COGS'],
     'grossprofit': ['Gross Profit'],
-    'researchdevelopmentexpense': ['R&D Expenses'],
+    'researchdevelopmentexpense': ['R&D'],
     'ebit': ['EBIT'],
     'interest_expense_net': ['Interest Expense, Net'],
     'incomebeforetaxes': ['Pre-Tax Income'],
