@@ -10,7 +10,4 @@ Rails.application.routes.draw do
                   delete '/logout',  to: 'sessions#destroy'
             end       
       end 
-      get '/*path/*path', to: 'application#send_back_to_heroku'
-      get '/*path', to: 'application#send_back_to_heroku'
-      
 end 
