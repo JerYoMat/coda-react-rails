@@ -21,7 +21,9 @@ class StatementContainer extends React.Component{
 
     return (
       <div className='financial-statements-container'>
-        <Table title="Income Statement"  numColumns={3}/>
+          <Table title={"Income Statement"} statement={statements.IS} fiscalYears={statements.info['fiscalyear']}/>
+          <Table title={"Balance Sheet"} statement={statements.BS} fiscalYears={statements.info['fiscalyear']}/>
+          <Table title={"Cash Flow Statement"} statement={statements.CF} fiscalYears={statements.info['fiscalyear']}/>
       </div>
     );
   }

@@ -8,23 +8,41 @@ class Table extends Component {
   }
   handleClick = () => {}
   
+  
+
   render() {
-    const { title, numColumns, fiscalYears, statement } = this.props;
+    const { title, fiscalYears, statement,  } = this.props;
+    
+    
     return (
       <div>
         <div>
           {title}
         </div>
-          <table className="table table-bordered">
+          <table className="table table-bordered table-striped table-dark table-sm">
             <thead>
               <tr>
-                <th scope="col">Period End Date:</th>
+                <th scope="col">FY:</th>
+                <th scope='col'>{fiscalYears[3]}</th>
+                <th scope='col'>{fiscalYears[2]}</th>
+                <th scope='col'>{fiscalYears[1]}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Mark</td>
-              </tr>
+              
+              {Object.keys(statement).map((key) => {
+                const row = statement[key]
+                if (statement[key].length > 1) {
+                return (
+                  <tr key={key}>
+                  <td>{row[0]}</td>
+                  <td  className='statement-num'>{row[3]}</td>
+                  <td  className='statement-num'>{row[2]}</td>
+                  <td  className='statement-num'>{row[1]}</td>
+                  </tr>
+                )}
+              })}
+          
             </tbody>
           </table>
         </div>
