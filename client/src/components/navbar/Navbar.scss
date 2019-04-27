@@ -1,25 +1,25 @@
-@import '../styles/colors.scss';
+@import '../../styles/colors.scss';
 
 .app-logo path {
-  fill: $light-blue;
-  stroke: $light-blue;
+  fill: $action;
+  stroke: $action;
 }
 
 div.navbar-container {
-  background-color: $dark-green;
+  background-color: $background-color;
   line-height: 1.5rem;
   overflow: hidden;
 }
 
 span.logo {
   float: left;
-  color: $light-blue;
+  color: $action;
   padding: 0.6rem;
 
 }
 
 span.nav-link {
-  color: $light-gray;
+  color: $neutral;
   text-align: center;
   text-decoration: none;
   float: right;
@@ -27,7 +27,7 @@ span.nav-link {
 }
 
 span.nav-link:hover{
-  color: $light-blue;
+  color: $action;
   &::after {
     width: 95%;
   }
@@ -40,7 +40,7 @@ span.nav-link::after{
   display: block;
   width: 0px;
   height: 2px;
-  background: $light-blue;
+  background: $action;
   transition: 0.5s;
 }
 
