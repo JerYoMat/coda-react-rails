@@ -38,7 +38,9 @@ const Table = ({ title, fiscalYears, statement}) => {
               <td  className='statement-num'>{row[2]}</td>
               <td  className='statement-num'>{row[1]}</td>
               </tr>
-            )}
+            )} else {
+              return <div></div>
+            } 
           })}
       
         </tbody>
