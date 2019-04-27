@@ -10,12 +10,12 @@ div.banner-container {
 
 
 div.welcome-card {
-  background-color: $faded-green;
+  background-color: $faded-bg;
   top: 50%;
   transform: translateY(-50%);
-  color: $light-gray;
+  color: $neutral;
   padding: 1rem 0 1rem 1.25rem;
-  border-left: 0.25rem solid $light-blue;
+  border-left: 0.25rem solid $action;
   div span {
     height:1rem;
   }
