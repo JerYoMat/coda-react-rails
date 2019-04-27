@@ -43,6 +43,9 @@ module Api
 
 
 private
+    def company_params
+      params.permit(:id)
+    end 
 
     def set_companies 
       cache = Rails.cache
