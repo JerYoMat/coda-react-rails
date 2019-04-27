@@ -1,6 +1,5 @@
 import React,{ useEffect } from 'react';
 import { connect } from 'react-redux';
-import './CompanyProfilePage.scss';
 import { loadStatements} from '../actions';
 import StatementContainer from '../components/statements/StatementContainer';
 

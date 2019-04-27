@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import './SearchInput.scss';
+
 
 class SearchInput extends PureComponent {
   handleChange = evt => {

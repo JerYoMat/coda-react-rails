@@ -1,5 +1,4 @@
 import React from 'react';
-import './SearchResults.scss';
 import { Link } from '@reach/router';
 import SearchCard from './SearchCard';
 
