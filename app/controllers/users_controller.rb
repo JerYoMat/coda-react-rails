@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
-  before_action :authorize_request, only: :destroy
+  before_action :authorize_request, except: :create
 
-  
   def create
     user = User.create!(user_params)
     auth_token = AuthenticateUser.new(user.email, user.password).call
-    response = { message: Message.account_created, auth_token: auth_token }
+    response = { user: user, message: Message.account_created, auth_token: auth_token }
     json_response(response, :created)
   end
+
+  def show
+  end 
+
+  def update
+  end 
 
   private
 
