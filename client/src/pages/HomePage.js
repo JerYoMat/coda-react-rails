@@ -1,27 +1,31 @@
 import React from 'react';
 import './HomePage.scss'
-import CardStack from '../components/CardStack';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import SearchComponent from '../components/search/SearchComponent';
+import { connect } from 'react-redux';
 
-const HomePage = () => {
+
+const HomePage = ({ companies }) => {
   return (
     <div>
       <div className='banner-container'>
-        <div className='welcome-card col-md-5 offset-md-2'>
+        <div className='welcome-card col-md-7 offset-md-2'>
           <h2>Welcome to CoDA</h2>
-          <p>A data playground for credit analysts</p>
-          <div className='button-container'>
-            <FontAwesomeIcon icon={faFacebook} />
-            <FontAwesomeIcon icon={faGithub} />
-            <FontAwesomeIcon icon={faGoogle} />
-          </div>
-          
+          <ul>
+            <li>Search companies listed on NYSE</li>
+            <li>Receive Altman Z-Score, Stock Price and Financial Data</li>
+            <li>Follow Companies</li>
+            <li>Customize your Data</li>
+          </ul>
         </div>
       </div>
-      <CardStack />
+      <SearchComponent companies={companies} />
     </div>
   )
 }
 
-export default HomePage;
+const mapState = state => (
+  {companies: state.companies.list}
+)
+
+
+export default connect(mapState)(HomePage);
