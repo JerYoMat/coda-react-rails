@@ -1,6 +1,6 @@
-class Api::V1::UsersController < ApplicationController
-  before_action :authorize_request
-  skip_before_action :authorize_request, only: :create
+class UsersController < ApplicationController
+  before_action :authorize_request, only: :destroy
+
   
   def create
     user = User.create!(user_params)

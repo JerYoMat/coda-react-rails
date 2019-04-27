@@ -4,8 +4,7 @@ require 'erb'
 require 'date'
 
 
-module Api 
-  module V1
+
     class CompaniesController < ApplicationController
       include ERB::Util
       before_action :set_companies, only: [:index]
@@ -96,5 +95,3 @@ private
 
 
         end 
-    end
-end 
