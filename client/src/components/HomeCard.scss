@@ -6,12 +6,12 @@ div.card {
   border-radius: 0;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid $light-gray;
+  border-bottom: 1px solid $neutral;
   margin-bottom: 0.75rem;
   .card-body {
     h2.card-title{
       font-size: 1.5rem;
-      border-bottom: 1px solid $light-blue;
+      border-bottom: 1px solid $action;
       width: 80%;
       margin: auto;
       padding-bottom: 1rem;
@@ -23,12 +23,12 @@ div.card {
       margin-bottom: 0.25rem;
     }
     button {
-      background-color: $dark-green;
+      background-color: $background-color;
       color: whitesmoke;
       border: none;
       font-size: 0.8rem;
       &:hover{
-        color: $light-blue;
+        color: $action;
       }
     }
     
