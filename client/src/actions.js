@@ -1,4 +1,4 @@
-import { getCompanies, getStatmentData } from './api';
+import { getCompanies, getStatmentData, loginUser, createUser } from './api';
 import { createStatements } from './functions/createStatements';
 
 //For Companies
@@ -56,3 +56,35 @@ export const loadCompanies = () => {
     });
   };
 }; 
+
+export const login = (username, password) => {
+  return dispatch => {
+    dispatch({ type: LOGIN_BEGIN });
+    loginUser(username, password)
+      .then(user => {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: user
+        });
+      })
+      .catch(error => {
+        dispatch({ type: LOGIN_ERROR, error });
+      });
+  };
+};
+
+export const signup = (username, email, password) => {
+  return dispatch => {
+    dispatch({ type: SIGNUP_BEGIN });
+    createUser(username, email, password)
+      .then(user => {
+        dispatch({
+          type: SIGNUP_SUCCESS,
+          payload: user
+        });
+      })
+      .catch(error => {
+        dispatch({ type: SIGNUP_ERROR, error });
+      });
+  };
+};

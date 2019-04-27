@@ -12,7 +12,6 @@ export const getStatmentData = (ticker) => {
   }).then(res => res.json())
 }
 
-
 function postData(url = ``, data = {}) {
   // Default options are marked with *
   return fetch(url, {
@@ -23,3 +22,19 @@ function postData(url = ``, data = {}) {
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   }).then(response => response.json());
 }
+
+
+export const loginUser = (username, password) => {
+  return postData('api/v1/login', {
+    username,
+    password
+  });
+};
+
+export const createUser = (username, email, password) => {
+  return postData('api/v1/users', {
+    username,
+    email,
+    password
+  });
+};
