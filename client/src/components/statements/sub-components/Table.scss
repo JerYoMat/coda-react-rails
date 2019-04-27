@@ -1,0 +1,12 @@
+@import '../../../styles/colors.scss';
+
+div.statement-table-wrapper {
+  width: 100%;
+  padding: 1rem;
+  
+
+  table {
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+}

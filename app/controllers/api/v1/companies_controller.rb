@@ -8,16 +8,14 @@ module Api
   module V1
     class CompaniesController < ApplicationController
       include ERB::Util
-    
       before_action :set_companies, only: [:index]
       
       def index
-    
-          render json:  @companies
-      
+        render json:  @companies
       end 
     
     def show 
+      #send company data and if not exist get from edgar
       ticker = url_encode(params['id'].upcase)
       @company = Company.find_by(primarysymbol: ticker)
       num_periods = @company.needed_num_periods
