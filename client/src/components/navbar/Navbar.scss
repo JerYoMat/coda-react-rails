@@ -11,11 +11,12 @@ div.nav-spacer {
   background-color: $background-color;
 }
 
-a .access-icon {
+.access-icon {
   position: relative;
   float: right;
   top: 0.6rem;
   right: 1rem;
+  color: $action;
 }
 
 div.navbar-container {

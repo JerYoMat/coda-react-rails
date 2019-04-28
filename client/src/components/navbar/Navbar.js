@@ -1,12 +1,13 @@
 import React from 'react';
 import './Navbar.scss'
 import { Link } from '@reach/router';
+import { logout } from '../../actions';
 import { ReactComponent as Logo } from '../../images/coda.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 
-const Navbar = ({ user, viewingCompany}) => {
+const Navbar = ({ user, logout}) => {
   return (
     <div className='row'>
       <div className='col-xl-2 nav-spacer'></div>
@@ -15,9 +16,7 @@ const Navbar = ({ user, viewingCompany}) => {
             <span className='logo'><Logo className='app-logo'/>CoDA</span>
           </Link>
           { user && (
-            <Link to='/users/:userId'>
-                <FontAwesomeIcon icon={faUser} className='access-icon' />
-            </Link>
+            <FontAwesomeIcon icon={faUserCircle} className='access-icon' size='lg' onClick={logout}/>
           )}
           { !user && (
           <Link to='/login'>
@@ -30,8 +29,11 @@ const Navbar = ({ user, viewingCompany}) => {
   )
 }
 
-const mapState = (state) => ({
+const mapState = state => ({
   user: state.user.info
 })
+const mapDispatch = {
+  logout 
+}
 
-export default connect(mapState)(Navbar);
+export default connect(mapState, mapDispatch)(Navbar);
