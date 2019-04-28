@@ -10,7 +10,7 @@ const UserPage = ({ user, loading, favorites }) => {
 
   if (!user) {
     return (
-      <Redirect noThrow from="/users/:userId" to="/login" />
+      <Redirect noThrow from='/users/:userId' to='/' />
     );
   }
 
