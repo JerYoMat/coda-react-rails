@@ -20,3 +20,8 @@ export const loadState = () => {
     return undefined;
   }
 };
+
+export const deleteState = () => {
+  sessionStorage.removeItem('state');
+  return undefined
+}

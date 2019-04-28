@@ -5,13 +5,13 @@ import {
   LOGIN_ERROR,
   SIGNUP_BEGIN,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  SIGNUP_ERROR,
+  LOGOUT_SUCCESS
 } from '../actions';
 const initialState = {
   info: null,
   auth_token: '',
   loading: false,
-  modalIsOpen: false,
   error: null,
   sessionHistory: []
 };
@@ -34,6 +34,13 @@ const reducer = produce((draft, action) => {
       draft.loading = false;
       draft.error = action.error;
       draft.user = null;
+      return;
+    case LOGOUT_SUCCESS:
+      draft.info = null;
+      draft.auth_token = '';
+      draft.loading = false;
+      draft.error = false;
+      draft.sessionHistory = [];
       return;
     default:
       return;

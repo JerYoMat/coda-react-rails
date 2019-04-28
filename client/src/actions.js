@@ -1,6 +1,7 @@
 import { getCompanies, getStatmentData, loginUser, createUser } from './api';
 import { createStatements } from './functions/createStatements';
 
+
 //For Companies
 //Getting Company List 
 export const LOAD_COMPANIES_BEGIN = 'LOAD_COMPANIES_BEGIN';
@@ -22,6 +23,8 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SIGNUP_BEGIN = 'SIGNUP_BEGIN';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+//Logout
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const loadStatements = (ticker) => {
   return dispatch => {
@@ -88,3 +91,7 @@ export const signup = (username, email, password) => {
       });
   };
 };
+
+export const logout = () => ({
+  type: LOGOUT_SUCCESS
+});
