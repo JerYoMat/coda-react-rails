@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import './App.scss'
+import { Router } from '@reach/router';
+import HomePage from './pages/HomePage';
+import CompanyProfilePage from './pages/CompanyProfilePage';
+import LoginCreateUser from './components/loginCreateUser/LoginCreateUser'; 
 import Navbar from './components/navbar/Navbar';
-import SearchComponent from './components/search/SearchComponent'
-import LoginCreateUser from './components/loginCreateUser/LoginCreateUser';
+
 class App extends Component {
 
   render() {
     return (
-      <div>
+    <div>
       <Navbar />
-      <LoginCreateUser />
-      <div className='banner-container'>
-        <div className='welcome-card col-md-7 offset-md-2'>
-          <h2>Welcome to CoDA</h2>
-          <ul>
-            <li>Search companies listed on NYSE</li>
-            <li>Receive Altman Z-Score, Stock Price and Financial Data</li>
-            <li>Follow Companies</li>
-            <li>Customize your Data</li>
-          </ul>
+      <div className='row'>
+      <div className='col-xl-2'></div>
+        <div className='col-xl-8'>
+          <Router> 
+          <HomePage path='/' />
+            <LoginCreateUser path='/login' />
+            <CompanyProfilePage path='/companies/:companyId' />
+          </Router>
         </div>
+      <div className='col-xl-2'></div>
       </div>
-      <SearchComponent />
     </div>
     )
   }
