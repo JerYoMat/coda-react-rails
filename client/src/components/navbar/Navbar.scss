@@ -4,11 +4,25 @@
   fill: $action;
   stroke: $action;
 }
+div.navbar-container a {
+  color: $action;
+}
+div.nav-spacer {
+  background-color: $background-color;
+}
+
+a .access-icon {
+  position: relative;
+  float: right;
+  top: 0.6rem;
+  right: 1rem;
+}
 
 div.navbar-container {
   background-color: $background-color;
   line-height: 1.5rem;
   overflow: hidden;
+  margin-left: none;
 }
 
 span.logo {
