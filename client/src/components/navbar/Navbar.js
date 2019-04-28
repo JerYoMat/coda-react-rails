@@ -4,8 +4,9 @@ import { Link } from '@reach/router';
 import { logout } from '../../actions';
 import { ReactComponent as Logo } from '../../images/coda.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
+import DropDown from './sub-components/DropDown';
 
 const Navbar = ({ user, logout}) => {
   return (
@@ -16,11 +17,11 @@ const Navbar = ({ user, logout}) => {
             <span className='logo'><Logo className='app-logo'/>CoDA</span>
           </Link>
           { user && (
-            <FontAwesomeIcon icon={faUserCircle} className='access-icon' size='lg' onClick={logout}/>
+            <DropDown userId={user.id} logout={logout} />
           )}
           { !user && (
           <Link to='/login'>
-            <FontAwesomeIcon icon={faSignInAlt} className='access-icon' size='lg' />
+            <FontAwesomeIcon icon={faSignInAlt} className='login-icon' size='lg' />
           </Link>
           )}
       </div>
