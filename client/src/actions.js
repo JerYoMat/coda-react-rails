@@ -57,10 +57,10 @@ export const loadCompanies = () => {
   };
 }; 
 
-export const login = (username, password) => {
+export const login = (email, password) => {
   return dispatch => {
     dispatch({ type: LOGIN_BEGIN });
-    loginUser(username, password)
+    loginUser(email, password)
       .then(user => {
         dispatch({
           type: LOGIN_SUCCESS,

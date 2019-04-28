@@ -10,6 +10,7 @@ import {
 const initialState = {
   user: null,
   loading: false,
+  modalIsOpen: false,
   error: null,
   sessionHistory: []
 };

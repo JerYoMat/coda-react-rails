@@ -1,10 +1,12 @@
+const PREFIX = 'api/v1/'
+
 
 export const getCompanies = () => {
-  return fetch('api/v1/companies').then(res => res.json());
+  return fetch(PREFIX + 'companies').then(res => res.json());
 };
 
 export const getStatmentData = (ticker) => {
-  return fetch(`../../api/v1/companies/${ticker}`, {
+  return fetch(`../../${PREFIX}/companies/${ticker}`, {
   method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -24,15 +26,15 @@ function postData(url = ``, data = {}) {
 }
 
 
-export const loginUser = (username, password) => {
-  return postData('api/v1/login', {
-    username,
+export const loginUser = (email, password) => {
+  return postData('../' +PREFIX + 'auth/login', {
+    email,
     password
   });
 };
 
 export const createUser = (username, email, password) => {
-  return postData('api/v1/users', {
+  return postData('../'+ PREFIX + 'users', {
     username,
     email,
     password
