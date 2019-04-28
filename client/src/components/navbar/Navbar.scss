@@ -4,14 +4,8 @@
   fill: $action;
   stroke: $action;
 }
-div.navbar-container a {
-  color: $action;
-}
-div.nav-spacer {
-  background-color: $background-color;
-}
 
-.access-icon {
+div.navbar-container a .login-icon{
   position: relative;
   float: right;
   top: 0.6rem;
@@ -19,10 +13,14 @@ div.nav-spacer {
   color: $action;
 }
 
+div.nav-spacer {
+  background-color: $background-color;
+}
+
+
 div.navbar-container {
   background-color: $background-color;
   line-height: 1.5rem;
-  overflow: hidden;
   margin-left: none;
 }
 
@@ -30,33 +28,5 @@ span.logo {
   float: left;
   color: $action;
   padding: 0.6rem;
-
 }
-
-span.nav-link {
-  color: $neutral;
-  text-align: center;
-  text-decoration: none;
-  float: right;
-  padding: 0.6rem;
-}
-
-span.nav-link:hover{
-  color: $action;
-  &::after {
-    width: 95%;
-  }
-}
-
-
-
-span.nav-link::after{
-  content: '';
-  display: block;
-  width: 0px;
-  height: 2px;
-  background: $action;
-  transition: 0.5s;
-}
-
 
