@@ -8,7 +8,8 @@ import {
   SIGNUP_ERROR
 } from '../actions';
 const initialState = {
-  user: null,
+  info: null,
+  auth_token: '',
   loading: false,
   modalIsOpen: false,
   error: null,
@@ -25,7 +26,8 @@ const reducer = produce((draft, action) => {
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS:
       draft.loading = false;
-      draft.user = action.payload;  //depending on how favorites are passed back 
+      draft.info = action.payload.info;  //depending on how favorites are passed back
+      draft.auth_token = action.payload.auth_token; 
       return;
     case LOGIN_ERROR:
     case SIGNUP_ERROR:
