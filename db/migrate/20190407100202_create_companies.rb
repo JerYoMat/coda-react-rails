@@ -4,10 +4,12 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :companyname
       t.string :primarysymbol
       t.string :primaryexchange
-      t.belongs_to :industry 
-      t.belongs_to :sector
+      t.string :industry 
+      t.string :sector
       t.string :snapshot_link
       t.timestamps
     end
+    add_index :companies, :companyname
+    add_index :companies, :primarysymbol
   end
 end

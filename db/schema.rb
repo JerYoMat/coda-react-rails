@@ -10,21 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_203717) do
+ActiveRecord::Schema.define(version: 2019_04_28_223000) do
 
   create_table "companies", force: :cascade do |t|
     t.string "companyname"
     t.string "primarysymbol"
     t.string "primaryexchange"
-    t.integer "industry_id"
-    t.integer "sector_id"
+    t.string "industry"
+    t.string "sector"
     t.string "snapshot_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["companyname"], name: "index_companies_on_companyname"
-    t.index ["industry_id"], name: "index_companies_on_industry_id"
     t.index ["primarysymbol"], name: "index_companies_on_primarysymbol"
-    t.index ["sector_id"], name: "index_companies_on_sector_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -36,75 +34,86 @@ ActiveRecord::Schema.define(version: 2019_04_14_203717) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "financial_periods", force: :cascade do |t|
+  create_table "financials", force: :cascade do |t|
     t.integer "company_id"
-    t.date "receiveddate"
+    t.string "interestexpense"
+    t.string "amended"
+    t.string "changeincurrentassets"
+    t.string "changeincurrentliabilities"
+    t.string "changeininventories"
+    t.string "dividendspaid"
+    t.string "effectofexchangerateoncash"
+    t.string "capitalexpenditures"
+    t.string "cashfromfinancingactivities"
+    t.string "cashfrominvestingactivities"
+    t.string "cashfromoperatingactivities"
+    t.string "cfdepreciationamortization"
+    t.string "changeinaccountsreceivable"
+    t.string "investmentchangesnet"
+    t.string "netchangeincash"
+    t.string "totaladjustments"
+    t.string "ebit"
+    t.string "costofrevenue"
+    t.string "grossprofit"
+    t.string "incomebeforetaxes"
+    t.string "netincome"
+    t.string "netincomeapplicabletocommon"
+    t.string "totalrevenue"
+    t.string "sellinggeneraladministrativeexpenses"
+    t.string "commonstock"
+    t.string "cashandcashequivalents"
+    t.string "cashcashequivalentsandshortterminvestments"
+    t.string "goodwill"
+    t.string "intangibleassets"
+    t.string "inventoriesnet"
+    t.string "minorityinterest"
+    t.string "otherassets"
+    t.string "otherliabilities"
+    t.string "propertyplantequipmentnet"
+    t.string "retainedearnings"
+    t.string "totalassets"
+    t.string "totalcurrentassets"
+    t.string "totalcurrentliabilities"
+    t.string "totalliabilities"
+    t.string "totalreceivablesnet"
+    t.string "totalshorttermdebt"
+    t.string "totalstockholdersequity"
+    t.string "treasurystock"
+    t.string "taxonomyid"
+    t.string "cik"
+    t.string "companyname"
+    t.string "entityid"
+    t.string "primaryexchange"
+    t.string "marketoperator"
+    t.string "markettier"
+    t.string "primarysymbol"
+    t.string "siccode"
+    t.string "sicdescription"
+    t.string "usdconversionrate"
+    t.string "restated"
+    t.string "receiveddate"
+    t.string "preliminary"
     t.string "periodlengthcode"
     t.string "periodlength"
-    t.date "periodenddate"
-    t.bigint "fiscalyear"
-    t.string "fiscalquarter"
-    t.bigint "totalrevenue"
-    t.bigint "costofrevenue"
-    t.bigint "grossprofit"
-    t.bigint "researchdevelopmentexpense"
-    t.bigint "ebit"
-    t.bigint "incomebeforetaxes"
-    t.bigint "netincome"
-    t.bigint "cashandcashequivalents"
-    t.bigint "cashcashequivalentsandshortterminvestments"
-    t.bigint "othercurrentassets"
-    t.bigint "inventoriesnet"
-    t.bigint "totalcurrentassets"
-    t.bigint "intangibleassets"
-    t.bigint "propertyplantequipmentnet"
-    t.bigint "goodwill"
-    t.bigint "otherassets"
-    t.bigint "totalassets"
-    t.bigint "othercurrentliabilities"
-    t.bigint "totalshorttermdebt"
-    t.bigint "totalcurrentliabilities"
-    t.bigint "otherliabilities"
-    t.bigint "totallongtermdebt"
-    t.bigint "totalliabilities"
-    t.bigint "retainedearnings"
-    t.bigint "totalstockholdersequity"
-    t.bigint "cashfromoperatingactivities"
-    t.bigint "cashfrominvestingactivities"
-    t.bigint "cashfromfinancingactivities"
-    t.bigint "capitalexpenditures"
-    t.bigint "cfdepreciationamortization"
-    t.bigint "netchangeincash"
+    t.string "periodenddate"
+    t.string "original"
     t.string "formtype"
-    t.string "audited"
-    t.boolean "original"
-    t.string "amended"
-    t.boolean "preliminary"
+    t.string "fiscalyear"
+    t.string "fiscalquarter"
+    t.string "dcn"
     t.string "currencycode"
-    t.boolean "crosscalculated"
-    t.string "usdconversionrate"
+    t.string "crosscalculated"
+    t.string "audited"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "interest_expense_net"
-    t.index ["company_id"], name: "index_financial_periods_on_company_id"
-  end
-
-  create_table "industries", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sectors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_financials_on_company_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "settings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
