@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-
+import './SearchInput.scss'
 
 class SearchInput extends PureComponent {
   handleChange = evt => {
@@ -14,7 +14,7 @@ class SearchInput extends PureComponent {
   render() {
     return (
       <form className='search-container' onSubmit={this.handleFormSubmit}>
-        <input type='text' onChange={this.handleChange}/>
+        <input type='text' onChange={this.handleChange} placeholder='Start typing a company name to search...'/>
       </form>
     );
   }
