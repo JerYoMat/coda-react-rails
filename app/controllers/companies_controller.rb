@@ -12,6 +12,12 @@ class CompaniesController < ApplicationController
       @company.create_fins
       render json: @company.financials
     end  
+  end
+  
+  def stock_data
+    @company = Company.find_by(primarysymbol: params['ticker'])
+    @data = @company.get_stock_data
+    render json: @data
   end 
 
 

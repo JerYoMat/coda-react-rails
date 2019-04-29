@@ -4,6 +4,14 @@ class Company < ApplicationRecord
   has_many :favorites
   has_many :financials  
 
+  def get_stock_data
+    url = ENV['ALPHA_URL']+"?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=#{self.primarysymbol}&apikey=#{ENV['ALPHA_KEY']}"
+    response = RestClient::Request.execute(
+      method: :get,
+      url: url
+    )
+    return response
+  end 
 
   def create_fins 
     response = self.get_data
