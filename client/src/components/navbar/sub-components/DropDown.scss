@@ -4,6 +4,9 @@
   position: relative;
   color:$action;
   cursor: pointer;
+  &:hover {
+    color: $neutral;
+  }
 }
 
 .dropdown {
@@ -14,7 +17,10 @@
 }
 
 .dropdown-content {
-  display: none;
+  display: inline;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
   position: absolute;
   top: 1.5rem;
   right: 0;
@@ -34,4 +40,4 @@
 .dropdown-content span:hover {
   background-color: $background-color;
   color: $action}
-.dropdown:hover .dropdown-content {display: inline;}
+.dropdown:hover .dropdown-content {visibility: visible; opacity: 1;}
