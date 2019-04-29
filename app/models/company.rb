@@ -1,6 +1,5 @@
 require 'rest-client'
 require 'json'
-require 'pry'
 class Company < ApplicationRecord
   has_many :favorites
   has_many :financials  
