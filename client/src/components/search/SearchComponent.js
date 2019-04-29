@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import SearchInput from './sub-components/SearchInput';
 import SearchResults from './sub-components/SearchResults';
 import filterCompanies from '../../functions/filterCompanies';
 import { navigate } from '@reach/router';
 import { connect } from 'react-redux';
 
-class SearchComponent extends PureComponent {
+class SearchComponent extends Component {
   state={
     filteredCompanies: filterCompanies("", 10, this.props.companies)
   }
