@@ -1,17 +1,15 @@
 
-
-
-  export const incomeStatement= {
+  export const iS= {
     'totalrevenue': ['Revenue'],
     'costofrevenue': ['COGS'],
     'grossprofit': ['Gross Profit'],
     'researchdevelopmentexpense': ['R&D'],
     'ebit': ['EBIT'],
-    'interest_expense_net': ['Interest Expense, Net'],
+    'interestexpense': ['Interest Expense'],
     'incomebeforetaxes': ['Pre-Tax Income'],
     'netincome': ['Net Income']
   };
-  export const balanceSheet = {
+  export const bS = {
     'cashandcashequivalents': ['Cash and Equivalents'],
     'inventoriesnet': ['Inventories'],
     'totalcurrentassets': ['Total Current Assets'],
@@ -26,7 +24,7 @@
     'retainedearnings': ['Retained Earnings'],
     'totalstockholdersequity': ['Total Shareholder Equity']
   };
-  export const cashFlowStatement= {
+  export const cF= {
     'cashfromoperatingactivities': ['Cash from Operating Activities'],
     'cashfrominvestingactivities': ['Cash from Investing Activities'],
     'cashfromfinancingactivities': ['Cash from Financing Activities'],
@@ -34,7 +32,7 @@
     'cfdepreciationamortization': ['Depreciation & Amortization'],
     'netchangeincash': ['Net Change in Cash']
   };
-  export const periodInfo = {
+  export const pI = {
     'periodenddate': ['Fiscal Year End Date'],
     'fiscalyear': ['Fiscal Year'],
     'formtype': ['Form Type'],

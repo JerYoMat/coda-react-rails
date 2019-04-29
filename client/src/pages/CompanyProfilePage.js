@@ -2,7 +2,6 @@ import React,{ useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadStatements} from '../actions';
 import StatementContainer from '../components/statements/StatementContainer';
-
 const CompanyProfilePage = ({ loading, error, company, statements, loadStatements }) => {
   
   if (loading) {
@@ -22,7 +21,7 @@ const CompanyProfilePage = ({ loading, error, company, statements, loadStatement
   return (
     <div className='company-profile-page-wrapper'>
     <div className='company-profile-main-container'>
-      <div>{company.companyname}</div>
+      <h2>{company.companyname}</h2>
     </div>
     <div className='company-profile-sidebar-container'><StatementContainer statements={statements} company={company}/></div>
   </div>

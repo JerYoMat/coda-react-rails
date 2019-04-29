@@ -1,5 +1,5 @@
-import { incomeStatement, balanceSheet, cashFlowStatement, periodInfo } from './statementObjects'
-export const createStatements = data => {
+import { iS, bS, cF, pI } from './statementObjects'
+export const createStatements = (data, incomeStatement=iS, balanceSheet=bS, cashFlowStatement=cF, periodInfo=pI) => {
   const companyId = data[0].company_id;
   const companyFins = {}
   data.forEach(singlePeriod => {

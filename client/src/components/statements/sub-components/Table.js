@@ -5,7 +5,7 @@ import { faChevronRight, faChevronDown } from "@fortawesome/free-solid-svg-icons
 //takes statement, column number to show as props, dates or years for header, title
 const Table = ({ title, fiscalYears, statement}) => {
     
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState('open')
   
 
   return (
