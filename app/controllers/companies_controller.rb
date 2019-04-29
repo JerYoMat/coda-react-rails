@@ -1,12 +1,11 @@
 class CompaniesController < ApplicationController
       
   def index
-    render json:  @companies
+    render json:  Company.all
   end 
 
-  #Companies are seeded ahead of time and are a list that is passed to the client f
   def show_or_create 
-    @company = Company.find_by(primarysymbol: params['id']) 
+    @company = Company.find_by(primarysymbol: params['ticker']) 
     if @company && @company.financials.count > 0 
       render json: @company.financials
     elsif @company 
@@ -18,7 +17,7 @@ class CompaniesController < ApplicationController
 
 private
   def company_params
-    params.permit(:id)
+    params.permit(:id, :ticker, :primarysymbol)
   end 
 
   

@@ -24,10 +24,10 @@ class Company < ApplicationRecord
 
   def create_fins_from_json(json)
     self.normalize_data(json).each do |one_year_data|
-      fin = self.financials.build()
+      @fin = self.financials.build()
       one_year_data.each do |key, value|
-        if Company.column_names.include? key
-          fin[key] = value
+        if Financial.column_names.include? key
+          @fin[key] = value
         end  
       end 
       fin.save 
