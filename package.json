@@ -16,5 +16,9 @@
     "postinstall": "yarn run build && yarn run deploy && echo 'Client built!'"
   },
   "author": "JerYoMAt",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "highcharts": "^7.1.1",
+    "highcharts-react-official": "^2.1.3"
+  }
 }
