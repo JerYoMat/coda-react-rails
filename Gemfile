@@ -6,7 +6,6 @@ ruby '2.6.2'
 gem 'rails', '~> 5.2.3'
 gem 'rest-client'
 gem 'puma', '~> 3.11'
-gem 'active_model_serializers'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
 gem 'bcrypt'

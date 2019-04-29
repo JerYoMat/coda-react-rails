@@ -1,39 +1,60 @@
+require 'rest-client'
+require 'json'
+require 'pry'
 class Company < ApplicationRecord
-  has_many :financial_periods 
-  belongs_to :industry 
-  belongs_to :sector
-  
+  has_many :favorites
+  has_many :financials  
 
-  def self.cache_key
-    num = Digest::MD5.hexdigest("#{Company.all.maximum(:updated_at).try(:to_i)}-#{Company.all.count}}")
-    "companies-#{num}"
+
+  def create_fins 
+    response = self.get_data
+    fins = self.create_fins_from_json(response)
+    return fins 
   end 
-  
-  
-  def current_end_date
-    dates = []
-    self.financial_periods.each do |fp|
-      dates.push(fp.periodenddate)
-    end 
-    return dates.max
-  end
 
-  def needed_num_periods(max = 5)
-    if self.financial_periods.count == 0
-      return max
-    else 
-    current_end = self.current_end_date
-    num_years_missing = ((Date.today - current_end)/365).floor
-      if num_years_missing > max
-        return max 
-      elsif num_years_missing == 0
-        return false 
-      else
-        return num_years_missing
+
+  def get_data
+    url = self.compose_url
+    response = RestClient::Request.execute(
+      method: :get,
+      url: url
+    )
+    return response
+  end 
+
+
+  def create_fins_from_json(json)
+    self.normalize_data(json).each do |one_year_data|
+      fin = self.financials.build()
+      one_year_data.each do |key, value|
+        if Company.column_names.include? key
+          fin[key] = value
+        end  
       end 
+      fin.save 
     end 
   end 
 
 
+
+  def compose_url
+      ENV['EDGAR_URL'] + "?primarysymbols=#{self.primarysymbol}&appkey=#{ENV['EDGAR_KEY']}"
+  end 
+
+  #Functional - Needs refactoring 
+  #returns an array where each item is a financial period
+  def normalize_data(response)
+    raw_data =JSON.parse(response)
+    rows = raw_data['result']['rows']
+    sanitized_data = []
+    rows.each do |row|
+      newObj = {}
+      row['values'].each do |pair|
+          newObj[pair['field']] = pair['value']
+      end
+      sanitized_data.push(newObj)
+    end 
+      return sanitized_data
+  end 
 
 end
