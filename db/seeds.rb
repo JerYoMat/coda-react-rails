@@ -1,7 +1,7 @@
 require 'csv'
 
 
-data = CSV.foreach('db/mini_seed.csv', :headers => true) do |row|
+data = CSV.foreach('db/seed_companies.csv', :headers => true) do |row|
   Company.create(
     primarysymbol: row[0],
     companyname: row[1],
