@@ -5,14 +5,13 @@ import SearchCard from './SearchCard';
 
 const SearchResults = ({ companies }) => {
   if (!companies) {
-    return <div>Enter a company to search or select industry/sector.</div>
+    return <div></div>
   }
 
   return (
-  <div>
-    results ({companies.length})
+  <div className='results-container'>
     {companies.map(company => (
-      <Link key={company.id} to={'/companies/' + company.id}>
+      <Link className='result-card'key={company.id} to={'/companies/' + company.id}>
         <SearchCard key={company.id} company={company} />
       </Link>
     ))}
