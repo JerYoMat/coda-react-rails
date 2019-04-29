@@ -1,9 +1,9 @@
 class CreateFinancials < ActiveRecord::Migration[5.2]
   def change
     create_table :financials do |t|
+      t.string :amended
       t.belongs_to :company 
       t.string :interestexpense
-      t.string :amended
       t.string :changeincurrentassets
       t.string :changeincurrentliabilities
       t.string :changeininventories

@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 2019_04_28_223000) do
   end
 
   create_table "financials", force: :cascade do |t|
+    t.string "amended"
     t.integer "company_id"
     t.string "interestexpense"
-    t.string "amended"
     t.string "changeincurrentassets"
     t.string "changeincurrentliabilities"
     t.string "changeininventories"
