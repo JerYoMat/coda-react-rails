@@ -4,7 +4,7 @@ Rails.application.routes.draw do
                   resources :companies, only: [:index]
                   resources :users, only: [:create, :update, :destroy]
                   resources :favorites, only: [:create, :destroy]
-                  get '/companies/:ticker', to: 'companies#show_or_create'
+                  get '/companies/:id', to: 'companies#show_or_create'
                   get '/companies/:ticker/stocks', to: 'companies#stock_data'
                   post   'auth/login',   to: 'authentication#authenticate'
                   delete '/logout',  to: 'sessions#destroy'

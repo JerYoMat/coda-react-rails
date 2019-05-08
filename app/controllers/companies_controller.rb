@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
   end 
 
   def show_or_create 
-    @company = Company.find_by(primarysymbol: params['ticker']) 
+    @company = Company.find(params['id']) 
     if @company && @company.financials.count > 0 
       render json: @company.financials
     elsif @company 

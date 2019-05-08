@@ -8,8 +8,8 @@ export const getCompanies = () => {
   .then(res => res.json());
 };
 
-export const getStatmentData = (ticker) => {
-  return fetch(`../../${PREFIX}/companies/${ticker}`, {
+export const getStatmentData = (id) => {
+  return fetch(`../../${PREFIX}/companies/${id}`, {
   method: 'GET',
     headers: {
       'Content-Type': 'application/json'
