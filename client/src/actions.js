@@ -1,6 +1,6 @@
 import { getCompanies, getStatmentData, loginUser, createUser } from './api';
 import { createStatements } from './functions/createStatements';
-
+import { storeAuthToken } from './sessionStorage';
 
 //For Companies
 //Getting Company List 
@@ -65,6 +65,7 @@ export const login = (email, password) => {
     dispatch({ type: LOGIN_BEGIN });
     loginUser(email, password)
       .then(user => {
+        storeAuthToken(user.auth_token)
         dispatch({
           type: LOGIN_SUCCESS,
           payload: user
@@ -81,6 +82,7 @@ export const signup = (username, email, password) => {
     dispatch({ type: SIGNUP_BEGIN });
     createUser(username, email, password)
       .then(user => {
+        storeAuthToken(user.auth_token)
         dispatch({
           type: SIGNUP_SUCCESS,
           payload: user
