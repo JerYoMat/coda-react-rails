@@ -1,8 +1,11 @@
+import { getAuthToken } from './sessionStorage';
 const PREFIX = 'api/v1/'
 
 
 export const getCompanies = () => {
-  return fetch(PREFIX + 'companies').then(res => res.json());
+  return fetch(PREFIX + 'companies')
+  .then(handleErrors)
+  .then(res => res.json());
 };
 
 export const getStatmentData = (ticker) => {
@@ -11,18 +14,9 @@ export const getStatmentData = (ticker) => {
     headers: {
       'Content-Type': 'application/json'
     },
-  }).then(res => res.json())
-}
-
-function postData(url = ``, data = {}) {
-  // Default options are marked with *
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  }).then(response => response.json());
+  })
+  .then(handleErrors)
+  .then(res => res.json())
 }
 
 
@@ -40,3 +34,38 @@ export const createUser = (username, email, password) => {
     password
   });
 };
+
+function postData(url = ``, data = {}) {
+  return fetchWithData(url, data, 'POST');
+}
+
+function fetchWithData(
+  url = ``,
+  data = {},
+  method = 'POST'
+) {
+  const authToken = getAuthToken()
+  // Default options are marked with *
+  return fetch(url, {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: authToken
+        ? `Bearer ${authToken}`
+        : undefined
+    },
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  })
+    .then(handleErrors)
+    .then(response => response.json());
+}
+
+function handleErrors(response) {
+  if (!response.ok) {
+    return response.json().then(body => {
+      throw new Error(body.message);
+    });
+  } else {
+    return response;
+  }
+}
