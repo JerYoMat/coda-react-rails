@@ -3,16 +3,26 @@ class UsersController < ApplicationController
 
   def create
     user = User.create!(user_params)
+    user.set_custom_fields
     auth_token = AuthenticateUser.new(user.email, user.password).call
-    response = { info: user, message: Message.account_created, auth_token: auth_token }
+    response = { info: {:email => user.email, :username => user.username}, 
+      message: Message.account_created,
+      auth_token: auth_token,
+      custom_fields: user.custom_fields}
     json_response(response, :created)
   end
 
-  def show
-  end 
 
   def update
-  end 
+    if @current_user.update_attributes(user_params)
+      response = { info: {:email => user.email, :username => user.username}, 
+      message: Message.account_updated,
+      auth_token: auth_token,
+      custom_fields: user.custom_fields}
+      json_response(response)
+    end
+  end
+
 
   private
 
@@ -20,7 +30,8 @@ class UsersController < ApplicationController
     params.permit(
       :username,
       :email,
-      :password
+      :password,
+      :custom_fields
     )
   end
 end
