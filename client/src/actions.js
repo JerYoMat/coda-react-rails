@@ -1,4 +1,4 @@
-import { getCompanies, getStatmentData, loginUser, createUser } from './api';
+import { getCompanies, getStatmentData, loginUser, createUser, updateUser } from './api';
 import { createStatements } from './functions/createStatements';
 import { storeAuthToken } from './sessionStorage';
 
@@ -23,6 +23,10 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SIGNUP_BEGIN = 'SIGNUP_BEGIN';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+//Update
+export const UPDATE_USER_BEGIN = 'UPDATE_USER_BEGIN';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
 //Logout
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
@@ -93,6 +97,26 @@ export const signup = (username, email, password) => {
       });
   };
 };
+
+export const saveUser = user => {
+  return dispatch => {
+    dispatch({ type: UPDATE_USER_BEGIN });
+    return updateUser(user)
+      .then(user => {
+        dispatch({
+          type: UPDATE_USER_SUCCESS,
+          payload: user
+        });
+      })
+      .catch(error => {
+        dispatch({ type: UPDATE_USER_ERROR, error });
+        throw error;
+      });
+  };
+};
+
+
+
 
 export const logout = () => ({
   type: LOGOUT_SUCCESS

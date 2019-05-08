@@ -6,14 +6,19 @@ import {
   SIGNUP_BEGIN,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR
 } from '../actions';
 const initialState = {
   info: null,
   auth_token: '',
   loading: false,
   error: null,
-  sessionHistory: []
+  customFields: null,
+  saveInProgress: false,
+  saveError: null
 };
 
 const reducer = produce((draft, action) => {
@@ -28,12 +33,13 @@ const reducer = produce((draft, action) => {
       draft.loading = false;
       draft.info = action.payload.info;  //depending on how favorites are passed back
       draft.auth_token = action.payload.auth_token; 
+      draft.customFields = action.payload.custom_fields;
       return;
     case LOGIN_ERROR:
     case SIGNUP_ERROR:
       draft.loading = false;
       draft.error = action.error;
-      draft.user = null;
+      draft.info = null;
       return;
     case LOGOUT_SUCCESS:
       draft.info = null;
@@ -41,6 +47,19 @@ const reducer = produce((draft, action) => {
       draft.loading = false;
       draft.error = false;
       draft.sessionHistory = [];
+      return;
+    case UPDATE_USER_BEGIN:
+      draft.saveInProgress = true;
+      draft.saveError = null;
+      return;
+    case UPDATE_USER_SUCCESS:
+      draft.saveInProgress = false;
+      draft.saveError = null;
+      draft.info = action.payload.info 
+      return;
+    case UPDATE_USER_ERROR:
+      draft.saveInProgress = false;
+      draft.saveError = action.error;
       return;
     default:
       return;

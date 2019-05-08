@@ -35,9 +35,19 @@ export const createUser = (username, email, password) => {
   });
 };
 
+export const updateUser = user => {
+  return putData(PREFIX + `/users/${user.id}`, user);
+};
+
+
+
 function postData(url = ``, data = {}) {
   return fetchWithData(url, data, 'POST');
 }
+function putData(url = ``, data = {}) {
+  return fetchWithData(url, data, 'PUT');
+}
+
 
 function fetchWithData(
   url = ``,
