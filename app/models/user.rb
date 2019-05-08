@@ -8,16 +8,17 @@ class User < ApplicationRecord
   def set_custom_fields
     self.custom_fields = {
       "iS" => {
-        'totalrevenue'=> ['Revenue', 'true'],
-        'costofrevenue'=> ['COGS', 'true'],
-        'grossprofit'=> ['Gross Profit', 'true'],
-        'researchdevelopmentexpense'=> ['R&D', 'true'],
-        'ebit'=> ['EBIT', 'true'],
-        'interestexpense'=> ['Interest Expense', 'true'],
-        'incomebeforetaxes'=> ['Pre-Tax Income', 'true'],
-        'netincome'=> ['Net Income', 'true']
+        'totalrevenue'=> ['Revenue', 1],
+        'costofrevenue'=> ['COGS', 0],
+        'grossprofit'=> ['Gross Profit', 0],
+        'researchdevelopmentexpense'=> ['R&D', 0],
+        'ebit'=> ['EBIT', 1],
+        'interestexpense'=> ['Interest Expense', 1],
+        'incomebeforetaxes'=> ['Pre-Tax Income', 0],
+        'netincome'=> ['Net Income', 1]
       }
     }
+    self.save
   end 
 
 end 
