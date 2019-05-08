@@ -7,7 +7,25 @@ export const saveState = state => {
   }
 }
 
+export const storeAuthToken = token => {
+  try {
+    sessionStorage.setItem('authToken', token);
+  } catch (error) {
+    console.log(error)
+  }
+}
 
+export const getAuthToken = () => {
+  try {
+    const token = sessionStorage.getItem('authToken');
+    if (token === '') {
+      return undefined;
+    }
+    return token
+  } catch (err) {
+    return undefined;
+  }
+}
 
 export const loadState = () => {
   try {
