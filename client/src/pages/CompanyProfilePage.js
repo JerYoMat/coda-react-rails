@@ -14,17 +14,12 @@ const CompanyProfilePage = ({ loading, error, company, statements, loadStatement
     if (statements === undefined) {
     useEffect(() => {
       // dispatch an action
-    loadStatements(company.primarysymbol);
+    loadStatements(company.id);
     }, [statements]);
   }
 
   return (
-    <div className='company-profile-page-wrapper'>
-    <div className='company-profile-main-container'>
-      <h2>{company.companyname}</h2>
-    </div>
-    <div className='company-profile-sidebar-container'><StatementContainer statements={statements} company={company}/></div>
-  </div>
+    <div></div>
   )
 }
 const mapState = (state, ownProps) => {
