@@ -1,6 +1,7 @@
 require 'rest-client'
 require 'json'
 class Company < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
   has_many :favorites
   has_many :financials  
 
@@ -35,6 +36,9 @@ class Company < ApplicationRecord
       fin = self.financials.build()
       one_year_data.each do |key, value|
         if Financial.column_names.include? key
+          if value.is_a? Numeric
+            value = number_to_currency(-1234567890.50, negative_format: "(%n)", precision: 0)
+          end 
           fin[key] = value
         end  
       end 
