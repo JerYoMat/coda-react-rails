@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
+import CustomFieldEditTable from '../components/userCustomization/CustomFieldEditTable';
 
-
-const UserPage = ({ user, loading, favorites }) => {
+const UserPage = ({ user, loading }) => {
   if (loading) {
     return <div>loading...</div>;
   }
@@ -23,7 +23,7 @@ const mapState = (state, ownProps) => {
   return ({
     user: state.user.info,
     loading: state.user.loading,
-    favorites: state.user.favorites
+    userFields: state.user.customFields
   })
 }
 
