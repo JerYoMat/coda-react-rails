@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 import HomePage from './pages/HomePage';
 import CompanyProfilePage from './pages/CompanyProfilePage';
 import UserPage from './pages/UserPage';
-import LoginCreateUser from './components/loginCreateUser/LoginCreateUser'; 
+import LoginPage from './pages/LoginPage';
 import Navbar from './components/navbar/Navbar';
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
         <div className='col-xl-8'>
           <Router> 
             <HomePage path='/' />
-            <LoginCreateUser path='/login' />
+            <LoginPage path='/login' />
             <CompanyProfilePage path='/companies/:companyId' />
             <UserPage path='/users/:userId' />
           </Router>
