@@ -7,18 +7,20 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   LOGOUT_SUCCESS,
-  UPDATE_USER_BEGIN,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_ERROR
+  GET_DEFAULT_FIELDS_BEGIN,
+  GET_DEFAULT_FIELDS_SUCCESS,
+  GET_DEFAULT_FIELDS_ERROR,
+  UPDATE_FIELD_SETTING
 } from '../actions';
 const initialState = {
   info: null,
-  auth_token: '',
+  authToken: '',
   loading: false,
   error: null,
   customFields: null,
   saveInProgress: false,
-  saveError: null
+  saveError: null,
+  unsavedChanges: false 
 };
 
 const reducer = produce((draft, action) => {
@@ -31,9 +33,9 @@ const reducer = produce((draft, action) => {
     case LOGIN_SUCCESS:
     case SIGNUP_SUCCESS:
       draft.loading = false;
-      draft.info = action.payload.info;  //depending on how favorites are passed back
-      draft.auth_token = action.payload.auth_token; 
       draft.customFields = action.payload.custom_fields;
+      draft.info = action.payload.info;  //depending on how favorites are passed back
+      draft.authToken = action.payload.auth_token; 
       return;
     case LOGIN_ERROR:
     case SIGNUP_ERROR:
@@ -43,23 +45,26 @@ const reducer = produce((draft, action) => {
       return;
     case LOGOUT_SUCCESS:
       draft.info = null;
-      draft.auth_token = '';
+      draft.authToken = '';
       draft.loading = false;
       draft.error = false;
       draft.sessionHistory = [];
       return;
-    case UPDATE_USER_BEGIN:
-      draft.saveInProgress = true;
-      draft.saveError = null;
+    case UPDATE_FIELD_SETTING:
+      draft.customFields[action.payload.statement][action.payload.field][1] = action.payload.value;
+      draft.unsavedChanges = true;
       return;
-    case UPDATE_USER_SUCCESS:
-      draft.saveInProgress = false;
-      draft.saveError = null;
-      draft.info = action.payload.info 
+    case GET_DEFAULT_FIELDS_BEGIN:
+      draft.loadingFields = true;
+      draft.loadingFieldsError = null;
       return;
-    case UPDATE_USER_ERROR:
-      draft.saveInProgress = false;
-      draft.saveError = action.error;
+    case GET_DEFAULT_FIELDS_SUCCESS:
+      draft.loadingFields = false;
+      draft.customFields = action.payload;
+      return;
+    case GET_DEFAULT_FIELDS_ERROR:
+      draft.loadingFields = false;
+      draft.loadingFieldsError = action.error;
       return;
     default:
       return;

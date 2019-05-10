@@ -1,6 +1,11 @@
 import { getAuthToken } from './sessionStorage';
 const PREFIX = 'api/v1/'
 
+export const getDefaultFields = () => {
+  return fetch(PREFIX + '/users/defaults')
+  .then(handleErrors)
+  .then(res => res.json());
+};
 
 export const getCompanies = () => {
   return fetch(PREFIX + 'companies')

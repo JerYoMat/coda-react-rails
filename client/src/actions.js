@@ -1,5 +1,4 @@
-import { getCompanies, getStatmentData, loginUser, createUser, updateUser } from './api';
-import { createStatements } from './functions/createStatements';
+import { getCompanies, getStatmentData, loginUser, createUser, getDefaultFields } from './api';
 import { storeAuthToken } from './sessionStorage';
 
 //For Companies
@@ -12,8 +11,10 @@ export const LOAD_COMPANIES_ERROR = 'LOAD_COMPANIES_ERROR';
 export const LOAD_STATEMENTS_BEGIN = 'LOAD_STATEMENTS_BEGIN';
 export const LOAD_STATEMENTS_SUCCESS = 'LOAD_STATEMENTS_SUCCESS';
 export const LOAD_STATEMENTS_ERROR = 'LOAD_STATEMENTS_ERROR';
-
-
+//For non logged in users
+export const GET_DEFAULT_FIELDS_BEGIN = 'GET_DEFAULT_FIELDS_BEGIN';
+export const GET_DEFAULT_FIELDS_SUCCESS = 'GET_DEFAULT_FIELDS_SUCCESS';
+export const GET_DEFAULT_FIELDS_ERROR = 'GET_DEFAULT_FIELDS_ERROR';
 //For User
 //Login
 export const LOGIN_BEGIN = 'LOGIN_BEGIN';
@@ -24,17 +25,18 @@ export const SIGNUP_BEGIN = 'SIGNUP_BEGIN';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 //Update
-export const UPDATE_USER_BEGIN = 'UPDATE_USER_BEGIN';
-export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
-export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
+export const SAVE_USER_BEGIN = 'SAVE_USER_BEGIN';
+export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
+export const SAVE_USER_ERROR = 'SAVE_USER_ERROR';
 //Logout
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
-export const loadStatements = (ticker) => {
+export const UPDATE_FIELD_SETTING= 'UPDATE_FIELD_SETTING'
+
+export const loadStatements = (id) => {
   return dispatch => {
     dispatch({ type: LOAD_STATEMENTS_BEGIN });
-    getStatmentData(ticker)
-    .then(rawFins => createStatements(rawFins))
+    getStatmentData(id)
     .then(fins => {
       dispatch({
         type: LOAD_STATEMENTS_SUCCESS,
@@ -46,6 +48,22 @@ export const loadStatements = (ticker) => {
     });
   };
 }; 
+
+export const loadDefaultFields = () => {
+  return dispatch => {
+    dispatch({ type: GET_DEFAULT_FIELDS_BEGIN });
+    getDefaultFields()
+    .then(fields => {
+      dispatch({
+        type: GET_DEFAULT_FIELDS_SUCCESS,
+        payload: fields
+      });
+    })
+    .catch(error => {
+      dispatch({ type: GET_DEFAULT_FIELDS_ERROR, error });
+    });
+  };
+}
 
 
 export const loadCompanies = () => {
@@ -98,25 +116,16 @@ export const signup = (username, email, password) => {
   };
 };
 
-export const saveUser = user => {
+
+export const changeLocalField = (statement, field, value) => {
   return dispatch => {
-    dispatch({ type: UPDATE_USER_BEGIN });
-    return updateUser(user)
-      .then(user => {
-        dispatch({
-          type: UPDATE_USER_SUCCESS,
-          payload: user
-        });
-      })
-      .catch(error => {
-        dispatch({ type: UPDATE_USER_ERROR, error });
-        throw error;
-      });
-  };
-};
-
-
-
+    dispatch(
+      { type: UPDATE_FIELD_SETTING,
+        payload: {statement, field, value}
+      }
+    )
+    }
+}
 
 export const logout = () => ({
   type: LOGOUT_SUCCESS
