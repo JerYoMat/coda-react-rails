@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from '@reach/router';
-import CustomFieldEditTable from '../components/userCustomization/CustomFieldEditTable';
+import CustomFieldContainer from '../components/userCustomization/CustomFieldContainer';
 
 const UserPage = ({ user, loading }) => {
   if (loading) {
@@ -15,15 +15,18 @@ const UserPage = ({ user, loading }) => {
   }
 
   return (
-    <div>Future User Page</div>
+    <div className='row'>
+      <CustomFieldContainer statementType='iS'/>
+      <CustomFieldContainer statementType='bS'/>
+      <CustomFieldContainer statementType='cF'/>
+    </div>
   )
 }
 
-const mapState = (state, ownProps) => {
+const mapState = state => {
   return ({
     user: state.user.info,
-    loading: state.user.loading,
-    userFields: state.user.customFields
+    loading: state.user.loading
   })
 }
 
