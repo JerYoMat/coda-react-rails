@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeLocalField, saveUser } from '../../actions';
+import { changeLocalField} from '../../actions';
 import Checkbox from './Checkbox';
 
 
@@ -10,7 +10,6 @@ const CustomFieldContainer = ( { customFields,  statementType, changeLocalField 
     const field = e.target.id
     const value = e.target.checked 
     changeLocalField(statement, field, value)
-    saveUser(customFields)
   }
 
   return (
@@ -38,6 +37,6 @@ const mapState = (state, ownProps) => {
     customFields: state.user.customFields[statementType]
   }
 }
-const mapDispatch = { changeLocalField, saveUser }
+const mapDispatch = { changeLocalField }
 
 export default connect(mapState, mapDispatch)(CustomFieldContainer);
