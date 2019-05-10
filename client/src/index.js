@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { createStore, compose, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers'; 
-import { loadCompanies } from './actions';
+import { loadCompanies, loadDefaultFields } from './actions';
 import './index.css';
 import App from './App';
 import { saveState, loadState } from './sessionStorage';
@@ -25,14 +25,15 @@ const store = createStore(reducer, persistedState, enhancer);
 
 store.subscribe(throttle(() => {
   saveState({
-    companies: store.getState().companies
+    companies: store.getState().companies,
+    user: store.getState().user 
   });
-}, 1000, { 'trailing': false}));
+}, 2000, { 'trailing': false}));
 
 if (store.getState().companies.loadedList === false) {
   store.dispatch(loadCompanies())
+  store.dispatch(loadDefaultFields())
 }
-
 
 
 ReactDOM.render(
