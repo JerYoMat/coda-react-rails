@@ -19,16 +19,15 @@ const composeEnhancers =
       })
     : compose;
 
+
 const persistedState = loadState()
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 const store = createStore(reducer, persistedState, enhancer);
 
 store.subscribe(throttle(() => {
-  saveState({
-    companies: store.getState().companies,
-    user: store.getState().user 
-  });
-}, 2000, { 'trailing': false}));
+  saveState(store.getState());
+  console.log('hit')
+}, 2000));
 
 if (store.getState().companies.loadedList === false) {
   store.dispatch(loadCompanies())
