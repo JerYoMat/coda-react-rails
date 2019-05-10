@@ -13,8 +13,8 @@ class App extends Component {
     <div>
       <Navbar />
       <div className='row'>
-      <div className='col-xl-2'></div>
-        <div className='col-xl-8'>
+      <div className='col-xl-2 p-0'></div>
+        <div className='col-xl-8 p-0'>
           <Router> 
             <HomePage path='/' />
             <LoginPage path='/login' />
@@ -22,7 +22,7 @@ class App extends Component {
             <UserPage path='/users/:userId' />
           </Router>
         </div>
-      <div className='col-xl-2'></div>
+      <div className='col-xl-2 p-0'></div>
       </div>
     </div>
     )

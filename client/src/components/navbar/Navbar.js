@@ -11,8 +11,8 @@ import DropDown from './sub-components/DropDown';
 const Navbar = ({ user, logout}) => {
   return (
     <div className='row'>
-      <div className='col-xl-2 nav-spacer'></div>
-      <div className='navbar-container col-xl-8'>
+      <div className='col-xl-2 p-0 nav-spacer'></div>
+      <div className='navbar-container col-xl-8 p-0'>
           <Link to='/'>
             <span className='logo'><Logo className='app-logo'/>CoDA</span>
           </Link>
@@ -25,7 +25,7 @@ const Navbar = ({ user, logout}) => {
           </Link>
           )}
       </div>
-      <div className='col-xl-2 nav-spacer'></div>
+      <div className='col-xl-2 p-0 nav-spacer'></div>
     </div>
   )
 }
