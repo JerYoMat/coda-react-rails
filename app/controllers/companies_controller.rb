@@ -1,17 +1,20 @@
 class CompaniesController < ApplicationController
-      
+  before_action :authorize_request, except: [:index, :show_or_create, :stock_data]
   def index
     render json:  Company.all
   end 
 
   def show_or_create 
     @company = Company.find(params['id']) 
-    if @company && @company.financials.count > 0 
-      render json: @company.financials
-    elsif @company 
+    if @company && @company.financials.count == 0 
       @company.create_fins
-      render json: @company.financials
+    end 
+    financials = {@company.id => {}}
+    @company.financials.each do |singleYear|
+      year = singleYear['fiscalyear'].remove(',').to_i
+      financials[@company.id][year] = singleYear
     end  
+    render json: financials
   end
   
   def stock_data
