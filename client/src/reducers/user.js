@@ -13,7 +13,13 @@ import {
   UPDATE_FIELD_SETTING,
   SAVE_USER_BEGIN,
   SAVE_USER_SUCCESS,
-  SAVE_USER_ERROR
+  SAVE_USER_ERROR,
+  ADD_FAVORITE_BEGIN,
+  ADD_FAVORITE_SUCCESS,
+  ADD_FAVORITE_ERROR,
+  REMOVE_FAVORITE_BEGIN,
+  REMOVE_FAVORITE_SUCCESS,
+  REMOVE_FAVORITE_ERROR
 } from '../actions';
 const initialState = {
   info: null,
@@ -24,7 +30,10 @@ const initialState = {
   saveInProgress: false,
   saveError: null,
   unsavedChanges: false,
-  tokenIssueTime: null 
+  tokenIssueTime: null,
+  favorites: {},
+  syncingFavorites: false,
+  syncFavoriteError: null 
 };
 
 const reducer = produce((draft, action) => {
@@ -35,6 +44,13 @@ const reducer = produce((draft, action) => {
       draft.error = null;
       return;
     case LOGIN_SUCCESS:
+      draft.loading = false;
+      draft.customFields = action.payload.custom_fields;
+      draft.info = action.payload.info; 
+      draft.authToken = action.payload.auth_token;
+      draft.favorites = action.payload.favorites 
+      draft.tokenIssueTime = Date.now()
+    return;
     case SIGNUP_SUCCESS:
       draft.loading = false;
       draft.customFields = action.payload.custom_fields;
@@ -84,6 +100,30 @@ const reducer = produce((draft, action) => {
     case GET_DEFAULT_FIELDS_ERROR:
       draft.loadingFields = false;
       draft.loadingFieldsError = action.error;
+      return;
+    case ADD_FAVORITE_BEGIN:
+      draft.syncingFavorites = true;
+      draft.syncFavoriteError = null;
+      return;
+    case ADD_FAVORITE_SUCCESS:
+      draft.syncingFavorites = false;
+      draft.favorites[action.payload.company_id] = action.payload.id
+      return;
+    case ADD_FAVORITE_ERROR:
+      draft.syncingFavorites = false;
+      draft.syncFavoriteError = action.error;
+      return;
+    case REMOVE_FAVORITE_BEGIN:
+      draft.syncingFavorites = true;
+      draft.syncFavoriteError = null;
+      return;
+    case REMOVE_FAVORITE_SUCCESS:
+      draft.syncingFavorites = false;
+      delete draft.favorites[action.payload];
+      return;
+    case REMOVE_FAVORITE_ERROR:
+      draft.syncingFavorites = false;
+      draft.syncFavoriteError = action.error;
       return;
     default:
       return;

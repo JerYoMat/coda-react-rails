@@ -8,7 +8,8 @@ class AuthenticationController < ApplicationController
       response = { :info => {:id => user.id, :email => user.email, :username => user.username}, 
       :message => 'welcome',
       :auth_token => auth_token,
-      :custom_fields => user.custom_fields}
+      :custom_fields => user.custom_fields,
+      :favorites => favorites(user)}
     json_response(response, :created)
   end
 
@@ -17,5 +18,13 @@ class AuthenticationController < ApplicationController
   def auth_params
     params.permit(:email, :password)
   end
+
+  def favorites(user)
+    hash = {}
+    user.favorites.each do |f|
+      hash[f.company_id] = f.id 
+    end 
+    return hash 
+  end 
 end
 

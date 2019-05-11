@@ -4,7 +4,9 @@ import {
   loginUser, 
   createUser, 
   getDefaultFields,
-  updateUser 
+  updateUser,
+  createFavorite,
+  destroyFavorite 
 } from './api';
 import { storeAuthToken } from './sessionStorage';
 
@@ -35,12 +37,18 @@ export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const SAVE_USER_BEGIN = 'SAVE_USER_BEGIN';
 export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
 export const SAVE_USER_ERROR = 'SAVE_USER_ERROR';
-
-
 //Logout
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-
 export const UPDATE_FIELD_SETTING= 'UPDATE_FIELD_SETTING'
+
+//Favorites 
+export const ADD_FAVORITE_BEGIN = 'ADD_FAVORITE_BEGIN';
+export const ADD_FAVORITE_SUCCESS = 'ADD_FAVORITE_SUCCESS';
+export const ADD_FAVORITE_ERROR = 'ADD_FAVORITE_ERROR';
+export const REMOVE_FAVORITE_BEGIN = 'REMOVE_FAVORITE_BEGIN';
+export const REMOVE_FAVORITE_SUCCESS = 'REMOVE_FAVORITE_SUCCESS';
+export const REMOVE_FAVORITE_ERROR = 'REMOVE_FAVORITE_ERROR';
+
 
 export const loadStatements = (id) => {
   return dispatch => {
@@ -159,3 +167,37 @@ export const changeLocalField = (statement, field, value) => {
 export const logout = () => ({
   type: LOGOUT_SUCCESS
 });
+
+export const addFavorite = companyId => {
+  return dispatch => {
+    dispatch({ type: ADD_FAVORITE_BEGIN });
+    return createFavorite(companyId)
+      .then(favorite => {
+        dispatch({
+          type: ADD_FAVORITE_SUCCESS,
+          payload: favorite
+        });
+      })
+      .catch(error => {
+        dispatch({ type: ADD_FAVORITE_ERROR, error });
+        throw error;
+      });
+  };
+};
+
+export const removeFavorite = favorite => {
+  return dispatch => {
+    dispatch({ type: REMOVE_FAVORITE_BEGIN });
+    return destroyFavorite(favorite)
+      .then(favorite => {
+        dispatch({
+          type: REMOVE_FAVORITE_SUCCESS,
+          payload: favorite 
+        });
+      })
+      .catch(error => {
+        dispatch({ type: REMOVE_FAVORITE_ERROR, error });
+        throw error;
+      });
+  };
+};

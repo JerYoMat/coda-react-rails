@@ -49,6 +49,17 @@ export const updateUser = user => {
   return putData('../' + PREFIX + `/users/${user.info.id}`, data);
 };
 
+export const createFavorite = companyId => {
+  return postData('../'+ PREFIX + '/favorites', {
+    companyId 
+  });
+}
+
+export const destroyFavorite = favoriteId => {
+  return deleteData('../'+ PREFIX + '/favorites/' + favoriteId, {
+    favoriteId
+  });
+}
 
 
 function postData(url = ``, data = {}) {
@@ -57,6 +68,10 @@ function postData(url = ``, data = {}) {
 function putData(url = ``, data = {}) {
   return fetchWithData(url, data, 'PUT');
 }
+function deleteData(url = ``, data = {}) {
+  return fetchWithData(url, data, 'DELETE');
+}
+
 
 
 function fetchWithData(
