@@ -1,3 +1,5 @@
+require 'pry'
+require 'json'
 class UsersController < ApplicationController
   before_action :authorize_request, except: [:create, :default_fields]
 
@@ -20,11 +22,10 @@ class UsersController < ApplicationController
 
 
   def update
-    if @current_user.update_attributes(user_params)
-      response = { :info => {:id => user.id, :email => user.email, :username => user.username}, 
-      :message => Message.account_created,
-      :auth_token => auth_token,
-      :custom_fields => user.custom_fields}
+    if @current_user.update_attributes({:custom_fields => params["custom_fields"], :email => params["email"], :username => ["username"]})
+      response = { :info => {:id => @current_user.id, :email => @current_user.email, :username => @current_user.username}, 
+      :message => Message.account_updated,
+      :custom_fields => @current_user.custom_fields}
       json_response(response)
     end
   end
@@ -32,13 +33,4 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.permit(
-      :username,
-      :email,
-      :password,
-      :custom_fields,
-      :fields
-    )
-  end
 end

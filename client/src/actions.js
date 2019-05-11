@@ -1,4 +1,11 @@
-import { getCompanies, getStatmentData, loginUser, createUser, getDefaultFields } from './api';
+import { 
+  getCompanies, 
+  getStatmentData, 
+  loginUser, 
+  createUser, 
+  getDefaultFields,
+  updateUser 
+} from './api';
 import { storeAuthToken } from './sessionStorage';
 
 //For Companies
@@ -28,6 +35,8 @@ export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const SAVE_USER_BEGIN = 'SAVE_USER_BEGIN';
 export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
 export const SAVE_USER_ERROR = 'SAVE_USER_ERROR';
+
+
 //Logout
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
@@ -82,10 +91,10 @@ export const loadCompanies = () => {
   };
 }; 
 
-export const login = (email, password) => {
+export const login = (username, password) => {
   return dispatch => {
     dispatch({ type: LOGIN_BEGIN });
-    loginUser(email, password)
+    loginUser(username, password)
       .then(user => {
         storeAuthToken(user.auth_token)
         dispatch({
@@ -117,6 +126,25 @@ export const signup = (username, email, password) => {
 };
 
 
+export const saveUser = user => {
+  return dispatch => {
+    dispatch({ type: SAVE_USER_BEGIN });
+    return updateUser(user)
+      .then(user => {
+        dispatch({
+          type: SAVE_USER_SUCCESS,
+          payload: user
+        });
+      })
+      .catch(error => {
+        dispatch({ type: SAVE_USER_ERROR, error });
+        throw error;
+      });
+  };
+};
+
+
+
 export const changeLocalField = (statement, field, value) => {
   return dispatch => {
     dispatch(
@@ -126,6 +154,7 @@ export const changeLocalField = (statement, field, value) => {
     )
     }
 }
+
 
 export const logout = () => ({
   type: LOGOUT_SUCCESS

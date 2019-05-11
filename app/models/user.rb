@@ -50,7 +50,7 @@ class User < ApplicationRecord
         'currencycode'=> ['Currency Code', true],
         'usdconversionrate'=> ['Conversion Rate', true]
       }
-    }
+    } 
     self.save unless type == 'no-save'
     return self.custom_fields
   end 

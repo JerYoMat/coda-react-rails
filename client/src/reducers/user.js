@@ -10,7 +10,10 @@ import {
   GET_DEFAULT_FIELDS_BEGIN,
   GET_DEFAULT_FIELDS_SUCCESS,
   GET_DEFAULT_FIELDS_ERROR,
-  UPDATE_FIELD_SETTING
+  UPDATE_FIELD_SETTING,
+  SAVE_USER_BEGIN,
+  SAVE_USER_SUCCESS,
+  SAVE_USER_ERROR
 } from '../actions';
 const initialState = {
   info: null,
@@ -20,7 +23,8 @@ const initialState = {
   customFields: null,
   saveInProgress: false,
   saveError: null,
-  unsavedChanges: false 
+  unsavedChanges: false,
+  tokenIssueTime: null 
 };
 
 const reducer = produce((draft, action) => {
@@ -34,8 +38,9 @@ const reducer = produce((draft, action) => {
     case SIGNUP_SUCCESS:
       draft.loading = false;
       draft.customFields = action.payload.custom_fields;
-      draft.info = action.payload.info;  //depending on how favorites are passed back
+      draft.info = action.payload.info; 
       draft.authToken = action.payload.auth_token; 
+      draft.tokenIssueTime = Date.now()
       return;
     case LOGIN_ERROR:
     case SIGNUP_ERROR:
@@ -43,6 +48,20 @@ const reducer = produce((draft, action) => {
       draft.error = action.error;
       draft.info = null;
       return;
+    case SAVE_USER_BEGIN:
+      draft.saveInProgress = true;
+      draft.saveError = null;
+    return;
+    case SAVE_USER_SUCCESS:
+      draft.saveInProgress = false;
+      draft.unsavedChanges = false;
+      draft.customFields = action.payload.custom_fields;
+      draft.info = action.payload.info; 
+      return;
+    case SAVE_USER_ERROR:
+      draft.saveInProgress = false;
+      draft.error = action.error;
+    return;
     case LOGOUT_SUCCESS:
       draft.info = null;
       draft.authToken = '';

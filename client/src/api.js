@@ -41,7 +41,12 @@ export const createUser = (username, email, password) => {
 };
 
 export const updateUser = user => {
-  return putData(PREFIX + `/users/${user.id}`, user);
+  const data = {
+    'username': user.info.username,
+    'email': user.info.email,
+    'custom_fields': user.customFields
+  }
+  return putData('../' + PREFIX + `/users/${user.info.id}`, data);
 };
 
 
