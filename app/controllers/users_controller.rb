@@ -1,4 +1,3 @@
-require 'pry'
 require 'json'
 class UsersController < ApplicationController
   before_action :authorize_request, except: [:create, :default_fields]
@@ -10,7 +9,7 @@ class UsersController < ApplicationController
   end 
 
   def create
-    user = User.create!(user_params)
+    user = User.create!(email: params['email'], password: params['password'], username: params['username'])
     user.set_custom_fields
     auth_token = AuthenticateUser.new(user.email, user.password).call
     response = { :info => {:id => user.id, :email => user.email, :username => user.username}, 
