@@ -18,7 +18,7 @@ export const storeAuthToken = token => {
 export const getAuthToken = () => {
   try {
     const token = sessionStorage.getItem('authToken');
-    if (token === '') {
+    if (token === '' || token === null) {
       return undefined;
     }
     return token
