@@ -2,7 +2,7 @@ import React from 'react';
 import { navigate } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import './DropDown.scss';
+
 
 const DropDown = ({ userId, logout }) => {
   const handleClick = () => {
