@@ -1,4 +1,3 @@
-require 'pry'
 class FavoritesController < ApplicationController
   def create
     favorite = @current_user.favorites.build(company_id: params['companyId'])
