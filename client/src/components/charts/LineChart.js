@@ -2,22 +2,22 @@ import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
+//years array, data hash, fieldNames array, 
 const LineChart = ({years, data, fieldNames, displayName}) => { 
-  const test = years.map(year => {
-    const finNumber = Number(data[year][fieldNames].replace(/,/g, ''));
+  
+  const finData = years.map(year => {
+    const finNumber = Number(data[year][fieldNames].replace(/[,)]/g, '').replace(/\(/, '-'))
     const finDate = Number(Date.parse(data[year]['periodenddate']))
     return [finDate ,finNumber]
   })
-  console.log(test)
-
-  Date.parse(data['2017']['periodenddate'])
-  const currency = data['2017']['currencycode']
+  console.log(finData)
+  const currency = data[years[0]]['currencycode']
 
   const series = [{
     name: displayName,
-    data: test
+    data: finData
   }]
-
+  
   const options = {
     chart: {
       type: 'line'
@@ -33,7 +33,7 @@ const LineChart = ({years, data, fieldNames, displayName}) => {
     },
     yAxis: {
       title: {
-        text: 'displayName'
+        text: displayName
       },
       plotLines: [{
         value: 0,
