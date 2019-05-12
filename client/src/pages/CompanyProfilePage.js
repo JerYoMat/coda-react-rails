@@ -7,12 +7,6 @@ import FavoriteButton from '../components/favorites/FavoriteButton';
 import Loading from '../components/misc/Loading';
 
 const CompanyProfilePage = ({ loading, error, company, data, loadStatements, fields }) => {
-  const [chartFields, setChartFields] = useState('totalrevenue')
-  const handleFieldChange = (e) => {
-    const t = e.target.name
-    setChartFields(t)
-  }
-
   if (loading) {
     return (
       <div>
@@ -21,36 +15,37 @@ const CompanyProfilePage = ({ loading, error, company, data, loadStatements, fie
       </div>
     );
   }
-
   if (error) {
-    return <div>Error: {error.message}</div>;}
-  
+    return <div>Error: {error.message}</div>
+  }
   if (data === undefined || data === {}) {
     useEffect(() => {
         loadStatements(company.id);
       }, [data]
     );
   }
-  if (data) {
-    const years = Object.keys(data)
-    const { companyname, primarysymbol, primaryexchange, industry, sector } = company; 
-    return (
-      <div>
-        <FavoriteButton companyId={company.id} />
-          {companyname}
-          {primarysymbol}
-          {primaryexchange}
-          {industry}
-          {sector}
-        <button name='ebit' onClick={handleFieldChange}>Click me</button>
-        <LineChart years={years} data={data} fieldNames={chartFields} displayName={'Revenue'}/>
-        <Statement years={years} fields={fields['iS']} data={data}/>
-        <Statement years={years} fields={fields['bS']} data={data}/>
-        <Statement years={years} fields={fields['cF']} data={data}/>
-      </div>
-    )
+  if (!data) {
+    return <div>Combining response with your customizations... </div>
   }
-  return <div>Combining response with your customizations... </div>
+
+  const years = Object.keys(data)
+  const { companyname, primarysymbol, primaryexchange, industry, sector } = company; 
+  const [chartFields, setChartFields] = useState('totalrevenue')
+  return (
+    <div>
+      <FavoriteButton companyId={company.id} />
+        {companyname}
+        {primarysymbol}
+        {primaryexchange}
+        {industry}
+        {sector}
+      <button onClick={()=> setChartFields('ebit')} name='ebit'>Show EBIT</button>
+      <LineChart years={years} data={data} fieldNames={chartFields} displayName={'Revenue'}/>
+      <Statement years={years} fields={fields['iS']} data={data}/>
+      <Statement years={years} fields={fields['bS']} data={data}/>
+      <Statement years={years} fields={fields['cF']} data={data}/>
+    </div>
+  )
   
 }
 const mapState = (state, ownProps) => {
