@@ -1,5 +1,5 @@
 import React from 'react';
-import './SearchCard.scss'
+
 const SearchCard = ({ company }) => (
   <div className='card search-result col-md-8'>
     <div className='search card-body'>
