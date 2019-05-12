@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from '@reach/router';
 import { connect } from 'react-redux';
 import { login, signup } from '../../actions';
-import './LoginCreateUser.scss';
+
 
 
 const LoginCreateUser = ({ error, user, login, signup }) => {
