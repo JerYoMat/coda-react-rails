@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
@@ -6,10 +5,14 @@ import { createStore, compose, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers'; 
 import { loadCompanies, loadDefaultFields } from './actions';
-import './index.css';
 import App from './App';
 import { saveState, loadState } from './sessionStorage';
 import throttle  from 'lodash/throttle';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import theme from './theme';
+
+
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -36,7 +39,10 @@ if (store.getState().companies.loadedList === false) {
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline />
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </MuiThemeProvider>
   , document.getElementById('root'));
