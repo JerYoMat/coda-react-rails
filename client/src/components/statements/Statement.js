@@ -1,24 +1,42 @@
 import React from 'react';
-import TableRow from './sub-components/TableRow';
-import TableHeader from './sub-components/TableHeader';
+import StatementRow from './sub-components/StatementRow';
+import StatementHeader from './sub-components/StatementHeader';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
-const Statement = ({fields, data, years}) => {
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
+  },
+  table: {
+    padding: 'dense'
+  },
+});
+
+
+const Statement = ({classes, fields, data, years}) => {
   //modify fields to dump inputs not in user setting
   let userFields = {...fields} 
   Object.keys(userFields).forEach(key => {
     if (!userFields[key][1]) delete userFields[key]
   })
   return (
-    <table>
-      <TableHeader years={years} />
-      <tbody>
-        {
-          Object.keys(userFields).map((key) => (
-            <TableRow key={key} field={userFields[key]} years={years} data={data} fieldKey={key}/> 
-          ))
-        }
-      </tbody>
-    </table>
+    <Paper className={classes.root}>
+      <Table>
+        <StatementHeader years={years} />
+        <TableBody>
+          {
+            Object.keys(userFields).map((key) => (
+              <StatementRow key={key} field={userFields[key]} years={years} data={data} fieldKey={key}/> 
+            ))
+          }
+        </TableBody>
+      </Table>
+    </Paper>
   )   
 }
-export default Statement;
+export default withStyles(styles)(Statement);

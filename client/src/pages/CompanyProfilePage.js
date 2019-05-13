@@ -1,12 +1,25 @@
 import React,{ useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { loadStatements} from '../actions';
+import { withStyles } from '@material-ui/core/styles';
 import Statement from '../components/statements/Statement';
 import LineChart from '../components/charts/LineChart';
 import FavoriteButton from '../components/favorites/FavoriteButton';
 import Loading from '../components/misc/Loading';
+import Grid from '@material-ui/core/Grid';
 
-const CompanyProfilePage = ({ loading, error, company, data, loadStatements, fields }) => {
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
+
+
+const CompanyProfilePage = ({ classes, loading, error, company, data, loadStatements, fields }) => {
   if (loading) {
     return (
       <div>
@@ -32,18 +45,35 @@ const CompanyProfilePage = ({ loading, error, company, data, loadStatements, fie
   const { companyname, primarysymbol, primaryexchange, industry, sector } = company; 
   const [chartFields, setChartFields] = useState('totalrevenue')
   return (
-    <div>
-      <FavoriteButton companyId={company.id} />
-        {companyname}
-        {primarysymbol}
-        {primaryexchange}
-        {industry}
-        {sector}
-      <button onClick={()=> setChartFields('ebit')} name='ebit'>Show EBIT</button>
-      <LineChart years={years} data={data} fieldNames={chartFields} displayName={'Revenue'}/>
-      <Statement years={years} fields={fields['iS']} data={data}/>
-      <Statement years={years} fields={fields['bS']} data={data}/>
-      <Statement years={years} fields={fields['cF']} data={data}/>
+    <div className={classes.root}>
+      <Grid container 
+        direction="row"
+        justify="center"
+        
+        spacing={24}
+      >
+        <Grid item xl={9} lg={10} md={10} s={12} xs={12}> 
+          <FavoriteButton companyId={company.id} />
+            {companyname}
+            {primarysymbol}
+            {primaryexchange}
+            {industry}
+            {sector}
+          <button onClick={()=> setChartFields('ebit')} name='ebit'>Show EBIT</button>
+          <Grid item xl={9} lg={10} md={11} s={12} xs={12} >
+            <LineChart years={years} data={data} fieldNames={chartFields} displayName={'Revenue'}/>
+          </Grid>
+          <Grid item xl={9} lg={10} md={11} s={12} xs={12} >
+          <Statement years={years} fields={fields['iS']} data={data}/>
+          </Grid>
+          <Grid item xl={9} lg={10} md={11} s={12} xs={12} >
+            <Statement years={years} fields={fields['bS']} data={data}/>
+          </Grid>
+          <Grid item xl={9} lg={10} md={11} s={12} xs={12} >
+            <Statement years={years} fields={fields['cF']} data={data}/>
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   )
   
@@ -59,4 +89,4 @@ const mapState = (state, ownProps) => {
   }
 }
 
-export default connect(mapState, { loadStatements })(CompanyProfilePage);
+export default withStyles(styles)(connect(mapState, { loadStatements })(CompanyProfilePage));
