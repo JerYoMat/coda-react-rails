@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage';
 import Navbar from './components/navbar/Navbar';
 
 
-const App = () = (
+const App = () => (
   <div>
     <Navbar />
     <Router>
