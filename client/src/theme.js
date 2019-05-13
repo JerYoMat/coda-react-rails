@@ -1,6 +1,6 @@
 
 import teal from '@material-ui/core/colors/teal';
-import blue from '@material-ui/core/colors/blue';
+import indigo from '@material-ui/core/colors/indigo';
 import red from '@material-ui/core/colors/red';
 import { createMuiTheme } from '@material-ui/core/styles';
 
@@ -14,9 +14,9 @@ const theme = createMuiTheme({
       contrastText: '#fff',
     },
     secondary: {
-      light: blue[300],
-      main: blue[500],
-      dark: blue[700],
+      light: indigo[300],
+      main: indigo[500],
+      dark: indigo[700],
       contrastText: '#000',
     },
     error: {
