@@ -1,20 +1,25 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { logout } from '../../actions';
+import { connect } from 'react-redux';
+import { Link as RouterLink } from '@reach/router';
+import { ReactComponent as Logo } from '../../images/coda.svg';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import { withStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import './Navbar.scss';
+import Link from '@material-ui/core/Link';
 
-const styles = {
+const styles = theme => ({
   root: {
-    flexGrow: 1,
+    width: '100%',
   },
   grow: {
     flexGrow: 1,
@@ -23,84 +28,156 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing.unit * 2,
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing.unit * 3,
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    width: theme.spacing.unit * 9,
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+    width: '100%',
+  },
+  inputInput: {
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+});
 
-class Navbar extends React.Component {
-  state = {
-    auth: true,
-    anchorEl: null,
-  };
+const Navbar = ({ classes, user, logout }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl)
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
+  const rootLink = props => <RouterLink to={'/'} {...props} />
+  const settingsLink = props => <RouterLink to={'/users/+user.id'} {...props} />
+  const loginLink = props => <RouterLink to={'/login'} {...props} />
 
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-
-    return (
-      <div className={classes.root}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-            }
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              Photos
-            </Typography>
-            {auth && (
-              <div>
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                </Menu>
-              </div>
-            )}
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
+  const handleLogOut = () => {
+    setAnchorEl(null)
+    logout()
   }
+
+  return (
+    <div className={classes.root}>
+      <AppBar position='static' color='default'>
+        <Toolbar>
+          <Typography variant='h6' color='inherit' className={classes.grow}>
+            <Link className={classes.menuButton} component={rootLink}>
+              <Logo className='app-logo' />
+            </Link>
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon color='primary' />
+            </div>
+            <InputBase
+              placeholder='Search…'
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+            />
+          </div>
+          <div className={classes.grow} />
+          {user && (
+            <div>
+              <IconButton
+                aria-owns={open ? 'menu-appbar' : undefined}
+                aria-haspopup='true'
+                className={classes.iconHover}
+                onClick={(event) => setAnchorEl(event.currentTarget)}
+                color='primary'
+              >
+                <AccountCircle color='primary' />
+              </IconButton>
+              <Menu
+                id='menu-appbar'
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={() => setAnchorEl(null)}
+              >
+              
+                <MenuItem>
+                  <Link component={settingsLink}>
+                    Settings
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={() => handleLogOut() }>Log out</MenuItem>
+              </Menu>
+            </div>
+          )}
+          {!user && (
+            <div>
+              <IconButton color='primary'>
+                <Link component={loginLink}>
+                  Login
+                </Link>
+              </IconButton>
+              </div>
+              )
+            }
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
+const mapState = state => ({
+  user: state.user.info
+})
 
-export default withStyles(styles)(Navbar);
+const mapDispatch = { logout }
+
+
+export default withStyles(styles)(connect(mapState, mapDispatch)(Navbar));
