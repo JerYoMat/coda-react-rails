@@ -4,18 +4,20 @@ import HighchartsReact from 'highcharts-react-official';
 
 //years array, data hash, fieldNames array, 
 const LineChart = ({years, data, fieldNames, displayName}) => { 
-  
-  const finData = years.map(year => {
-    const finNumber = Number(data[year][fieldNames].replace(/[,)]/g, '').replace(/\(/, '-'))
-    const finDate = Number(Date.parse(data[year]['periodenddate']))
-    return [finDate ,finNumber]
+  const seriesData = []
+  years.forEach(year => {
+    const key = data[year]
+    if (key.hasOwnProperty(fieldNames) && key[fieldNames] !== null) {
+      const finNumber = Number(data[year][fieldNames].replace(/[,)]/g, '').replace(/\(/, '-'))
+      const finDate = Number(Date.parse(data[year]['periodenddate']))
+      seriesData.push([finDate, finNumber])
+    }
   })
-  console.log(finData)
   const currency = data[years[0]]['currencycode']
 
   const series = [{
     name: displayName,
-    data: finData
+    data: seriesData
   }]
   
   const options = {

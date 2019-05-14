@@ -18,7 +18,6 @@
   "author": "JerYoMAt",
   "license": "MIT",
   "dependencies": {
-    "highcharts": "^7.1.1",
     "highcharts-react-official": "^2.1.3"
   }
 }
