@@ -49,6 +49,18 @@ export const REMOVE_FAVORITE_BEGIN = 'REMOVE_FAVORITE_BEGIN';
 export const REMOVE_FAVORITE_SUCCESS = 'REMOVE_FAVORITE_SUCCESS';
 export const REMOVE_FAVORITE_ERROR = 'REMOVE_FAVORITE_ERROR';
 
+//App
+export const OPEN_LOGIN_MODAL = 'OPEN_LOGIN_MODAL';
+export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
+
+export const openLoginForm = () => ({
+  type: OPEN_LOGIN_MODAL
+});
+
+export const closeLoginForm = () => ({
+  type: CLOSE_LOGIN_MODAL
+});
+
 
 export const loadStatements = (id) => {
   return dispatch => {

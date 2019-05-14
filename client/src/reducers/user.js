@@ -19,7 +19,9 @@ import {
   ADD_FAVORITE_ERROR,
   REMOVE_FAVORITE_BEGIN,
   REMOVE_FAVORITE_SUCCESS,
-  REMOVE_FAVORITE_ERROR
+  REMOVE_FAVORITE_ERROR,
+   OPEN_LOGIN_MODAL,
+  CLOSE_LOGIN_MODAL
 } from '../actions';
 const initialState = {
   info: null,
@@ -33,11 +35,18 @@ const initialState = {
   tokenIssueTime: null,
   favorites: {},
   syncingFavorites: false,
-  syncFavoriteError: null 
+  syncFavoriteError: null,
+  modalOpen: false, 
 };
 
 const reducer = produce((draft, action) => {
   switch (action.type) {
+    case OPEN_LOGIN_MODAL:
+      draft.modalOpen = true;
+      return;
+    case CLOSE_LOGIN_MODAL:
+      draft.modalOpen = false;
+      return;
     case LOGIN_BEGIN:
     case SIGNUP_BEGIN:
       draft.loading = true;
@@ -50,6 +59,7 @@ const reducer = produce((draft, action) => {
       draft.authToken = action.payload.auth_token;
       draft.favorites = action.payload.favorites 
       draft.tokenIssueTime = Date.now()
+      draft.modalOpen = false;
     return;
     case SIGNUP_SUCCESS:
       draft.loading = false;
@@ -57,6 +67,7 @@ const reducer = produce((draft, action) => {
       draft.info = action.payload.info; 
       draft.authToken = action.payload.auth_token; 
       draft.tokenIssueTime = Date.now()
+      draft.modalOpen = false
       return;
     case LOGIN_ERROR:
     case SIGNUP_ERROR:

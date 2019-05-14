@@ -11,7 +11,7 @@ import throttle  from 'lodash/throttle';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
-
+import Modal from 'react-modal';
 
 
 const composeEnhancers =
@@ -36,6 +36,7 @@ if (store.getState().companies.loadedList === false) {
   store.dispatch(loadCompanies())
   store.dispatch(loadDefaultFields())
 }
+Modal.setAppElement('#root');
 
 
 ReactDOM.render(

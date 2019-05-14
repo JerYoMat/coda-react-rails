@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { login, signup } from '../actions';
-import Login from '../components/loginCreateUser/Login';
-import Signup from '../components/loginCreateUser/Signup';
+import { login, signup } from '../../actions';
+import Login from './Login';
+import Signup from './Signup';
 import { Redirect } from '@reach/router';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
@@ -15,13 +15,15 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 500,
+    display: 'block',
+    width: '100%'    
+  
   }
 });
 
 
 
-const LoginPage =({ classes, user, login, signup }) => {
+const LoginWrapper =({ classes, user, login, signup }) => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -88,4 +90,4 @@ const mapDispatch = {
 }
 
 
-export default withStyles(styles)(connect(mapState, mapDispatch)(LoginPage));
+export default withStyles(styles)(connect(mapState, mapDispatch)(LoginWrapper));
