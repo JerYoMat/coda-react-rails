@@ -1,6 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="26">
-<g id='top-left'>
+import React from 'react';
+
+const Logo = ({
+  width='48',
+  className = 'app-logo',
+  height='52',
+  viewBox = '0 -2 32 32',
+}) =>
+  <svg
+    width={width}
+    height={height}
+    viewBox={viewBox}
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+  >
+    <g id='top-left'>
   <path d="M0.513184,13.2156L0.54834,12.5166L4.55835,12.4785C4.84717,8.28442,7.67236,5.20239,11.5413,4.47046L11.5493,0.508545C11.8704,0.508545,11.7593,0.514404,12.1033,0.514404L12.0862,13.0854Z
   M11.5364,5.32544C8.82837,6.17944,8.44434,10.7385,8.39526,12.3965L11.4343,12.4146Z"/>
 </g>
@@ -17,3 +31,5 @@
 M12.4641,20.6777C15.1721,19.8237,15.5549,15.2646,15.605,13.6067L12.5659,13.5886Z"/>
 </g>
 </svg>
+
+export default Logo;

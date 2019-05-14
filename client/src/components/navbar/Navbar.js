@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { logout } from '../../actions';
 import { connect } from 'react-redux';
 import { Link as RouterLink } from '@reach/router';
-import { ReactComponent as Logo } from '../../images/coda.svg';
+import Logo from '../navbar/Logo';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import './Navbar.scss';
 import Link from '@material-ui/core/Link';
+import Search from '../search/Search';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const styles = theme => ({
   root: {
@@ -23,6 +23,9 @@ const styles = theme => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  appBar: {
+    height: '52px'
   },
   menuButton: {
     marginLeft: -12,
@@ -86,6 +89,8 @@ const styles = theme => ({
     },
   },
 });
+ 
+
 
 const Navbar = ({ classes, user, logout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -102,24 +107,22 @@ const Navbar = ({ classes, user, logout }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static' color='default'>
+      <AppBar className={classes.appBar} position='static' color='default'>
         <Toolbar>
           <Typography variant='h6' color='inherit' className={classes.grow}>
             <Link className={classes.menuButton} component={rootLink}>
-              <Logo className='app-logo' />
+              <Logo  />
             </Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon color='primary' />
+              <SearchIcon />
             </div>
-            <InputBase
-              placeholder='Search…'
+          <Search
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
-              }}
-            />
+              }} />
           </div>
           <div className={classes.grow} />
           {user && (
@@ -159,11 +162,11 @@ const Navbar = ({ classes, user, logout }) => {
           )}
           {!user && (
             <div>
-              <IconButton color='primary'>
+              <Typography variant='h6' color='inherit' className={classes.grow}>
                 <Link component={loginLink}>
                   Login
                 </Link>
-              </IconButton>
+              </Typography>
               </div>
               )
             }
