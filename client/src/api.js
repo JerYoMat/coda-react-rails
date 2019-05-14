@@ -1,5 +1,5 @@
 import { getAuthToken } from './sessionStorage';
-const PREFIX = 'api/v1/'
+const PREFIX = '/api/v1/'
 
 export const getDefaultFields = () => {
   return fetch(PREFIX + '/users/defaults')
@@ -14,7 +14,7 @@ export const getCompanies = () => {
 };
 
 export const getStatmentData = (id) => {
-  return fetch(`../../${PREFIX}/companies/${id}`, {
+  return fetch(`${PREFIX}/companies/${id}`, {
   method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -26,14 +26,14 @@ export const getStatmentData = (id) => {
 
 
 export const loginUser = (email, password) => {
-  return postData('../' +PREFIX + 'auth/login', {
+  return postData(PREFIX + 'auth/login', {
     email,
     password
   });
 };
 
 export const createUser = (username, email, password) => {
-  return postData('../'+ PREFIX + 'users', {
+  return postData(PREFIX + 'users', {
     username,
     email,
     password
@@ -46,17 +46,17 @@ export const updateUser = user => {
     'email': user.info.email,
     'custom_fields': user.customFields
   }
-  return putData('../' + PREFIX + `/users/${user.info.id}`, data);
+  return putData(PREFIX + `/users/${user.info.id}`, data);
 };
 
 export const createFavorite = companyId => {
-  return postData('../'+ PREFIX + '/favorites', {
+  return postData(PREFIX + '/favorites', {
     companyId 
   });
 }
 
 export const destroyFavorite = favoriteId => {
-  return deleteData('../'+ PREFIX + '/favorites/' + favoriteId, {
+  return deleteData(PREFIX + '/favorites/' + favoriteId, {
     favoriteId
   });
 }
