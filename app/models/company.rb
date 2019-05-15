@@ -1,8 +1,9 @@
 require 'rest-client'
 require 'json'
 require 'erb'
-include ERB::Util
+
 class Company < ApplicationRecord
+  include ERB::Util
   include ActionView::Helpers::NumberHelper
   has_many :favorites
   has_many :financials  
