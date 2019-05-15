@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   end
   
   def stock_data
-    @company = Company.find_by(primarysymbol: params['ticker'])
+    @company = Company.find(params['id'])
     @data = @company.get_stock_data
     render json: @data
   end 

@@ -1,6 +1,10 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import themeOptions from "../../styles/highchartsTheme";
+
+Highcharts.setOptions(themeOptions);
+
 
 //years array, data hash, fieldNames array, 
 const LineChart = ({years, data, fieldNames, displayName}) => { 
@@ -22,38 +26,31 @@ const LineChart = ({years, data, fieldNames, displayName}) => {
   
   const options = {
     chart: {
-      type: 'line'
+      type: "line"
     },
     title: {
-      text: ''
+      text: ""
     },
     subtitle: {
-      text:  displayName +' over Time'
+      text: displayName + " over Time"
     },
     xAxis: {
-      type: 'datetime'
+      type: "datetime"
     },
     yAxis: {
       title: {
         text: displayName
       },
-      plotLines: [{
-        value: 0,
-        width: 1,
-        color: '#808080'
-      }]
+    
     },
     tooltip: {
       valueSuffix: ` ${currency}`
     },
     legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle',
-      borderWidth: 0
+      enabled: false
     },
     series: series
-  }
+  };
   return (
         <div>
           <HighchartsReact
