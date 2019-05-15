@@ -72,7 +72,7 @@ const reducer = produce((draft, action) => {
     case LOGIN_ERROR:
     case SIGNUP_ERROR:
       draft.loading = false;
-      draft.error = action.error;
+      draft.error = action.error.message;
       draft.info = null;
       return;
     case SAVE_USER_BEGIN:
