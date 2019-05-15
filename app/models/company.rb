@@ -1,12 +1,14 @@
 require 'rest-client'
 require 'json'
+require 'erb'
+include ERB::Util
 class Company < ApplicationRecord
   include ActionView::Helpers::NumberHelper
   has_many :favorites
   has_many :financials  
 
   def get_stock_data
-    url = ENV['ALPHA_URL']+"?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=#{self.primarysymbol}&apikey=#{ENV['ALPHA_KEY']}"
+    url = ENV['ALPHA_URL']+"?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=#{url_encode(self.primarysymbol)}&apikey=#{ENV['ALPHA_KEY']}"
     response = RestClient::Request.execute(
       method: :get,
       url: url
