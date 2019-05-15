@@ -11,22 +11,22 @@ const theme = createMuiTheme({
       light: teal[500],
       main: teal[700],
       dark: teal[900],
-      contrastText: '#fff',
+      contrastText: "#f5f5f5"
     },
     secondary: {
       light: indigo[300],
       main: indigo[500],
       dark: indigo[700],
-      contrastText: '#000',
+      contrastText: '#D3D3D3'
     },
     error: {
-      main: red.A400,
+      main: red.A400
     },
-    type: 'dark',
+    type: "dark"
   },
   typography: {
-    useNextVariants: true,
-  },
+    useNextVariants: true
+  }
 });
 
 export default theme;
