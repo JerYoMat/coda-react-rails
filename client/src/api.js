@@ -24,6 +24,10 @@ export const getStatmentData = (id) => {
   .then(res => res.json())
 }
 
+export const getStockPriceData = (id) => {
+  return postData(PREFIX+'companies/'+id+'/stocks')
+}
+
 
 export const loginUser = (email, password) => {
   return postData(PREFIX + 'auth/login', {
