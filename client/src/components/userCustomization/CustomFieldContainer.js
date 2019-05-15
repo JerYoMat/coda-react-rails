@@ -1,10 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeLocalField} from '../../actions';
-import Checkbox from './Checkbox';
+import SingleCheckbox from './SingleCheckbox';
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
 
+const styles = theme => ({
+  
+  paper: {
+    display: 'flex',
+    minWidth: 425,
+    maxWidth: 500,
+    height: 700,
+    padding: theme.spacing.unit * 2,
+    margin: 16
+  },
+  typography: {
+    color: theme.palette.secondary.light
+  }
+});
 
-const CustomFieldContainer = ( { customFields,  statementType, changeLocalField }) => {
+const CustomFieldContainer = ( { classes, customFields,  statementType, changeLocalField, title, saveUser }) => {
   const handleChange = (e) => {
     const statement = statementType
     const field = e.target.id
@@ -13,21 +33,31 @@ const CustomFieldContainer = ( { customFields,  statementType, changeLocalField 
   }
 
   return (
-    <div className='card col-md-4'>
-    <form>
-      {
-        Object.keys(customFields).map((keyName, keyIndex) => (
-          <div key={keyIndex} className='form-check'>
-            <Checkbox statementType={statementType} name={keyName} checked={customFields[keyName][1]} onChange={handleChange} />
-            <label>
-              {customFields[keyName][0]}
-            </label>
-          </div>
-        ))
-      }
-    </form>
-    </div>
-  );
+   
+      <Paper className={classes.paper}>
+        <form>
+          <FormControl>
+            <FormLabel>
+              <Typography variant="h6" className={classes.typography}>
+                {title}
+              </Typography>
+            </FormLabel>
+            <FormGroup>
+              {Object.keys(customFields).map((keyName, keyIndex) => (
+                <SingleCheckbox
+                  key={keyIndex}
+                  statementType={statementType}
+                  name={keyName}
+                  checked={customFields[keyName][1]}
+                  onChange={handleChange}
+                  displayName={customFields[keyName][0]}
+                />
+              ))}
+            </FormGroup>
+          </FormControl>
+        </form>
+      </Paper>)
+   
 }
 
 const mapState = (state, ownProps) => {
@@ -39,4 +69,4 @@ const mapState = (state, ownProps) => {
 }
 const mapDispatch = { changeLocalField }
 
-export default connect(mapState, mapDispatch)(CustomFieldContainer);
+export default withStyles(styles)(connect(mapState, mapDispatch)(CustomFieldContainer));
