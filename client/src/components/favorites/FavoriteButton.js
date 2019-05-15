@@ -1,23 +1,56 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from '@reach/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
-import Loading from '../misc/Loading';
 import { addFavorite, removeFavorite } from '../../actions';
+import Button from "@material-ui/core/Button";
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove';
+import { withStyles } from '@material-ui/core/styles';
 
-const FavoriteButton = ({  companyId, user, favorite, addFavorite, removeFavorite, loading }) => {
-  
-  if (!user) {
-    return <Link to={'../../login'} className='favorite-button'><span>Log in to add</span></Link>
+const styles = theme => ({
+  button: {
+    position: "relative",
+    float: "right",
+    margin: theme.spacing.unit
+
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
   }
-  if (loading) {
-    return <Loading className='favoriteButton' />
+});
+
+
+const FavoriteButton = ({  classes, companyId, user, favorite, addFavorite, removeFavorite, loading }) => {
+
+
+  if (!user) {
+    return <div></div>
   }
   if (!favorite) {
-    return <FontAwesomeIcon icon={faPlus} className='favorite-button' size='lg' onClick={() => addFavorite(companyId)} />
-  }
-  return <FontAwesomeIcon icon={faCheck} className='favorite-button' size='lg' onClick={() => removeFavorite(favorite)}/>
+    return (
+      <Button
+        variant="contained"
+        size="small"
+        color="primary"
+        onClick={() => addFavorite(companyId)}
+        className={classes.button}
+      >
+        <AddIcon className={classes.leftIcon} />
+        Add
+      </Button>
+    );
+}
+  return (
+    <Button
+      variant="contained"
+      size="small"
+      color="primary"
+      className={classes.button}
+      onClick={() => removeFavorite(favorite)}
+    >
+      <RemoveIcon className={classes.leftIcon} />
+      Remove
+    </Button>
+  );
 }
 
 const mapState = (state, ownProps) => {
@@ -31,7 +64,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = { addFavorite, removeFavorite }
 
 
-export default connect(mapState, mapDispatch)(FavoriteButton)
+export default withStyles(styles)(connect(mapState, mapDispatch)(FavoriteButton))
 
 
 
