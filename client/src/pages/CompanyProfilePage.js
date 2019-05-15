@@ -52,7 +52,7 @@ class CompanyProfilePage extends Component {
     if (!data && !loading) {
       loadStatements(company.id);
     }
-    if (!stockData && !stocksLoading) {
+    if (!stockData && !stocksLoading && company) {
       loadStockData(company.id);
     }
   }
@@ -100,7 +100,6 @@ class CompanyProfilePage extends Component {
     }
     const years = Object.keys(data);
     const {
-      id,
       companyname,
       primarysymbol,
       primaryexchange,

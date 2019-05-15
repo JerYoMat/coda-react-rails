@@ -79,9 +79,12 @@ function getSuggestionValue(suggestion) {
 
 const styles = theme => ({
   root: {
-    color: 'inherit',
+    color: theme.palette.secondary.light,
     width: '100%',
     flexGrow: 1,
+  },
+  input: {
+    color: theme.palette.common.white,
   },
   container: {
     position: 'relative',

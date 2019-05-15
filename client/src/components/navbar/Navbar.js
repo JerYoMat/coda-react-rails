@@ -47,6 +47,7 @@ const styles = theme => ({
     },
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
+    underline: false,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing.unit * 3,
@@ -118,7 +119,7 @@ const Navbar = ({
   };
 
   return (
-    <React.Fragment>
+    <div className='navbar-wrapper'>
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="static" color="default">
           <Toolbar>
@@ -132,7 +133,7 @@ const Navbar = ({
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
-                <SearchIcon />
+                <SearchIcon color='primary' />
               </div>
               <Search
                 classes={{
@@ -198,7 +199,7 @@ const Navbar = ({
       >
         <LoginWrapper />
       </Modal>
-    </React.Fragment>
+    </div>
   );
 };
 
