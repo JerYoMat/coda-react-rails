@@ -5,7 +5,10 @@ import {
   LOAD_COMPANIES_ERROR,
   LOAD_STATEMENTS_BEGIN,
   LOAD_STATEMENTS_SUCCESS,
-  LOAD_STATEMENTS_ERROR
+  LOAD_STATEMENTS_ERROR,
+  LOAD_STOCK_DATA_BEGIN,
+  LOAD_STOCK_DATA_SUCCESS,
+  LOAD_STOCK_DATA_ERROR
 } from '../actions';
 const initialState = {
   list: [],
@@ -14,11 +17,26 @@ const initialState = {
   loadingListError: null,
   statements: {},
   loadingStmnt: false,
-  loadingStmntError: null
+  loadingStmntError: null,
+  stockPrices: {},
+  stocksLoading: false,
+  stockError: null
 };
 
 const reducer = produce((draft, action) => {
   switch(action.type) {
+    case LOAD_STOCK_DATA_BEGIN:
+      draft.stocksLoading = true;
+      draft.stockError = null;
+      return;
+    case LOAD_STOCK_DATA_SUCCESS:
+      draft.stocksLoading = false;
+      draft.stockPrices[action.payload['companyId']] = action.payload['data']
+      return;
+    case LOAD_STOCK_DATA_ERROR:
+      draft.stocksLoading = false;
+      draft.stockError = action.error;
+      return;
     case LOAD_COMPANIES_BEGIN:
       draft.loadingList = true;
       draft.loadingListError = null;
