@@ -193,6 +193,7 @@ const Navbar = ({
         style={{
           content: {
             display: "flex",
+            minWidth: '250px',
             width: "50%",
             left: "25%",
             padding: 0,
