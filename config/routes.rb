@@ -6,7 +6,7 @@ Rails.application.routes.draw do
                   resources :favorites, only: [:create, :destroy]
                   get '/companies/:id', to: 'companies#show_or_create'
                   get '/users/defaults', to: 'users#default_fields'
-                  get '/companies/:ticker/stocks', to: 'companies#stock_data'
+                  post '/companies/:id/stocks', to: 'companies#stock_data'
                   post   'auth/login',   to: 'authentication#authenticate'
             end       
       end 
