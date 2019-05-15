@@ -69,7 +69,7 @@ class CompanyProfilePage extends Component {
     if (!data && !loading) {
       loadStatements(company.id);
     }
-    if (!stockData && !stocksLoading) {
+    if (!stockData && !stocksLoading && company) {
       loadStockData(company.id);
     }
   }
@@ -163,7 +163,6 @@ class CompanyProfilePage extends Component {
                 <Typography inline={true} variant="button">
                   Sector:{"\u00A0"}
                 </Typography>
-
                 <Typography
                   inline={true}
                   variant="subtitle1"
