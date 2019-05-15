@@ -1,3 +1,4 @@
+
 class FavoritesController < ApplicationController
   def create
     favorite = @current_user.favorites.build(company_id: params['companyId'])
@@ -7,7 +8,7 @@ class FavoritesController < ApplicationController
   end 
 
   def destroy
-    favorite = @current_user.favorites.find(params[:id])
+    favorite = @current_user.favorites.find(params['favoriteId'])
     company_id = favorite.company_id 
     favorite.destroy 
     render json: company_id
