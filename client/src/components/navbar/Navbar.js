@@ -119,7 +119,7 @@ const Navbar = ({
   };
 
   return (
-    <div className='navbar-wrapper'>
+    <div className="navbar-wrapper">
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="static" color="default">
           <Toolbar>
@@ -133,7 +133,7 @@ const Navbar = ({
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
-                <SearchIcon color='primary' />
+                <SearchIcon color="primary" />
               </div>
               <Search
                 classes={{
@@ -176,7 +176,11 @@ const Navbar = ({
             )}
 
             {!user && (
-              <Typography color="primary" variant="h6" onClick={openLoginForm}>
+              <Typography
+                color="primary"
+                variant="h6"
+                onClick={openLoginForm}
+              >
                 Login
               </Typography>
             )}
@@ -192,9 +196,12 @@ const Navbar = ({
             width: "50%",
             left: "25%",
             padding: 0,
-
-            margin: 0
-          }
+            borderColor: '#424242', 
+            top: "20%",
+            maxHeight: '400px',
+            backgroundColor: '#424242'
+          },
+          overlay: { backgroundColor: "rgba(0,0,0, 0.6)" }
         }}
       >
         <LoginWrapper />

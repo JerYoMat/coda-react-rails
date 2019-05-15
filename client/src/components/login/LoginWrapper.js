@@ -14,22 +14,20 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.primary.contrastText,
     display: 'block',
     width: '100%'    
-  
   }
 });
 
 
 
-const LoginWrapper =({ classes, user, login, signup }) => {
+const LoginWrapper =({ classes, user, login, signup, error }) => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [showing, setShowing] = 
-  useState(0)  
+  const [showing, setShowing] = useState(0)  
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -40,6 +38,9 @@ const LoginWrapper =({ classes, user, login, signup }) => {
     signup(username, email, password)
   }
 
+  const handleChange = (event, value) => {
+    setShowing(value)
+  }
   if (user) {
     return <Redirect to="/" noThrow />;
   }
@@ -48,10 +49,10 @@ const LoginWrapper =({ classes, user, login, signup }) => {
   <Paper square className={classes.root}>
     <Tabs
       value={showing}
-      onChange={() => setShowing(showing ? 0 : 1)}
+      onChange={handleChange}
       variant="fullWidth"
-      indicatorColor="primary"
-      color="primary"
+      indicatorColor="secondary"
+      color="secondary"
     >
       <Tab icon={<FontAwesomeIcon icon={faSignInAlt} size='lg' />} label="Sign in" />
       <Tab icon={<FontAwesomeIcon icon={faUserPlus} size='lg' />} label="Sign up" />
@@ -62,7 +63,9 @@ const LoginWrapper =({ classes, user, login, signup }) => {
       password={password} 
       setEmail={setEmail} 
       setPassword={setPassword} 
-      handleSubmit={handleLogin}/>
+      handleSubmit={handleLogin}
+      error={error}
+    />
     }
     {showing === 1 && 
       <Signup 
@@ -75,6 +78,7 @@ const LoginWrapper =({ classes, user, login, signup }) => {
         setEmail={setEmail}
         setPassword={setPassword}
         handleSubmit={handleSignup}
+        error={error}
       />}
   </Paper>
 );
