@@ -18,7 +18,7 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import Modal from "react-modal";
 import LoginWrapper from "../login/LoginWrapper";
 import FavoriteDrawer from './FavoriteDrawer';
-import { faSmile } from "@fortawesome/free-solid-svg-icons";
+import ExitToApp from '@material-ui/icons/ExitToApp';
 
 const styles = theme => ({
   root: {
@@ -105,7 +105,7 @@ const Navbar = ({
   modalOpen,
   openLoginForm,
   closeLoginForm,
-  demo=faSmile
+  demo='false'
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -138,7 +138,7 @@ const Navbar = ({
             >
               <Logo />
             </Typography>
-            <FavoriteDrawer />
+            <FavoriteDrawer loggedIn={user ? true : false } openModal={openLoginForm}/>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon color="primary" />
@@ -184,13 +184,15 @@ const Navbar = ({
             )}
 
             {!user && (
-              <Typography
-                color="primary"
-                variant="h6"
-                onClick={openLoginForm}
-              >
-                Login/Signup
-              </Typography>
+              <IconButton
+              className={classes.iconHover}
+              onClick={openLoginForm}
+            >
+              <ExitToApp
+                className={classes.iconHover}
+                style={{ fontSize: "32px" }}
+              />
+            </IconButton>
             )}
           </Toolbar>
         </AppBar>
