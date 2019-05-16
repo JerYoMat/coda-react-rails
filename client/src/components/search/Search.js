@@ -112,10 +112,11 @@ class Search extends React.Component {
     single: '',
     suggestions: [],
   };
-
   onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method })  => {
+    if (this.props.demo !== 'true') {
     const companyId = suggestion.id 
     navigate(`/companies/${companyId}`)
+    }
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {

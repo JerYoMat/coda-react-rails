@@ -3,7 +3,6 @@ import { logout, openLoginForm, closeLoginForm } from "../../actions";
 import { connect } from "react-redux";
 import { navigate } from "@reach/router";
 import Logo from "../navbar/Logo";
-import MenuIcon from '@material-ui/icons/Menu'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -19,6 +18,7 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import Modal from "react-modal";
 import LoginWrapper from "../login/LoginWrapper";
 import FavoriteDrawer from './FavoriteDrawer';
+import { faSmile } from "@fortawesome/free-solid-svg-icons";
 
 const styles = theme => ({
   root: {
@@ -104,7 +104,8 @@ const Navbar = ({
   logout,
   modalOpen,
   openLoginForm,
-  closeLoginForm
+  closeLoginForm,
+  demo=faSmile
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -143,6 +144,7 @@ const Navbar = ({
                 <SearchIcon color="primary" />
               </div>
               <Search
+                demo={demo}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
@@ -187,7 +189,7 @@ const Navbar = ({
                 variant="h6"
                 onClick={openLoginForm}
               >
-                Login
+                Login/Signup
               </Typography>
             )}
           </Toolbar>

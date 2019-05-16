@@ -24,12 +24,14 @@ const styles = theme => ({
   }
 });
 
-const CustomFieldContainer = ( { classes, customFields,  statementType, changeLocalField, title, saveUser }) => {
+const CustomFieldContainer = ( { classes, customFields,  statementType, changeLocalField, title, saveUser, demo }) => {
   const handleChange = (e) => {
     const statement = statementType
     const field = e.target.id
     const value = e.target.checked 
+    if (demo !== 'true') {
     changeLocalField(statement, field, value)
+    }
   }
 
   return (

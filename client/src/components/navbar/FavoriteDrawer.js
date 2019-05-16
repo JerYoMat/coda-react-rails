@@ -11,15 +11,16 @@ import { navigate } from '@reach/router';
 import DeleteIcon from "@material-ui/icons/Delete";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
+
 const styles = {
   list: {
     width: 250
   },
   menuButton: {
+    position: 'relative',
+    float: 'left',
     lineHeight: '65px',
     height: '65px',
-    position: 'absolute',
-    left: '74px',
     fontSize: '32px',
   }
 };
@@ -33,10 +34,10 @@ const FavoriteDrawer = ({ classes, favorites, removeFavorite }) => {
     <div className={classes.list}>
       <List>
         {Object.keys(favorites).map(f => (
-          <ListItem onClick={()=>{goToFavorite(f)}}>
+          <ListItem key={f} onClick={()=>{goToFavorite(f)}}>
             <ListItemText primary={f} />
-            <ListItemSecondaryAction>
-              <IconButton onClick={()=> {removeFavorite(favorites[f])}} aria-label="Delete">
+            <ListItemSecondaryAction  onClick={()=> {removeFavorite(favorites[f])}}>
+              <IconButton aria-label="Delete">
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
@@ -52,8 +53,9 @@ const FavoriteDrawer = ({ classes, favorites, removeFavorite }) => {
         className={classes.menuButton}
         color="inherit"
         aria-label="Menu"
+        onClick={() => {setDrawerVisibility(true)}}
       >
-        <MenuIcon onClick={() => {setDrawerVisibility(true)}} />
+        <MenuIcon  />
       </IconButton>
       <Drawer
         open={drawerVisible}
