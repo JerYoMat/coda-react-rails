@@ -1,8 +1,10 @@
 import React from "react";
 import "./Loading.scss";
+import Card from '@material-ui/core/Card'
+import { relativeLength } from "highcharts";
 
 const Loading = () => (
-    <div className='spinner-container'>
+    <Card style={{maxWidth: 64, position: 'relative', marginLeft: 'auto', marginRight: 'auto'}}>
     <div className="lds-spinner">
       <div />
       <div />
@@ -17,7 +19,7 @@ const Loading = () => (
       <div />
       <div />
     </div>
-    </div>
+    </Card>
 
 );
 

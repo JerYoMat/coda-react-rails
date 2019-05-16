@@ -85,12 +85,7 @@ class CompanyProfilePage extends Component {
       stockData
     } = this.props;
     if (loading || !data) {
-      return (
-        <div>
-          <Loading />
-          <div>Retrieving Data from EDGAR ONLINE ...</div>
-        </div>
-      );
+      return <Loading />;
     }
     if (!company) {
       return <NotFoundPage />;
