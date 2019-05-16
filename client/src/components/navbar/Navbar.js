@@ -3,6 +3,7 @@ import { logout, openLoginForm, closeLoginForm } from "../../actions";
 import { connect } from "react-redux";
 import { navigate } from "@reach/router";
 import Logo from "../navbar/Logo";
+import MenuIcon from '@material-ui/icons/Menu'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -17,6 +18,7 @@ import Search from "../search/Search";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import Modal from "react-modal";
 import LoginWrapper from "../login/LoginWrapper";
+import FavoriteDrawer from './FavoriteDrawer';
 
 const styles = theme => ({
   root: {
@@ -26,17 +28,15 @@ const styles = theme => ({
     flexGrow: 1
   },
   appBar: {
-    height: "52px"
+    boxSizing: 'border-box',
+    height: "65px"
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block"
-    }
+    marginRight: 20,
+    height: '65px',
+    lineHeight: '65px',
+    fontSize: '32px'
   },
   search: {
     position: "relative",
@@ -89,7 +89,13 @@ const styles = theme => ({
     [theme.breakpoints.up("md")]: {
       display: "none"
     }
-  }
+  },
+  iconHover: {
+    color: theme.palette.primary.main,
+    '&:hover': {
+      color: theme.palette.secondary.light,
+    },
+  },
 });
 
 const Navbar = ({
@@ -131,6 +137,7 @@ const Navbar = ({
             >
               <Logo />
             </Typography>
+            <FavoriteDrawer />
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon color="primary" />
@@ -146,16 +153,15 @@ const Navbar = ({
             {user && (
               <div>
                 <IconButton
-                  aria-owns={open ? "menu-appbar" : undefined}
-                  aria-haspopup="true"
                   className={classes.iconHover}
                   onClick={event => setAnchorEl(event.currentTarget)}
-                  color="primary"
                 >
-                  <AccountCircle color="primary" />
+                  <AccountCircle
+                    className={classes.iconHover}
+                    style={{ fontSize: "32px" }}
+                  />
                 </IconButton>
                 <Menu
-                  id="menu-appbar"
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: "top",
@@ -193,14 +199,14 @@ const Navbar = ({
         style={{
           content: {
             display: "flex",
-            minWidth: '250px',
+            minWidth: "250px",
             width: "50%",
             left: "25%",
             padding: 0,
-            borderColor: '#424242', 
+            borderColor: "#424242",
             top: "20%",
-            maxHeight: '400px',
-            backgroundColor: '#424242'
+            maxHeight: "400px",
+            backgroundColor: "#424242"
           },
           overlay: { backgroundColor: "rgba(0,0,0, 0.6)" }
         }}

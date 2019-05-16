@@ -1,4 +1,4 @@
-@import '../../styles/colors.scss';
+@import "../../styles/colors.scss";
 div.navbar-wrapper {
   margin-bottom: 3rem;
 }
@@ -6,18 +6,26 @@ div.navbar-wrapper {
 .app-logo {
   g#top-left {
     fill: $primary-md-dark;
-    
+    &:hover {
+      fill: $secondary-md-dark;
+    }
   }
   g#top-right {
     fill: $primary-md-light;
-    
+    &:hover {
+      fill: $secondary-md-light;
+    }
   }
   g#bottom-left {
     fill: $primary;
-  
+    &:hover {
+      fill: $secondary;
+    }
   }
   g#bottom-right {
     fill: $primary-light;
-   
+    &:hover {
+      fill: $secondary-light;
+    }
   }
 }

@@ -196,7 +196,7 @@ class CompanyProfilePage extends Component {
           </Grid>
           <Grid item lg={6} xs={12}>
             <Card className={classes.card}>
-              <Typography className={classes.fin} variant="subtitle2">
+              <Typography className={classes.market} variant="subtitle2">
                 Reporting Trends
               </Typography>
               <LineChart
@@ -217,7 +217,6 @@ class CompanyProfilePage extends Component {
                 >
                   Market Data
                 </Typography>
-
                 <StockChart
                   data={stockData}
                   ticker={primarysymbol}

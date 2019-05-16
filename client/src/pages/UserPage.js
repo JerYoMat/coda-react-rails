@@ -43,7 +43,7 @@ const UserPage = ({ classes, user, loading, saveUser, unsavedChanges}) => {
       <Grid
         container
         spacing={16}
-        justify="space-evenly"
+        justify="center"
         direction="row"
         alignItems="center"
       >
