@@ -4,27 +4,31 @@ div.navbar-wrapper {
 }
 
 .app-logo {
-  g#top-left {
+  g#top-left path {
     fill: $primary-md-dark;
-    &:hover {
-      fill: $secondary-md-dark;
-    }
+    
   }
-  g#top-right {
+  g#top-right path {
     fill: $primary-md-light;
-    &:hover {
+  }
+  g#bottom-left path {
+    fill: $primary;
+  }
+  g#bottom-right path {
+    fill: $primary-light;
+  }
+  &:hover {
+    g#top-left path {
+      fill: $secondary-md-dark;
+      
+    }
+    g#top-right path {
       fill: $secondary-md-light;
     }
-  }
-  g#bottom-left {
-    fill: $primary;
-    &:hover {
+    g#bottom-left path {
       fill: $secondary;
     }
-  }
-  g#bottom-right {
-    fill: $primary-light;
-    &:hover {
+    g#bottom-right path {
       fill: $secondary-light;
     }
   }
