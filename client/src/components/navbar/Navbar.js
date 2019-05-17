@@ -7,7 +7,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -17,7 +16,7 @@ import Search from "../search/Search";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import Modal from "react-modal";
 import LoginWrapper from "../login/LoginWrapper";
-import FavoriteDrawer from "./FavoriteDrawer";
+import DrawerToggler from "../drawer/DrawerToggler";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 
 const styles = theme => ({
@@ -114,7 +113,7 @@ const Navbar = ({
         <AppBar className={classes.appBar} position="static" color="default">
           <Toolbar>
             <Logo onClick={goToRoot} />
-            <FavoriteDrawer
+            <DrawerToggler
               loggedIn={user ? true : false}
               openModal={openLoginForm}
             />
