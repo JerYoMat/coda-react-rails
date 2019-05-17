@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { removeFavorite, openLoginForm } from "../../actions";
+import { removeFavorite } from "../../actions";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -13,21 +13,23 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 
-const styles = {
+const styles = theme => ({
   list: {
     width: 250
   },
   menuButton: {
-    position: "relative",
-    float: "left",
     lineHeight: "65px",
     height: "65px",
-    fontSize: "32px"
+    fontSize: "32px",
+    color: theme.palette.primary, 
+    "&:hover": {
+      color: theme.palette.secondary,
+    },
   },
   notUser: {
     display: "block"
   }
-};
+});
 
 const FavoriteDrawer = ({ classes, favorites, removeFavorite, openModal, loggedIn }) => {
   const [drawerVisible, setDrawerVisibility] = useState(false);
@@ -87,13 +89,12 @@ const FavoriteDrawer = ({ classes, favorites, removeFavorite, openModal, loggedI
     <React.Fragment>
       <IconButton
         className={classes.menuButton}
-        color="inherit"
         aria-label="Menu"
         onClick={() => {
           setDrawerVisibility(true);
         }}
       >
-        <MenuIcon />
+        <MenuIcon  />
       </IconButton>
       <Drawer
         open={drawerVisible}

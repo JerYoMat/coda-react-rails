@@ -23,7 +23,7 @@ function renderInputComponent(inputProps) {
           inputRef(node);
         },
         classes: {
-          input: classes.input,
+          input: classes.inputInput,
         },
       }}
       {...other}
@@ -79,15 +79,34 @@ function getSuggestionValue(suggestion) {
 
 const styles = theme => ({
   root: {
-    color: theme.palette.secondary.light,
     width: '100%',
+  },
+  grow: {
     flexGrow: 1,
   },
-  input: {
-    color: theme.palette.common.white,
+  inputRoot: {
+    color: 'inherit',
+    width: '100%',
   },
-  container: {
-    position: 'relative',
+  inputInput: {
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
+      '&:focus': {
+        width: 450,
+      },
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: 160,
+      '&:focus': {
+        width: 300,
+      },
+    },
   },
   suggestionsContainerOpen: {
     position: 'absolute',
@@ -161,7 +180,7 @@ class Search extends React.Component {
             onChange: this.handleChange('single'),
           }}
           theme={{
-            container: classes.container,
+            container: classes.root,
             suggestionsContainerOpen: classes.suggestionsContainerOpen,
             suggestionsList: classes.suggestionsList,
             suggestion: classes.suggestion,

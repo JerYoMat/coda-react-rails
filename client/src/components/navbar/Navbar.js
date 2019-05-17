@@ -17,8 +17,8 @@ import Search from "../search/Search";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import Modal from "react-modal";
 import LoginWrapper from "../login/LoginWrapper";
-import FavoriteDrawer from './FavoriteDrawer';
-import ExitToApp from '@material-ui/icons/ExitToApp';
+import FavoriteDrawer from "./FavoriteDrawer";
+import ExitToApp from "@material-ui/icons/ExitToApp";
 
 const styles = theme => ({
   root: {
@@ -28,15 +28,14 @@ const styles = theme => ({
     flexGrow: 1
   },
   appBar: {
-    boxSizing: 'border-box',
-    height: "65px"
+    boxSizing: "border-box",
+    height: "60px"
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-    height: '65px',
-    lineHeight: '65px',
-    fontSize: '32px'
+    position: 'relative',
+    height: "65px",
+    lineHeight: "65px",
+    fontSize: "32px"
   },
   search: {
     position: "relative",
@@ -45,10 +44,6 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25)
     },
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: 0,
-    underline: false,
-    width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing.unit * 3,
       width: "auto"
@@ -65,7 +60,7 @@ const styles = theme => ({
   },
   inputRoot: {
     color: "inherit",
-    width: "100%"
+    width: "100%",
   },
   inputInput: {
     paddingTop: theme.spacing.unit,
@@ -78,24 +73,12 @@ const styles = theme => ({
       width: 200
     }
   },
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex"
-    }
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none"
-    }
-  },
   iconHover: {
     color: theme.palette.primary.main,
-    '&:hover': {
-      color: theme.palette.secondary.light,
-    },
-  },
+    "&:hover": {
+      color: theme.palette.secondary.light
+    }
+  }
 });
 
 const Navbar = ({
@@ -105,7 +88,7 @@ const Navbar = ({
   modalOpen,
   openLoginForm,
   closeLoginForm,
-  demo='false'
+  demo = "false"
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -130,26 +113,16 @@ const Navbar = ({
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="static" color="default">
           <Toolbar>
-            <Typography
-              variant="h6"
-              color="inherit"
-              className={classes.grow}
-              onClick={goToRoot}
-            >
-              <Logo />
-            </Typography>
-            <FavoriteDrawer loggedIn={user ? true : false } openModal={openLoginForm}/>
+            <Logo onClick={goToRoot} />
+            <FavoriteDrawer
+              loggedIn={user ? true : false}
+              openModal={openLoginForm}
+            />
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon color="primary" />
               </div>
-              <Search
-                demo={demo}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-              />
+              <Search demo={demo} />
             </div>
             <div className={classes.grow} />
             {user && (
@@ -184,15 +157,12 @@ const Navbar = ({
             )}
 
             {!user && (
-              <IconButton
-              className={classes.iconHover}
-              onClick={openLoginForm}
-            >
-              <ExitToApp
-                className={classes.iconHover}
-                style={{ fontSize: "32px" }}
-              />
-            </IconButton>
+              <IconButton className={classes.iconHover} onClick={openLoginForm}>
+                <ExitToApp
+                  className={classes.iconHover}
+                  style={{ fontSize: "32px" }}
+                />
+              </IconButton>
             )}
           </Toolbar>
         </AppBar>

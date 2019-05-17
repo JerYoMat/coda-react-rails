@@ -2,10 +2,10 @@ import React from 'react';
 
 
 const Logo = ({
-  width='60px',
+  width='48px',
   className = 'app-logo',
-  height='65px',
-  viewBox = '0 -5.5 32 32',
+  height='52px',
+  viewBox = '0 0 24 26',
 }) =>
   <svg
     width={width}
