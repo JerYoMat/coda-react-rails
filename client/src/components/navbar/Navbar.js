@@ -6,14 +6,12 @@ import Logo from "../navbar/Logo";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/icons/Search";
 import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import "./Navbar.scss";
 import Search from "../search/Search";
-import { fade } from "@material-ui/core/styles/colorManipulator";
 import Modal from "react-modal";
 import LoginWrapper from "../login/LoginWrapper";
 import DrawerToggler from "../drawer/DrawerToggler";
@@ -35,27 +33,6 @@ const styles = theme => ({
     height: "65px",
     lineHeight: "65px",
     fontSize: "32px"
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
-    },
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing.unit * 3,
-      width: "auto"
-    }
-  },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
   },
   inputRoot: {
     color: "inherit",
@@ -97,6 +74,7 @@ const Navbar = ({
     setAnchorEl(null);
   };
   const goToRoot = () => {
+    console.log()
     navigate(`/`);
     setAnchorEl(null);
   };
@@ -112,17 +90,14 @@ const Navbar = ({
       <div className={classes.root}>
         <AppBar className={classes.appBar} position="static" color="default">
           <Toolbar>
-            <Logo onClick={goToRoot} />
+            <div onClick={() => {goToRoot()}}>
+            <Logo  width='48px' height='52px'/>
+            </div>
             <DrawerToggler
               loggedIn={user ? true : false}
               openModal={openLoginForm}
             />
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon color="primary" />
-              </div>
               <Search demo={demo} />
-            </div>
             <div className={classes.grow} />
             {user && (
               <div>
@@ -154,7 +129,6 @@ const Navbar = ({
                 </Menu>
               </div>
             )}
-
             {!user && (
               <IconButton className={classes.iconHover} onClick={openLoginForm}>
                 <ExitToApp
