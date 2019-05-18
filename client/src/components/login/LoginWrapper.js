@@ -8,9 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import ExitToApp from "@material-ui/icons/ExitToApp";
+import PersonAdd from "@material-ui/icons/PersonAdd";
 
 const styles = theme => ({
   root: {
@@ -54,8 +53,8 @@ const LoginWrapper =({ classes, user, login, signup, error }) => {
       indicatorColor="secondary"
       color="secondary"
     >
-      <Tab icon={<FontAwesomeIcon icon={faSignInAlt} size='lg' />} label="Sign in" />
-      <Tab icon={<FontAwesomeIcon icon={faUserPlus} size='lg' />} label="Sign up" />
+      <Tab icon={<ExitToApp />} label="Sign in" />
+      <Tab icon={<PersonAdd />} label="Sign up" />
     </Tabs>
     {showing === 0 && 
       <Login 
