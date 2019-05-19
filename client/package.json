@@ -19,8 +19,10 @@
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
+    "react-swipeable-views": "^0.13.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "thunk": "^0.0.1"
   },
   "scripts": {
