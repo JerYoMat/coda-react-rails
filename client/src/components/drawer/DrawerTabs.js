@@ -1,49 +1,77 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import SwipeableViews from 'react-swipeable-views';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import CompanyList from '../actionLists/CompanyList';
+import Paper from '@material-ui/core/Paper';
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-};
-
-class CenteredTabs extends React.Component {
-  state = {
-    value: 0,
-  };
-
-  handleChange = (event, value) => {
-    event.stopPropagation()
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Paper className={classes.root}>
-        <Tabs
-          value={this.state.value}
-          onChange={this.handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
-        >
-          <Tab label="Industries" />
-          <Tab label="Sectors" />
-          <Tab label="My Companies" />
-        </Tabs>
-      </Paper>
-    );
-  }
+function TabContainer({ children, dir }) {
+  return (
+    <Paper component="div" dir={dir} style={{ padding: 8 * 3 }}>
+      {children}
+    </Paper>
+  );
 }
 
-CenteredTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+const styles = theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: 450,
+  },
+});
 
-export default withStyles(styles)(CenteredTabs);
+const DrawerTabs = ({ classes, theme }) => {
+
+  const [tabValue, setTabValue] = useState(0);
+
+  const handleChange = (event, value) => {
+    event.stopPropagation();
+    setTabValue(value);
+  };
+
+  const handleChangeIndex = index => {
+    this.setState({ value: index });
+  };
+
+
+
+    return (
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={tabValue}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+          >
+
+
+            <Tab label="My Companies" />
+            <Tab label="Sectors" />
+
+          </Tabs>
+        </AppBar>
+
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={tabValue}
+          onChangeIndex={handleChangeIndex}
+        >
+         <TabContainer dir={theme.direction}>My Companies</TabContainer>
+          <TabContainer dir={theme.direction}><CompanyList keyName='sector' /></TabContainer>
+
+
+        </SwipeableViews>
+      </div>
+    );
+  }
+
+const mapState = state => ({
+  companies: state.companies.list
+})
+
+
+export default withStyles(styles, { withTheme: true })(DrawerTabs);

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { removeFavorite } from "../../actions";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import MenuIcon from "@material-ui/icons/Menu";
-import { navigate } from "@reach/router";
 import IconButton from "@material-ui/core/IconButton";
 import DrawerTabs from './DrawerTabs';
 
@@ -17,7 +14,7 @@ const styles = theme => ({
     lineHeight: "65px",
     height: "65px",
     fontSize: "32px",
-    color: theme.palette.primary, 
+    color: theme.palette.primary,
     "&:hover": {
       color: theme.palette.secondary,
     },
@@ -27,8 +24,8 @@ const styles = theme => ({
   }
 });
 
-const DrawerToggler = ({ classes, favorites, removeFavorite, openModal, user }) => {
-  const [drawerVisible, setDrawerVisibility] = useState(false);  
+const DrawerToggler = ({ classes, loggedIn }) => {
+  const [drawerVisible, setDrawerVisibility] = useState(false);
 
   return (
     <React.Fragment>
@@ -57,23 +54,14 @@ const DrawerToggler = ({ classes, favorites, removeFavorite, openModal, user }) 
             setDrawerVisibility(false);
           }}
         >
-          <DrawerTabs favorites={favorites} user={user} />
+          <DrawerTabs disableMyCompanies={loggedIn ? true : false}/>
         </div>
       </Drawer>
     </React.Fragment>
   );
 };
-const mapState = state => ({
-  favorites: state.user.favorites,
-  user: state.user.info,
-  companies: state.companies.list
-});
 
-const mapDispatch = { removeFavorite };
 
 export default withStyles(styles)(
-  connect(
-    mapState,
-    mapDispatch
-  )(DrawerToggler)
+  DrawerToggler
 );

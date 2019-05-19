@@ -74,7 +74,6 @@ const Navbar = ({
     setAnchorEl(null);
   };
   const goToRoot = () => {
-    console.log()
     navigate(`/`);
     setAnchorEl(null);
   };
