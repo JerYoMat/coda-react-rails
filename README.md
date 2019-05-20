@@ -5,18 +5,6 @@ A react/redux application with Rails api back-end to view and analyze financial 
 ## USAGE
 visit the live demo: [CoDA](https://www.fin-coda.com)
 
-## Modify
-
-Clone the repo
-
-```bash
-cd your-repo
-cd client
-yarn
-cd ..
-rake start
-```
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
