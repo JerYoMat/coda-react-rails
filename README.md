@@ -1,24 +1,31 @@
-# README
+# CoDA - Company Data Analyzer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A react/redux application with Rails api back-end to view and analyze financial data for publicly traded companies.
 
-Things you may want to cover:
+## USAGE
+visit the live demo: [CoDA](https://www.fin-coda.com)
 
-* Ruby version
+## Modify
 
-* System dependencies
+Clone the repo
 
-* Configuration
+```bash
+cd your-repo
+cd client
+yarn
+cd ..
+rake start
+```
 
-* Database creation
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-* Database initialization
+Please make sure to update tests as appropriate.
 
-* How to run the test suite
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
-* Services (job queues, cache servers, search engines, etc.)
+## Acknowledgements
+The financial statement data is sourced from [DataFied by EDGAR Online](https://developer.edgar-online.com/)
+The stock data is sourced from [Alpha Vantage](https://www.alphavantage.co/)
 
-* Deployment instructions
-
-* ...
