@@ -25,7 +25,7 @@ const styles = theme => ({
   }
 })
 
-const HomePage = ({ classes, openLoginForm }) => {
+const HomePage = ({ classes, openLoginForm, user }) => {
   return (
     <div className='home-root'>
       <div className='home-title'>
@@ -37,6 +37,7 @@ const HomePage = ({ classes, openLoginForm }) => {
       <div className='search-wrapper'>
         <Search />
       </div>
+      { !user && (
       <Tooltip
         title={
           <React.Fragment>
@@ -54,17 +55,22 @@ const HomePage = ({ classes, openLoginForm }) => {
           </React.Fragment>
         }
       >
+
         <Fab onClick={openLoginForm} className={classes.fab}>
           <Typography variant='h4'>?</Typography>
         </Fab>
-      </Tooltip>
+      </Tooltip> )}
     </div>
   )
 }
 
+const mapState = state=> ({
+  user: state.user.info
+})
+
 export default withStyles(styles)(
   connect(
-    null,
+    mapState,
     { openLoginForm }
   )(HomePage)
 )
