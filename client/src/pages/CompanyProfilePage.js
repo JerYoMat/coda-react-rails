@@ -1,26 +1,27 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { loadStatements, loadStockData } from "../actions";
-import { withStyles } from "@material-ui/core/styles";
-import Statement from "../components/statements/Statement";
-import LineChart from "../components/charts/LineChart";
-import StockChart from "../components/charts/StockChart";
-import FavoriteButton from "../components/favorites/FavoriteButton";
-import Loading from "../components/misc/Loading";
-import Grid from "@material-ui/core/Grid";
-import NotFoundPage from "./NotFoundPage";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { loadStatements, loadStockData } from '../actions'
+import { getCompanyById } from '../selectors'
+import { withStyles } from '@material-ui/core/styles'
+import Statement from '../components/statements/Statement'
+import LineChart from '../components/charts/LineChart'
+import StockChart from '../components/charts/StockChart'
+import FavoriteButton from '../components/favorites/FavoriteButton'
+import Loading from '../components/misc/Loading'
+import Grid from '@material-ui/core/Grid'
+import NotFoundPage from './NotFoundPage'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
 
 const styles = theme => ({
   root: {
-    marginTop: "1rem",
+    marginTop: '1rem',
     flexGrow: 1
   },
   card: {
     padding: theme.spacing.unit * 2,
     color: theme.palette.text.secondary,
-    marginTop: "1rem"
+    marginTop: '1rem'
   },
   fin: {
     color: theme.palette.primary.light
@@ -29,17 +30,17 @@ const styles = theme => ({
     color: theme.palette.secondary.light
   },
   button: {
-    position: "relative",
-    float: "right",
+    position: 'relative',
+    float: 'right',
     margin: theme.spacing.unit
   },
   leftIcon: {
     marginRight: theme.spacing.unit
   }
-});
+})
 
 class CompanyProfilePage extends Component {
-  componentDidMount() {
+  componentDidMount () {
     const {
       data,
       company,
@@ -48,15 +49,15 @@ class CompanyProfilePage extends Component {
       loading,
       stockData,
       stocksLoading
-    } = this.props;
+    } = this.props
     if (!data && !loading) {
-      loadStatements(company.id);
+      loadStatements(company.id)
     }
     if (!stockData && !stocksLoading && company) {
-      loadStockData(company.id);
+      loadStockData(company.id)
     }
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     const {
       data,
       company,
@@ -65,15 +66,15 @@ class CompanyProfilePage extends Component {
       loadStockData,
       stockData,
       stocksLoading
-    } = this.props;
+    } = this.props
     if (!data && !loading) {
-      loadStatements(company.id);
+      loadStatements(company.id)
     }
     if (!stockData && !stocksLoading && company) {
-      loadStockData(company.id);
+      loadStockData(company.id)
     }
   }
-  render() {
+  render () {
     const {
       classes,
       company,
@@ -83,84 +84,84 @@ class CompanyProfilePage extends Component {
       error,
       stocksLoading,
       stockData
-    } = this.props;
+    } = this.props
     if (loading || !data) {
-      return <Loading />;
+      return <Loading />
     }
     if (!company) {
-      return <NotFoundPage />;
+      return <NotFoundPage />
     }
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div>Error: {error.message}</div>
     }
-    const years = Object.keys(data);
+    const years = Object.keys(data)
     const {
       companyname,
       primarysymbol,
       primaryexchange,
       industry,
       sector
-    } = company;
+    } = company
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item lg={6} xs={12}>
             <Card className={classes.card}>
-              <Typography variant="h3">{companyname}</Typography>
+              <Typography variant='h3'>{companyname}</Typography>
               <div>
                 <Typography
-                  inline={true}
-                  variant="button"
+                  inline
+                  variant='button'
                   className={classes.test}
                 >
-                  Ticker:{"\u00A0"}
+                  Ticker:{'\u00A0'}
                 </Typography>
                 <Typography
-                  inline={true}
-                  variant="subtitle2"
+                  inline
+                  variant='subtitle2'
                   className={classes.market}
                 >
                   {primarysymbol}
                 </Typography>
                 <span> | </span>
                 <Typography
-                  inline={true}
-                  variant="button"
+                  inline
+                  variant='button'
                   className={classes.mainText}
                 >
-                  Exchange:{"\u00A0"}
+                  Exchange:{'\u00A0'}
                 </Typography>
                 <Typography
                   className={classes.market}
-                  inline={true}
-                  variant="subtitle2"
+                  inline
+                  variant='subtitle2'
                 >
                   {primaryexchange}
                 </Typography>
               </div>
               <div>
                 <Typography
-                  inline={true}
-                  variant="button"
+                  inline
+                  variant='button'
                   className={classes.test}
                 >
-                  Industry:{"\u00A0"}
+                  Industry:{'\u00A0'}
                 </Typography>
                 <Typography
-                  inline={true}
-                  variant="subtitle1"
+                  inline
+                  variant='subtitle1'
                   className={classes.test}
                 >
                   {industry}
                 </Typography>
               </div>
               <div>
-                <Typography inline={true} variant="button">
-                  Sector:{"\u00A0"}
+                <Typography inline variant='button'>
+                  Sector:{'\u00A0'}
                 </Typography>
                 <Typography
-                  inline={true}
-                  variant="subtitle1"
+                  inline
+                  variant='subtitle1'
                   className={classes.test}
                 >
                   {sector}
@@ -169,46 +170,45 @@ class CompanyProfilePage extends Component {
               </div>
             </Card>
             <Card className={classes.card}>
-              <Typography className={classes.fin} variant="subtitle2">
+              <Typography className={classes.fin} variant='subtitle2'>
                 Income Statement:
               </Typography>
-              <Statement years={years} fields={fields["iS"]} data={data} />
+              <Statement years={years} fields={fields['iS']} data={data} />
             </Card>
 
             <Card className={classes.card}>
-              <Typography className={classes.fin} variant="subtitle2">
+              <Typography className={classes.fin} variant='subtitle2'>
                 Balance Sheet:
               </Typography>
-              <Statement years={years} fields={fields["bS"]} data={data} />
+              <Statement years={years} fields={fields['bS']} data={data} />
             </Card>
 
             <Card className={classes.card}>
-              <Typography className={classes.fin} variant="subtitle2">
+              <Typography className={classes.fin} variant='subtitle2'>
                 Cash Flow Statement:
               </Typography>
-              <Statement years={years} fields={fields["cF"]} data={data} />
+              <Statement years={years} fields={fields['cF']} data={data} />
             </Card>
           </Grid>
           <Grid item lg={6} xs={12}>
             <Card className={classes.card}>
-              <Typography className={classes.market} variant="subtitle2">
+              <Typography className={classes.market} variant='subtitle2'>
                 Reporting Trends
               </Typography>
               <LineChart
                 years={years}
                 data={data}
-                fieldNames={"totalrevenue"}
-                displayName={"Revenue"}
+                fieldNames={'totalrevenue'}
+                displayName={'Revenue'}
               />
             </Card>
-
             {stocksLoading && <Loading />}
             {stockData && (
               <Card className={classes.card}>
                 <Typography
                   className={classes.market}
-                  variant="subtitle2"
-                  color="secondary"
+                  variant='subtitle2'
+                  color='secondary'
                 >
                   Market Data
                 </Typography>
@@ -222,29 +222,29 @@ class CompanyProfilePage extends Component {
           </Grid>
         </Grid>
       </div>
-    );
+    )
   }
 }
 const mapState = (state, ownProps) => {
-  const companyId = parseInt(ownProps.companyId, 10);
+  const companyId = parseInt(ownProps.companyId, 10)
   return {
-    company: state.companies.list.find(el => el.id === companyId),
+    company: getCompanyById(state, ownProps),
     data: state.companies.statements[companyId],
     fields: state.user.customFields,
     loading: state.companies.loadingStmnt,
     error: state.companies.loadingStmntError,
     stockData: state.companies.stockPrices[companyId],
     stocksLoading: state.companies.stocksLoading
-  };
-};
+  }
+}
 const mapDispatch = {
   loadStatements,
   loadStockData
-};
+}
 
 export default withStyles(styles)(
   connect(
     mapState,
     mapDispatch
   )(CompanyProfilePage)
-);
+)

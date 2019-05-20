@@ -2,6 +2,9 @@ import { createSelector } from 'reselect'
 
 const getCompanies = state => state.companies.list
 const getKeyName = (state, ownProps) => ownProps.keyName
+const parseCompanyId = (state, ownProps) =>
+  parseInt(ownProps.companyId, 10);
+
 
 export const getUniqueValuesForKeyFromCompanies = createSelector(
   getCompanies,
@@ -18,3 +21,14 @@ export const getUniqueValuesForKeyFromCompanies = createSelector(
     return result
   }
 )
+
+
+
+
+
+export const getCompanyById = createSelector(
+  getCompanies,
+  parseCompanyId,
+  (companies, companyId) =>
+    companies.find(el => el.id === companyId)
+);
