@@ -2,7 +2,7 @@
 
 A react/redux application with Rails api back-end to view and analyze financial data for publicly traded companies.
 
-## USAGE
+## Usage
 visit the live demo: [CoDA](https://www.fin-coda.com)
 
 ## Contributing
