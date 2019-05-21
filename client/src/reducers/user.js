@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { 
+import {
   LOGIN_BEGIN,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
@@ -36,7 +36,7 @@ const initialState = {
   favorites: {},
   syncingFavorites: false,
   syncFavoriteError: null,
-  modalOpen: false, 
+  modalOpen: false,
 };
 
 const reducer = produce((draft, action) => {
@@ -55,17 +55,17 @@ const reducer = produce((draft, action) => {
     case LOGIN_SUCCESS:
       draft.loading = false;
       draft.customFields = action.payload.custom_fields;
-      draft.info = action.payload.info; 
+      draft.info = action.payload.info;
       draft.authToken = action.payload.auth_token;
-      draft.favorites = action.payload.favorites 
+      draft.favorites = action.payload.favorites
       draft.tokenIssueTime = Date.now()
       draft.modalOpen = false;
     return;
     case SIGNUP_SUCCESS:
       draft.loading = false;
       draft.customFields = action.payload.custom_fields;
-      draft.info = action.payload.info; 
-      draft.authToken = action.payload.auth_token; 
+      draft.info = action.payload.info;
+      draft.authToken = action.payload.auth_token;
       draft.tokenIssueTime = Date.now()
       draft.modalOpen = false
       return;
@@ -83,7 +83,7 @@ const reducer = produce((draft, action) => {
       draft.saveInProgress = false;
       draft.unsavedChanges = false;
       draft.customFields = action.payload.custom_fields;
-      draft.info = action.payload.info; 
+      draft.info = action.payload.info;
       return;
     case SAVE_USER_ERROR:
       draft.saveInProgress = false;
@@ -91,6 +91,7 @@ const reducer = produce((draft, action) => {
     return;
     case LOGOUT_SUCCESS:
       draft.info = null;
+      draft.favorites = {};
       draft.authToken = '';
       draft.loading = false;
       draft.error = false;

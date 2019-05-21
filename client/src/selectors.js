@@ -4,7 +4,7 @@ const getCompanies = state => state.companies.list
 const getKeyName = (state, ownProps) => ownProps.keyName
 const parseCompanyId = (state, ownProps) =>
   parseInt(ownProps.companyId, 10);
-
+const getFavorites = state => Object.keys(state.user.favorites)
 
 export const getUniqueValuesForKeyFromCompanies = createSelector(
   getCompanies,
@@ -23,12 +23,18 @@ export const getUniqueValuesForKeyFromCompanies = createSelector(
 )
 
 
-
-
-
 export const getCompanyById = createSelector(
   getCompanies,
   parseCompanyId,
   (companies, companyId) =>
     companies.find(el => el.id === companyId)
+);
+
+
+export const getFavoriteCompanies = createSelector(
+  getCompanies,
+  getFavorites,
+  (companies, favorites) => companies.filter(c =>
+    favorites.includes(String(c.id)))
+
 );

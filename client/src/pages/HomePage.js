@@ -37,34 +37,34 @@ const HomePage = ({ classes, openLoginForm, user }) => {
       <div className='search-wrapper'>
         <Search />
       </div>
-      { !user && (
-      <Tooltip
-        title={
-          <React.Fragment>
-            <Typography variant='h6' color='inherit'>
-              Why Sign Up?
-            </Typography>
-            <List>
-              <ListItem button>
-                <ListItemText primary='Choose what data you see for each company' />
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary='Create your own company list to easily follow changes' />
-              </ListItem>
-            </List>
-          </React.Fragment>
-        }
-      >
-
-        <Fab onClick={openLoginForm} className={classes.fab}>
-          <Typography variant='h4'>?</Typography>
-        </Fab>
-      </Tooltip> )}
+      {!user && (
+        <Tooltip
+          title={
+            <React.Fragment>
+              <Typography variant='h6' color='inherit'>
+                Why Sign Up?
+              </Typography>
+              <List>
+                <ListItem button>
+                  <ListItemText primary='Choose what data you see for each company' />
+                </ListItem>
+                <ListItem button>
+                  <ListItemText primary='Create your own company list to easily follow changes' />
+                </ListItem>
+              </List>
+            </React.Fragment>
+          }
+        >
+          <Fab onClick={openLoginForm} className={classes.fab}>
+            <Typography variant='h4'>?</Typography>
+          </Fab>
+        </Tooltip>
+      )}
     </div>
   )
 }
 
-const mapState = state=> ({
+const mapState = state => ({
   user: state.user.info
 })
 
