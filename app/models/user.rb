@@ -3,8 +3,16 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :companies, through: :favorites
   has_secure_password
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  before_save { self.email = email.downcase }
+
+  validates :email, presence: true, length: { maximum: 255}, format:  { with: VALID_EMAIL_REGEX }, uniqueness:{ case_sensitive: false }
+
+
+
   serialize :custom_fields
-  
+
   def set_custom_fields(type='save')
     self.custom_fields = {
       "iS" => {
@@ -50,9 +58,9 @@ class User < ApplicationRecord
         'currencycode'=> ['Currency Code', true],
         'usdconversionrate'=> ['Conversion Rate', true]
       }
-    } 
+    }
     self.save unless type == 'no-save'
     return self.custom_fields
-  end 
+  end
 
-end 
+end
