@@ -105,7 +105,7 @@ class CompanyProfilePage extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          <Grid item lg={6} xs={12}>
+          <Grid item md={6} xs={12}>
             <Card className={classes.card}>
               <Typography variant='h3'>{companyname}</Typography>
               <div>
@@ -171,26 +171,26 @@ class CompanyProfilePage extends Component {
             </Card>
             <Card className={classes.card}>
               <Typography className={classes.fin} variant='subtitle2'>
-                Income Statement:
+                Income Statement ({data[years[0]]['currencycode']} millions):
               </Typography>
               <Statement years={years} fields={fields['iS']} data={data} />
             </Card>
 
             <Card className={classes.card}>
               <Typography className={classes.fin} variant='subtitle2'>
-                Balance Sheet:
+                Balance Sheet ({data[years[0]]['currencycode']} millions):
               </Typography>
               <Statement years={years} fields={fields['bS']} data={data} />
             </Card>
 
             <Card className={classes.card}>
               <Typography className={classes.fin} variant='subtitle2'>
-                Cash Flow Statement:
+                Cash Flow Statement ({data[years[0]]['currencycode']} millions):
               </Typography>
               <Statement years={years} fields={fields['cF']} data={data} />
             </Card>
           </Grid>
-          <Grid item lg={6} xs={12}>
+          <Grid item md={6} xs={12}>
             <Card className={classes.card}>
               <Typography className={classes.market} variant='subtitle2'>
                 Reporting Trends

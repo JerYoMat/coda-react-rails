@@ -6,8 +6,8 @@ import themeOptions from "../../styles/highchartsTheme";
 Highcharts.setOptions(themeOptions);
 
 
-//years array, data hash, fieldNames array, 
-const LineChart = ({years, data, fieldNames, displayName}) => { 
+//years array, data hash, fieldNames array,
+const LineChart = ({years, data, fieldNames, displayName}) => {
   const seriesData = []
   years.forEach(year => {
     const key = data[year]
@@ -23,7 +23,7 @@ const LineChart = ({years, data, fieldNames, displayName}) => {
     name: displayName,
     data: seriesData
   }]
-  
+
   const options = {
     chart: {
       type: "line"
@@ -41,10 +41,10 @@ const LineChart = ({years, data, fieldNames, displayName}) => {
       title: {
         text: displayName
       },
-    
+
     },
     tooltip: {
-      valueSuffix: ` ${currency}`
+      valueSuffix: ` ${currency} millions`
     },
     legend: {
       enabled: false
@@ -59,8 +59,8 @@ const LineChart = ({years, data, fieldNames, displayName}) => {
           />
         </div>
       );
-    
-  
+
+
 }
 
 export default LineChart;

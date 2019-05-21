@@ -1,8 +1,9 @@
 class CreateFinancials < ActiveRecord::Migration[5.2]
   def change
     create_table :financials do |t|
+      t.string :scale, default: 'millions'
       t.string :amended
-      t.belongs_to :company 
+      t.belongs_to :company
       t.string :interestexpense
       t.string :changeincurrentassets
       t.string :changeincurrentliabilities
@@ -69,7 +70,7 @@ class CreateFinancials < ActiveRecord::Migration[5.2]
       t.string :dcn
       t.string :currencycode
       t.string :crosscalculated
-      t.string :audited      
+      t.string :audited
       t.timestamps
     end
   end

@@ -6,7 +6,7 @@ class Company < ApplicationRecord
   include ERB::Util
   include ActionView::Helpers::NumberHelper
   has_many :favorites
-  has_many :financials  
+  has_many :financials
 
   def get_stock_data
     url = "#{ENV['ALPHA_URL']}?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=#{url_encode(self.primarysymbol)}&apikey=#{ENV['ALPHA_KEY']}"
@@ -15,13 +15,13 @@ class Company < ApplicationRecord
       url: url
     )
     return response
-  end 
+  end
 
-  def create_fins 
+  def create_fins
     response = self.get_data
     fins = self.create_fins_from_json(response)
-    return fins 
-  end 
+    return fins
+  end
 
 
   def get_data
@@ -31,7 +31,7 @@ class Company < ApplicationRecord
       url: url
     )
     return response
-  end 
+  end
 
 
   def create_fins_from_json(json)
@@ -39,23 +39,25 @@ class Company < ApplicationRecord
       fin = self.financials.build()
       one_year_data.each do |key, value|
         if Financial.column_names.include? key
+          if key != 'fiscalyear'
           if value.is_a? Numeric
-            value = number_to_currency(value, negative_format: "(%n)", precision: 0, format: "%n")
-          end 
+            value = number_to_currency((value/1000000), negative_format: "(%n)", precision: 2, format: "%n")
+          end
+        end
           fin[key] = value
-        end  
-      end 
-      fin.save 
-    end 
-  end 
+        end
+      end
+      fin.save
+    end
+  end
 
 
 
   def compose_url
       ENV['EDGAR_URL'] + "?primarysymbols=#{self.primarysymbol}&appkey=#{ENV['EDGAR_KEY']}"
-  end 
+  end
 
-  #Functional - Needs refactoring 
+  #Functional - Needs refactoring
   #returns an array where each item is a financial period
   def normalize_data(response)
     raw_data =JSON.parse(response)
@@ -67,8 +69,8 @@ class Company < ApplicationRecord
           newObj[pair['field']] = pair['value']
       end
       sanitized_data.push(newObj)
-    end 
+    end
       return sanitized_data
-  end 
+  end
 
 end

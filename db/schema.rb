@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_013806) do
   end
 
   create_table "financials", force: :cascade do |t|
+    t.string "scale", default: "millions"
     t.string "amended"
     t.integer "company_id"
     t.string "interestexpense"
