@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage';
 const App = () => (
   <div>
     <Navbar />
-    <Router>
+    <Router primary={false}>
       <HomePage path='/' />
       <TutorialPage path='/tutorial' />
       <CompanyProfilePage path='/companies/:companyId' />
