@@ -4,7 +4,7 @@ class GetFinsWorker
 
 
 
-  def perform_async(company)
+  def perform(company)
     company.create_fins
   end
 
