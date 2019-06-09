@@ -24,7 +24,13 @@ class CompaniesController < ApplicationController
   end
 
   def getFinsInBackground
-    GetFinsWorker.perform_async
+    cid = 1
+    while cid < 3001 do
+      company = Company.find(cid)
+      GetFinsWorker.perform_async(company)
+      cid+=1
+      sleep rand(1..5)
+    end
   end
 
 private

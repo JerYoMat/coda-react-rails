@@ -4,16 +4,8 @@ class GetFinsWorker
 
 
 
-  def perform_async
-
-    while cid < 3001 do
-      @company = Company.find(cid)
-      if @company.financials.count == 0
-        @company.create_fins
-      end
-      cid+=1
-    end
-
+  def perform_async(company)
+    company.create_fins
   end
 
 
