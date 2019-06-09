@@ -1,6 +1,5 @@
 class GetFinsWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false
 
 
 
@@ -13,7 +12,6 @@ class GetFinsWorker
         @company.create_fins
       end
       cid+=1
-      sleep rand(1..7)
     end
 
   end
