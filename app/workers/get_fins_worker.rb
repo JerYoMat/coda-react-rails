@@ -6,21 +6,15 @@ class GetFinsWorker
 
 
   def perform_async
-    companies = []
-    Company.all.each do |c|
-      if c.financials.count == 0
-        companies.push(c.id)
+
+    while cid < 3001 do
+      @company = Company.find(cid)
+      if @company.financials.count == 0
+        @company.create_fins
       end
+      cid+=1
+      sleep rand(1..7)
     end
-
-    until companies.count < 100 do
-      cid = companies.sample
-      company = Company.find(cid)
-      company.create_fins
-      companies.delete(cid)
-      sleep rand(1..10)
-    end
-
 
   end
 
