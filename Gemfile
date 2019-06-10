@@ -10,7 +10,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
 gem 'bcrypt'
 gem 'jwt'
-gem 'sidekiq'
 
 group :development, :test do
   gem 'foreman', '~> 0.82.0'
