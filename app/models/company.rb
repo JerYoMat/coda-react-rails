@@ -8,17 +8,6 @@ class Company < ApplicationRecord
   has_many :favorites
   has_many :financials
 
-  def self.getFinsHack
-    i = 1
-    while i < 3002 do
-      company = Company.find(1)
-      fins = company.create_fins
-      i+=1
-      puts 1
-      sleep rand(1..5)
-    end
-  end
-
   def get_stock_data
     url = "#{ENV['ALPHA_URL']}?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=#{url_encode(self.primarysymbol)}&apikey=#{ENV['ALPHA_KEY']}"
     response = RestClient::Request.execute(
